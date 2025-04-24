@@ -65,9 +65,9 @@ When working on exercises:
 
 -   2018 and 2021 thanks to the financial support of the Ministère des Forêts, de la Faune et des Parcs (Québec).
 
--   2021 and 2024 thanks to the financial support of Laval University
+-   2021 and 2024 thanks to the financial support of Laval University.
 
 The current release version of `lidR` can be found on [CRAN](https://cran.r-project.org/web/packages/lidR/) and source code is hosted on [GitHub](https://github.com/r-lidar/lidR).
 
 > [!NOTE]
-> Since 2024, the `lidR` package is no longer supported by Laval University, but the software will remain free and open-source. `r-lidar` has transitioned into a company to ensure sustainability and now offers independet services for training courses, consulting, and development. Please feel free to visit their [website](https://www.r-lidar.com/) for more information.
+> Since 2024, the `lidR` package is no longer supported by Laval University, but the software will remain free and open-source. `r-lidar` has transitioned into a company to ensure sustainability and now offers independent services for training courses, consulting, and development. Please feel free to visit their [website](https://www.r-lidar.com/) for more information.
