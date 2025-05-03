@@ -83,9 +83,7 @@ crs(ctg)
 projection(ctg)
 st_crs(ctg)
 
-# spatial extents
-extent(ctg)
-bbox(ctg)
+# spatial extent
 st_bbox(ctg)
 ```
 

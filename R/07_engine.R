@@ -65,8 +65,6 @@ projection(ctg)
 st_crs(ctg)
 
 # spatial extents
-extent(ctg)
-bbox(ctg)
 st_bbox(ctg)
 
 #' 

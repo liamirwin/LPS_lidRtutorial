@@ -2,7 +2,7 @@
 title: "Read/Plot/Query/Validate"
 ---
 
-```{r, echo = FALSE, warnings = FALSE}
+```{r setup-rgl, echo = FALSE, warnings = FALSE}
 library(rgl)
 
 r3dDefaults <- rgl::r3dDefaults
@@ -23,15 +23,15 @@ options(lidR.progress = FALSE)
 
 ## Relevant Resources
 
--   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/01_read.R)
+-   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/01_read.R)
 
 -   [lidRbook section](https://r-lidar.github.io/lidRbook/index.htm)
 
 ## Overview
 
-Welcome to this LiDAR processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, *query*, and *validate* LiDAR data. We'll explore basic information about a LiDAR file including the *header* and *tabular data,* as well as *visualize* point clouds using different color schemes based on attributes. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly. We'll validate the LiDAR data using the `las_check` function on different data files to ensure data integrity.
+Welcome to this lidar processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, *query*, and *validate* lidar data. We'll explore basic information about a lidar file including the *header* and *tabular data,* as well as *visualize* point clouds using different color schemes based on attributes. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly. We'll validate the lidar data using the `las_check` function on different data files to ensure data integrity.
 
-Let's get started with processing LiDAR data efficiently using `lidR` and R! Happy learning!
+Let's get started with processing lidar data efficiently using `lidR` and R! Happy learning!
 
 ## Environment
 
@@ -48,9 +48,9 @@ library(sf)
 
 ## Basic Usage
 
-### Load and Inspect LiDAR Data
+### Load and Inspect lidar Data
 
-Load the LiDAR point cloud data from a LAS file using the `readLAS()` function. The data is stored in the `las` object. We can inspect the header information and attributes of the `las` object.
+Load the lidar point cloud data from a LAS file using the `readLAS()` function. The data is stored in the `las` object. We can inspect the header information and attributes of the `las` object.
 
 ```{r load_and_inspect_lidar_data}
 las <- readLAS(files = "data/MixedEucaNat_normalized.laz")
@@ -61,13 +61,13 @@ las@header
 # Inspect attributes of the point cloud
 las@data
 
-# Check the file size of the loaded LiDAR data
+# Check the file size of the loaded lidar data
 format(object.size(las), "Mb")
 ```
 
-### Visualize LiDAR Data
+### Visualize lidar Data
 
-We can visualize the LiDAR data using the `plot()` function. We have several options to control the colors in the plot, such as selecting specific attributes from the data to be used as colors.
+We can visualize the lidar data using the `plot()` function. We have several options to control the colors in the plot, such as selecting specific attributes from the data to be used as colors.
 
 ::: callout-tip
 ## `plot()` background colour
@@ -80,7 +80,7 @@ plot(las)
 ```
 
 ```{r visualize_lidar_data, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-# Visualize the LiDAR data with a default color palette
+# Visualize the lidar data with a default color palette
 plot(las, bg = "white")
 ```
 
@@ -115,7 +115,7 @@ plot(las, color = "ScanAngleRank", axis = TRUE, legend = TRUE, bg = "white")
 
 ### Selecting Attributes of Interest
 
-The `readLAS()` function allows us to select specific attributes to be loaded into memory. This is useful to reduce memory requirements when working with large LiDAR datasets.
+The `readLAS()` function allows us to select specific attributes to be loaded into memory. This is useful to reduce memory requirements when working with large lidar datasets.
 
 ```{r select_attributes}
 # Load only the xyz coordinates (X, Y, Z) and ignore other attributes
@@ -130,7 +130,7 @@ format(object.size(las), "Mb")
 
 ### Filtering Points of Interest
 
-We can also load only a subset of the LiDAR points based on certain criteria using the `filter` argument in `readLAS()`.
+We can also load only a subset of the lidar points based on certain criteria using the `filter` argument in `readLAS()`.
 
 ```{r filter_points}
 # Load only the first return points
@@ -249,4 +249,4 @@ Load only the ground points and plot the point cloud colored by the return numbe
 
 ## Conclusion
 
-This concludes our tutorial on the basic usage of the `lidR` package in R for processing and analyzing LiDAR data. We covered loading LiDAR data, inspecting and visualizing the data, selecting specific attributes, filtering points, and validating LAS objects for issues.
+This concludes our tutorial on the basic usage of the `lidR` package in R for processing and analyzing lidar data. We covered loading lidar data, inspecting and visualizing the data, selecting specific attributes, filtering points, and validating LAS objects for issues.

@@ -34,17 +34,14 @@ install.packages(libs)
 ## Estimated schedule
 
 -   Introduction and set-up (09:00)
--   Read LAS and LAZ files (09:15)
--   Spatial queries (09:35)
--   Area-Based Approach (09:45)
--   Canopy Height Model (10:00)
--   Digital Terrain Model (10:10)
+-   Reading LAS and LAZ files (09:10)
+-   Canopy Height Model (9:20)
+-   Digital Terrain Model (9:25)
+-   Vegetation Indices and Metrics (9:30)
+-   Connecting ALS metrics with Optical Satellite Imagery (9:50)
+-   Individual tree detection and segmentation (10:10)
+-   File collection processing engine (10:30)
 
---- Break until 10:30 ---
-
--   Individual tree segmentation (10:30)
--   File collection processing engine (basic) (11:00)
--   File collection processing engine (advanced) (11:30)
 
 ## Resources
 
@@ -53,13 +50,19 @@ We strongly recommend having the following resources available to you:
 -   The [`lidR` official documentation](https://cran.r-project.org/web/packages/lidR/lidR.pdf)
 -   The [lidRbook](https://r-lidar.github.io/lidRbook/) of tutorials
 
+
 When working on exercises:
 
 -   [Stack Exchange with the `lidR` tag](https://gis.stackexchange.com/questions/tagged/lidr)
 
+## Additional Resources
+
+-   [Silvilaser 2023 lidR tutorial - Forest Inventory Focused](https://tgoodbody.github.io/lidRtutorial/)
+
+
 ## `lidR`
 
-`lidR` is an R package to work with LiDAR data developed at Laval University (Québec). It was developed & continues to be maintained by [Jean-Romain Roussel](https://github.com/Jean-Romain) and was made possible between:
+`lidR` is an R package to work with lidar data developed at Laval University (Québec). It was developed & continues to be maintained by [Jean-Romain Roussel](https://github.com/Jean-Romain) and was made possible between:
 
 -   2015 and 2018 thanks to the financial support of the AWARE project NSERC CRDPJ 462973-14; grantee Prof. Nicholas C. Coops.
 
@@ -69,5 +72,5 @@ When working on exercises:
 
 The current release version of `lidR` can be found on [CRAN](https://cran.r-project.org/web/packages/lidR/) and source code is hosted on [GitHub](https://github.com/r-lidar/lidR).
 
-> [!NOTE]
-> Since 2024, the `lidR` package is no longer supported by Laval University, but the software will remain free and open-source. `r-lidar` has transitioned into a company to ensure sustainability and now offers independent services for training courses, consulting, and development. Please feel free to visit their [website](https://www.r-lidar.com/) for more information.
+> \[!NOTE\] Since 2024, the `lidR` package is no longer supported by Laval University, but the software will remain free and open-source. `r-lidar` has transitioned into a company to ensure sustainability and now offers independent services for training courses, consulting, and development. Please feel free to visit their [website](https://www.r-lidar.com/) for more information.
+
