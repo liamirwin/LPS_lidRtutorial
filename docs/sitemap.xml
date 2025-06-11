@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://r-lidar.github.io/lidRbook/07_engine.html</loc>
-    <lastmod>2023-08-31T22:06:15.321Z</lastmod>
+    <lastmod>2025-06-10T19:13:43.405Z</lastmod>
   </url>
   <url>
     <loc>https://r-lidar.github.io/lidRbook/08_engine2.html</loc>
@@ -38,6 +38,62 @@
   </url>
   <url>
     <loc>https://r-lidar.github.io/lidRbook/index.html</loc>
-    <lastmod>2025-05-03T12:56:22.765Z</lastmod>
+    <lastmod>2025-06-11T16:38:56.613Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/01_intro.html</loc>
+    <lastmod>2025-06-10T19:13:43.401Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/02_read.html</loc>
+    <lastmod>2025-06-10T19:13:43.401Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/03_classification.html</loc>
+    <lastmod>2025-06-10T19:13:43.401Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/04_dtm.html</loc>
+    <lastmod>2025-05-01T16:37:34.657Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/05_chm.html</loc>
+    <lastmod>2025-05-01T16:37:34.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/06_metrics.html</loc>
+    <lastmod>2025-05-01T16:37:34.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplimental/S1_roi.html</loc>
+    <lastmod>2025-05-01T16:37:34.652Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplimental/S2_aba.html</loc>
+    <lastmod>2025-05-01T16:37:34.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplimental/S3_its.html</loc>
+    <lastmod>2025-05-01T16:37:34.658Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplimental/S4_engine2.html</loc>
+    <lastmod>2025-05-01T16:37:34.661Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplemental/S1_roi.html</loc>
+    <lastmod>2025-05-01T16:37:34.652Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplemental/S2_aba.html</loc>
+    <lastmod>2025-05-01T16:37:34.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplemental/S3_its.html</loc>
+    <lastmod>2025-05-01T16:37:34.658Z</lastmod>
+  </url>
+  <url>
+    <loc>https://r-lidar.github.io/lidRbook/supplemental/S4_engine2.html</loc>
+    <lastmod>2025-05-01T16:37:34.661Z</lastmod>
   </url>
 </urlset>
