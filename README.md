@@ -33,13 +33,12 @@ install.packages(libs)
 
 ## Estimated schedule
 
--   Introduction and set-up (09:00)
--   Reading LAS and LAZ files (09:10)
--   Canopy Height Model (9:20)
--   Digital Terrain Model (9:25)
--   Vegetation Indices and Metrics (9:30)
--   Connecting ALS metrics with Optical Satellite Imagery (9:50)
--   Individual tree detection and segmentation (10:10)
+-   Introduction to lidar and lidR (09:00)
+-   Reading LAS and LAZ files (09:15)
+-   Ground and Noise Classification and Normalization (9:25)
+-   Digital Terrain Model (9:35)
+-   Canopy Height Model (9:45)
+-   Lidar Summary Metrics (9:55)
 -   File collection processing engine (10:30)
 
 
