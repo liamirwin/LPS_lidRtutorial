@@ -35,9 +35,9 @@ install.packages(libs)
 
 -   Introduction to lidar and lidR (09:00)
 -   Reading LAS and LAZ files (09:15)
--   Ground and Noise Classification and Normalization (9:25)
+-   Ground and Noise Classification (9:25)
 -   Digital Terrain Model (9:35)
--   Canopy Height Model (9:45)
+-   Height Normalization and Canopy Height Models (9:45)
 -   Lidar Summary Metrics (9:55)
 -   File collection processing engine (10:30)
 
