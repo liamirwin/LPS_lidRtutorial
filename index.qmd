@@ -1,5 +1,5 @@
 ---
-title: "`lidR`: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Forestry Applications"
+title: "`lidR`: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications"
 author: "Liam A.K. Irwin, Brent A. Murray, Tristan R.H. Goodbody, Jean-Romain Roussel"
 institute: "University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, Université Laval, Ministère des Forêts, de la Faune et des Parcs (Québec)"
 date: 2025-06-22
@@ -89,7 +89,7 @@ When working on exercises:
 
 ## `lidR`
 
-`lidR` is an R package to work with LiDAR data developed at Laval University (Québec). It was developed & continues to be maintained by [Jean-Romain Roussel](https://github.com/Jean-Romain) and was made possible between:
+`lidR` is an R package to work with LiDAR data developed at Laval University (Québec, Canada). It was developed & continues to be maintained by [Jean-Romain Roussel](https://github.com/Jean-Romain) and was made possible between:
 
 -   2015 and 2018 thanks to the financial support of the AWARE project NSERC CRDPJ 462973-14; grantee Prof. Nicholas C. Coops.
 

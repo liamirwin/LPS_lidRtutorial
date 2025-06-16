@@ -1,0 +1,29 @@
+ [filter_points]                    
+                                                                                                                              
+
+output file: 01_intro.knit.md
+
+
+ [load_and_inspect_lidar_data]      
+ [visualize_lidar_data]             
+ [visualize_lidar_data_filter_class]
+                                                                                                                              
+
+output file: 02_read.knit.md
+
+
+(ERROR) NotFound: The system cannot find the file specified. (os error 2): readfile 'E:\Misc\LPS_lidRtutorial\02_read.rmarkdown'
+Path: E:\Misc\LPS_lidRtutorial\02_read.rmarkdown
+
+Stack trace:
+    at readTextFileSync (ext:deno_fs/30_fs.js:864:10)
+    at Object.Deno.readTextFileSync (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:5291:25)
+    at mappedStringFromFile (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:17181:24)
+    at Object.markdownForFile (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:28475:16)
+    at mdForFile (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:40341:29)
+    at projectResolveFullMarkdownForFile (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:40422:26)
+    at Object.resolveFullMarkdownForFile (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:82362:32)
+    at fileExecutionEngineAndTarget (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:42223:36)
+    at eventLoopTick (ext:core/01_core.js:175:7)
+    at async renderFileInternal (file:///C:/Users/lakirwin.stu/AppData/Local/Programs/Quarto/bin/quarto.js:86989:36)
+
