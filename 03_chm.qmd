@@ -76,25 +76,6 @@ plot(chm, col = col)
 
 In the first code chunk, we generate a CHM using a point-to-raster based algorithm. The `rasterize_canopy()` function with the `p2r()` algorithm assigns the elevation of the highest point within each grid cell to the corresponding pixel. The resulting CHM is then visualized using the `plot()` function.
 
-```{r point_to_raster_algorithm_equivalent}
-# Compute max height using pixel_metrics
-chm <- pixel_metrics(las = las, func = ~max(Z), res = 2)
-
-# Visualize the CHM
-plot(chm, col = col)
-```
-
-The code chunk above shows that the point-to-raster based algorithm is equivalent to using `pixel_metrics` with a function that computes the maximum height (`max(Z)`) within each grid cell. The resulting CHM is visualized using the `plot()` function.
-
-```{r point_to_raster_algorithm_optimized}
-# However, the rasterize_canopy algorithm is optimized
-microbenchmark::microbenchmark(canopy = rasterize_canopy(las = las, res = 1, algorithm = p2r()),
-                               metrics = pixel_metrics(las = las, func = ~max(Z), res = 1),
-                               times = 10)
-```
-
-The above code chunk uses `microbenchmark::microbenchmark()` to compare the performance of the `rasterize_canopy()` function with `p2r()` algorithm and `pixel_metrics()` function with `max(Z)` for maximum height computation. It demonstrates that the `rasterize_canopy()` function is optimized for generating CHMs.
-
 ```{r point_to_raster_algorithm_higher_resolution}
 # Make spatial resolution 1 m
 chm <- rasterize_canopy(las = las, res = 1, algorithm = p2r())
@@ -127,33 +108,7 @@ plot(chm, col = col)
 
 The `p2r()` algorithm also allows filling empty pixels using TIN (Triangulated Irregular Network) interpolation, which can help in areas with sparse LiDAR points to obtain a smoother CHM.
 
-## Triangulation Based Algorithm
-
-We demonstrate a triangulation-based algorithm for generating CHMs.
-
-```{r triangulation_algorithm}
-# Triangulation of first returns to generate the CHM
-chm <- rasterize_canopy(las = las, res = 1, algorithm = dsmtin())
-plot(chm, col = col)
-```
-
-The `rasterize_canopy()` function with the `dsmtin()` algorithm generates a CHM by performing triangulation on the first returns from the LiDAR data. The resulting CHM represents the surface of the canopy.
-
-```{r triangulation_algorithm_higher_resolution}
-# Increasing the resolution results in a more detailed CHM
-chm <- rasterize_canopy(las = las, res = 0.5, algorithm = dsmtin())
-plot(chm, col = col)
-```
-
-Increasing the resolution of the CHM using the `res` argument provides a more detailed representation of the canopy, capturing finer variations in the vegetation.
-
-```{r triangulation_algorithm_pitfree}
-# Using the Khosravipour et al. 2014 pit-free algorithm with specified thresholds and maximum edge length
-thresholds <- c(0, 5, 10, 20, 25, 30)
-max_edge <- c(0, 1.35)
-chm <- rasterize_canopy(las = las, res = 0.5, algorithm = pitfree(thresholds, max_edge))
-plot(chm, col = col)
-```
+## Triangulation Based Pitfree Algorithm
 
 The `rasterize_canopy` function can also use the Khosravipour et al. 2014 pit-free algorithm with specified height thresholds and a maximum edge length to generate a CHM. This algorithm aims to correct depressions in the CHM surface.
 
@@ -163,13 +118,21 @@ The `rasterize_canopy` function can also use the Khosravipour et al. 2014 pit-fr
 Check out [Khosravipour et al. 2014](https://www.ingentaconnect.com/content/asprs/pers/2014/00000080/00000009/art00003?crawler=true) to see the original implementation of the algorithm!
 :::
 
+```{r triangulation_algorithm_pitfree}
+# Using the Khosravipour et al. 2014 pit-free algorithm with specified thresholds and maximum edge length
+thresholds <- c(0, 5, 10, 20, 25, 30)
+max_edge <- c(0, 1.35)
+chm <- rasterize_canopy(las = las, res = 0.5, algorithm = pitfree(thresholds, max_edge))
+plot(chm, col = col)
+```
+
+The `subcircle` option can be used with the pit-free algorithm to create finer spatial resolution CHMs with subcircles for each LiDAR point, similar to the point-to-raster based algorithm.
+
 ```{r triangulation_algorithm_subcircle}
 # Using the 'subcircle' option with the pit-free algorithm
 chm <- rasterize_canopy(las = las, res = 0.5, algorithm = pitfree(thresholds, max_edge, 0.1))
 plot(chm, col = col)
 ```
-
-The `subcircle` option can be used with the pit-free algorithm to create finer spatial resolution CHMs with subcircles for each LiDAR point, similar to the point-to-raster based algorithm.
 
 ## Post-Processing
 
