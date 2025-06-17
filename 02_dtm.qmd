@@ -178,7 +178,6 @@ plot(nlas_dtm)
 plot(nlas_dtm, bg = "white")
 ```
 
-
 ### DTM-based Normalization with TIN Algorithm
 
 We perform DTM-based normalization on the LiDAR data using the TIN algorithm.

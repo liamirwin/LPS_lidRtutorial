@@ -97,3 +97,17 @@ cat("\n\n--- Download Complete ---\n")
 cat(sprintf("Total files processed: %d\n", total_files))
 cat(sprintf("Data saved to: %s\n", normalizePath(destination_folder)))
 cat(sprintf("Total time taken: %s\n", format(duration)))
+
+
+
+
+
+
+
+
+library(lidR)
+ctg <- catalog('E:/ALS_Datasets/lidar_zh_2014')
+plot(ctg, mapview = TRUE)
+
+ctg_select <- catalog_select(ctg, mapview = TRUE)
+

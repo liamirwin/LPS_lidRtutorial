@@ -8,11 +8,11 @@ project:
 
 website:
   title: "lidRtutorial"
-  favicon: "images/favicon/apple-touch-icon.png"
+  favicon: "img/logo.png"
   site-url: https://r-lidar.github.io/lidRbook/
   navbar:
     search: true
-    background: light
+    background: dark
     collapse-below: lg
     type: light
     logo: "img/logo.png"

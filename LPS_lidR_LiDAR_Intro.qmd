@@ -44,6 +44,8 @@ fig-dpi: 300
 -   These datasets contain geo-referenced points with three-dimensional (XYZ) coordinates, and other attributes; intensity, return number etc...
 -   Point clouds can be processed into summaries of vegetation structure with lidR
 
+[![](img/plot_z_360.gif){fig-align='right'}]
+
 ::: notes
 :::
 
@@ -69,4 +71,4 @@ fig-dpi: 300
 
 ## Get Set Up!
 
-[![](images/qrcode_liamirwin.github.io){fig-align="center"}](https://liamirwin.github.io/LPS_lidRtutorial/)
+[![](img/qrcode.png){fig-align="center"}](https://liamirwin.github.io/LPS_lidRtutorial/)
