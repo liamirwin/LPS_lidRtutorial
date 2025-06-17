@@ -23,13 +23,31 @@ options(lidR.progress = FALSE)
 
 ## Relevant Resources
 
--   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/03_aba.R)
--   [lidRbook metrics section](https://r-lidar.github.io/lidRbook/modeling-aba.html)
--   [lidRbook modelling section](https://r-lidar.github.io/lidRbook/modeling-aba.html)
+-    [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/03_aba.R)
+-   [lidRbook metrics section](https://r-lidar.github.io/lidRbook/grid_metrics.html)
+-   [lidRbook modelling section](https://r-lidar.github.io/lidRbook/modelling.html)
+-   [lidRmetrics package for additional metrics](https://ptompalski.github.io/lidRmetrics/ "Tutorial website for lidRmetrics package")
 
 ## Overview
 
-This code demonstrates an example of the area-based approach for LiDAR data. Basic usage involves computing mean and max height of points within 10x10 m pixels and visualizing the results. The code shows how to compute multiple metrics simultaneously and use predefined metric sets. Advanced usage introduces user-defined metrics for more specialized calculations.
+This code demonstrates an example of generating **area-based summary metrics** of LiDAR data. This is a common task to capture critical information describing the vertical distribution of lidar returns across a regular grid (raster). Pixel metrics are used in various predictive modelling tasks and often used to capture critical vegetation characteristics ranging from height to variability and cover.
+
+Beyond statistical summary metrics (*mean*, *max*, *sd*, etc), many researchers have developed custom metrics linked to critical vegetation attributes such as **leaf-area index**, **vertical complexity indices**, etc. These metrics can also be generated with `lidR` using **voxel approaches**, where three-dimensional sub-compartments are fit to better capture complexity — at the cost of vastly increasing computational requirements and introducing additional parameters.
+
+Classically, lidar metrics used in vegetation characterization typically fall under three categories:
+
+1.  **Height metrics**\
+    These typically describe how tall the vegetation generally is. Often max height, mean height, and percentiles of height are important in the prediction of attributes including land cover, and continuous variables like biomass.
+
+2.  **Variability metrics**\
+    Metrics describing the shape of the distribution of returns often capture additional signals useful for explaining the level of vegetation complexity within a pixel. Skewed versus bimodal distributions, for example, can represent a very dense upper canopy in a forest compared to a multi-layer stand.
+
+3.  **Cover metrics**\
+    Often referred directly to as *canopy cover*, these metrics generally describe the proportion of returns (as a %) above a certain threshold. Typically used to generally describe how much vegetation (e.g. above 2m) there is compared to ground and other lower surfaces (designed for forest).
+
+Basic usage involves computing mean and max height of points within 10x10 m pixels and visualizing the results. The code shows how to compute multiple metrics simultaneously and use predefined metric sets. Advanced usage introduces user-defined metrics for more specialized calculations.
+
+![](images/clipboard-269210651.png)
 
 ## Environment
 
