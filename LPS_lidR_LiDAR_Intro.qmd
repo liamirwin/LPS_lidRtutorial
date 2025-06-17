@@ -1,0 +1,72 @@
+---
+title: "`lidR`: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications"
+author: "Liam A.K. Irwin, Brent Murray"
+favicon: img/logo.png
+format:
+  revealjs:
+    self-contained: false
+    theme: assets/clean_pt.scss
+    embed-resources: true
+    margin: 0.1
+    slide-number: true
+    show-slide-number: all
+    scrollable: false
+    chalkboard: false
+    html-math-method: katex
+    footer: "Living Planet Symposium 2025 – lidR workshop"
+editor: source
+title-slide-attributes: 
+  data-background-image: img/logo.png
+  data-background-size: 15%
+  data-background-position: 50% 85%
+fig-dpi: 300
+---
+
+## Overview
+
+-   Light Detection and Ranging (lidar)
+-   The lidR package - a brief introduction
+-   Workshop overview
+
+## What is LiDAR?
+
+-   Light Detection and Ranging
+-   Active form of remote sensing
+-   Measures distance to target surfaces with millions of narrow light pulses
+-   Airborne laser scanning performs lidar systematically from aircraft or drones
+
+::: notes
+:::
+
+## LiDAR Data - Point Clouds
+
+-   Discrete returns are aggregated as points in point clouds (LAS/LAZ)
+-   These datasets contain geo-referenced points with three-dimensional (XYZ) coordinates, and other attributes; intensity, return number etc...
+-   Point clouds can be processed into summaries of vegetation structure with lidR
+
+::: notes
+:::
+
+## lidR
+
+-   Package for `manipulating` and `visualizing` ALS data
+-   Focused on forestry and ecological applications but broadly applicable beyond
+-   Written entirely open source within R-geospatial ecosystem (terra/sf)
+-   Runs efficiently with backend C++ code to perform processing
+
+::: notes
+:::
+
+## Workshop Outline
+
+-   Introduction to Lidar and lidR (09:00)
+-   Reading LAS and LAZ files (09:10)
+-   Point Classification and filtering (9:15)
+-   Digital Terrain Models and Height Normalization (9:25)
+-   Canopy Height Models (9:35)
+-   Lidar Summary Metrics (9:50)
+-   File Collection Processing Engine (10:10)
+
+## Get Set Up!
+
+[![](images/qrcode_liamirwin.github.io){fig-align="center"}](https://liamirwin.github.io/LPS_lidRtutorial/)

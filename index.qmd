@@ -1,7 +1,7 @@
 ---
 title: "`lidR`: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications"
 author: "Liam A.K. Irwin, Brent A. Murray, Tristan R.H. Goodbody, Jean-Romain Roussel"
-institute: "University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, Université Laval, Ministère des Forêts, de la Faune et des Parcs (Québec)"
+institute: "University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, r-lidar owner"
 date: 2025-06-22
 ---
 
@@ -40,6 +40,11 @@ options(lidR.progress = FALSE)
 -   Present an overview of what can be done with `lidR`
 -   Give users an understanding of how `lidR` may fit their needs
 -   Exercises will be done depending on available time - users are encouraged to work on these after the workshop!
+
+::: callout-tip
+**Introduction slides:** [Intro to Airborne LiDAR & lidR](docs/LPS_lidR_LiDAR_Intro.html)
+:::
+
 
 **Download the workshop release for code and lidar files ADD LINK**
 
