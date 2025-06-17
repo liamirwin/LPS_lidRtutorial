@@ -178,37 +178,6 @@ plot(nlas_dtm)
 plot(nlas_dtm, bg = "white")
 ```
 
-### Filtering Ground Points
-
-We filter the normalized data to keep only the ground points.
-
-```{r normalization_filter_ground}
-# Filter the normalized data to retain only ground points
-gnd_dtm <- filter_ground(las = nlas_dtm)
-```
-
-### Visualizing Filtered Ground Points
-
-We visualize the filtered ground points, focusing on the terrain after normalization.
-
-``` r
-# Visualize the filtered ground points
-plot(gnd_dtm)
-```
-
-```{r normalization_visualize_filtered_ground, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-# Visualize the filtered ground points
-plot(gnd_dtm, bg = "white")
-```
-
-### Histogram of Normalized Ground Points
-
-A histogram helps us understand the distribution of normalized ground points' height.
-
-```{r normalization_histogram}
-# Plot the histogram of normalized ground points' height
-hist(gnd_dtm$Z, breaks = seq(-1.5, 1.5, 0.05))
-```
 
 ### DTM-based Normalization with TIN Algorithm
 
@@ -226,38 +195,6 @@ We visualize the normalized LiDAR data using the TIN algorithm, showing heights 
 ```{r normalization_visualize_tin}
 # Visualize the normalized LiDAR data using the TIN algorithm
 plot(nlas_tin, bg = "white")
-```
-
-### Filtering Ground Points (TIN-based)
-
-We filter the normalized data (TIN-based) to keep only the ground points.
-
-```{r normalization_filter_ground_tin}
-# Filter the normalized data (TIN-based) to retain only ground points
-gnd_tin <- filter_ground(las = nlas_tin)
-```
-
-### Visualizing Filtered Ground Points (TIN-based)
-
-We visualize the filtered ground points after TIN-based normalization, focusing on the terrain.
-
-``` r
-# Visualize the filtered ground points after TIN-based normalization
-plot(gnd_tin)
-```
-
-```{r normalization_visualize_filtered_ground_tin, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-# Visualize the filtered ground points after TIN-based normalization
-plot(gnd_tin, bg = "white")
-```
-
-### Histogram of Normalized Ground Points (TIN-based)
-
-A histogram illustrates the distribution of normalized ground points' height after TIN-based normalization.
-
-```{r normalization_histogram_tin}
-# Plot the histogram of normalized ground points' height after TIN-based normalization
-hist(gnd_tin$Z, breaks = seq(-1.5, 1.5, 0.05))
 ```
 
 ## Exercises
