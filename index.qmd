@@ -35,13 +35,13 @@ options(lidR.progress = FALSE)
 
 ## Materials
 
-[This repository](https://github.com/liamirwin/LPS_lidRtutorial) contains the material for an 80 minute `lidR` tutorial workshop. You should install the material on your own machine from [this repository](https://github.com/liamirwin/LPS_lidRtutorial). It contains the code, the shapefiles and point-clouds we will use. The workshop intends to:
+[This repository](https://github.com/liamirwin/LPS_lidRtutorial) contains the material for an 80 minute `lidR` tutorial workshop. You should install the material on your own machine from [this repository](https://github.com/liamirwin/LPS_lidRtutorial). It contains the code and point-clouds we will use. The workshop intends to:
 
 -   Present an overview of what can be done with `lidR`
 -   Give users an understanding of how `lidR` may fit their needs
 -   Exercises will be done depending on available time - users are encouraged to work on these after the workshop!
 
-Find the code, exercises, and solutions used in the `.\R` directory.
+**Download the workshop release for code and lidar files ADD LINK**
 
 ## Requirements
 
@@ -69,12 +69,12 @@ install.packages(libs)
 ## Estimated schedule {.smaller}
 
 -   Introduction to Lidar and lidR (09:00)
--   Reading LAS and LAZ files (09:15)
--   Ground and Noise Classification (9:25)
--   Digital Terrain Model (9:35)
--   Height Normalization and Canopy Height Models (9:45)
--   Lidar Summary Metrics (9:55)
--   File Collection Processing Engine (10:30)
+-   Reading LAS and LAZ files (09:10)
+-   Point Classification and filtering (9:15)
+-   Digital Terrain Models and Height Normalization (9:25)
+-   Canopy Height Models (9:35)
+-   Lidar Summary Metrics (9:50)
+-   File Collection Processing Engine (10:10)
 
 ## Resources
 

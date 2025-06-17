@@ -79,10 +79,7 @@ We examine the coordinate system and extent information of the catalog.
 
 ```{r coordinate_system}
 # coordinate system
-crs(ctg)
-projection(ctg)
-st_crs(ctg)
-
+ctg
 # spatial extent
 st_bbox(ctg)
 ```

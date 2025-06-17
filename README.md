@@ -33,14 +33,13 @@ install.packages(libs)
 
 ## Estimated schedule
 
--   Introduction to lidar and lidR (09:00)
--   Reading LAS and LAZ files (09:15)
--   Ground and Noise Classification (9:25)
--   Digital Terrain Model (9:35)
--   Height Normalization and Canopy Height Models (9:45)
--   Lidar Summary Metrics (9:55)
--   File collection processing engine (10:30)
-
+-   Introduction to Lidar and lidR (09:00)
+-   Reading LAS and LAZ files (09:10)
+-   Point Classification and filtering (9:15)
+-   Digital Terrain Models and Height Normalization (9:25)
+-   Canopy Height Models (9:35)
+-   Lidar Summary Metrics (9:50)
+-   File Collection Processing Engine (10:10)
 
 ## Resources
 
@@ -49,7 +48,6 @@ We strongly recommend having the following resources available to you:
 -   The [`lidR` official documentation](https://cran.r-project.org/web/packages/lidR/lidR.pdf)
 -   The [lidRbook](https://r-lidar.github.io/lidRbook/) of tutorials
 
-
 When working on exercises:
 
 -   [Stack Exchange with the `lidR` tag](https://gis.stackexchange.com/questions/tagged/lidr)
@@ -57,7 +55,6 @@ When working on exercises:
 ## Additional Resources
 
 -   [Silvilaser 2023 lidR tutorial - Forest Inventory Focused](https://tgoodbody.github.io/lidRtutorial/)
-
 
 ## `lidR`
 
@@ -72,4 +69,3 @@ When working on exercises:
 The current release version of `lidR` can be found on [CRAN](https://cran.r-project.org/web/packages/lidR/) and source code is hosted on [GitHub](https://github.com/r-lidar/lidR).
 
 > \[!NOTE\] Since 2024, the `lidR` package is no longer supported by Laval University, but the software will remain free and open-source. `r-lidar` has transitioned into a company to ensure sustainability and now offers independent services for training courses, consulting, and development. Please feel free to visit their [website](https://www.r-lidar.com/) for more information.
-

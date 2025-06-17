@@ -23,8 +23,8 @@ options(lidR.progress = FALSE)
 
 ## Relevant Resources
 
-- [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/01_read.R)
-- [lidRbook section](https://r-lidar.github.io/lidRbook/index.htm)
+-   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/01_read.R)
+-   [lidRbook section](https://r-lidar.github.io/lidRbook/index.htm)
 
 ## Overview
 

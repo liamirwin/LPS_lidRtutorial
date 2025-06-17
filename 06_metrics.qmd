@@ -23,7 +23,7 @@ options(lidR.progress = FALSE)
 
 ## Relevant Resources
 
--    [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/03_aba.R)
+-   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/03_aba.R)
 -   [lidRbook metrics section](https://r-lidar.github.io/lidRbook/grid_metrics.html)
 -   [lidRbook modelling section](https://r-lidar.github.io/lidRbook/modelling.html)
 -   [lidRmetrics package for additional metrics](https://ptompalski.github.io/lidRmetrics/ "Tutorial website for lidRmetrics package")

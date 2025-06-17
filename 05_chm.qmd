@@ -52,7 +52,7 @@ las <- readLAS(files = "data/MixedEucaNat_normalized.laz", filter = "-keep_rando
 col <- height.colors(50)
 ```
 
-```r
+``` r
 # Visualize the LiDAR point cloud
 plot(las)
 ```
