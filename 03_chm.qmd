@@ -48,7 +48,7 @@ We load the LiDAR, keep a random fraction to reduce point density, and visualize
 
 ```{r load_lidar_data}
 # Load LiDAR data and reduce point density
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz", filter = "-keep_random_fraction 0.4 -set_withheld_flag 0")
+las <- readLAS(files = "data/zrh_norm.laz")
 col <- height.colors(50)
 ```
 

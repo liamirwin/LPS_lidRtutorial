@@ -29,7 +29,7 @@ options(lidR.progress = FALSE)
 
 ## Overview
 
-Welcome to this lidar processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, *query*, and *validate* lidar data. We'll explore basic information about a lidar file including the *header* and *tabular data,* as well as *visualize* point clouds using different color schemes based on attributes. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly. We'll validate the lidar data using the `las_check` function on different data files to ensure data integrity.
+Welcome to this lidar processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, *query*, and *validate* lidar data. We'll explore basic information about a lidar file including the *header* and *tabular data,* as well as *visualize* point clouds using different colour schemes based on attributes. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly. We'll validate the lidar data using the `las_check` function on different data files to ensure data integrity.
 
 Let's get started with processing lidar data efficiently using `lidR` and R! Happy learning!
 
@@ -53,7 +53,8 @@ library(sf)
 Load the lidar point cloud data from a LAS file using the `readLAS()` function. The data is stored in the `las` object. We can inspect the header information and attributes of the `las` object.
 
 ```{r load_and_inspect_lidar_data}
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz")
+# Load the sample point cloud
+las <- readLAS(files = "data/zrh_norm.laz")
 
 # Inspect header information
 las@header
@@ -65,9 +66,9 @@ las@data
 format(object.size(las), "Mb")
 ```
 
-### Visualize lidar Data
+### Visualizing lidar Data
 
-We can visualize the lidar data using the `plot()` function. We have several options to control the colors in the plot, such as selecting specific attributes from the data to be used as colors.
+We can visualize the lidar data using the `plot()` function. We have several options to control the colours in the plot, such as selecting specific attributes from the data to be mapped.
 
 ::: callout-tip
 ## `plot()` background colour
@@ -80,7 +81,7 @@ plot(las)
 ```
 
 ```{r visualize_lidar_data, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-# Visualize the lidar data with a default color palette
+# Visualize the lidar data with a default colour palette
 plot(las, bg = "white")
 ```
 
@@ -89,7 +90,7 @@ plot(las, color = "Intensity")
 ```
 
 ```{r visualize_lidar_data_int, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-# Visualize using intensity values as colors
+# Visualize using intensity values as colours
 plot(las, color = "Intensity", bg = "white")
 ```
 
@@ -98,7 +99,7 @@ plot(las, color = "Classification")
 ```
 
 ```{r visualize_lidar_data_class, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-# Visualize using the classification attribute as colors
+# Visualize using the classification attribute as colours
 plot(las, color = "Classification", bg = "white")
 ```
 
@@ -107,11 +108,22 @@ plot(las, color = "ScanAngleRank", axis = TRUE, legend = TRUE)
 ```
 
 ```{r visualize_lidar_data_scan, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-# Visualize using the scan angle rank as colors with an axis and legend
+# Visualize using the scan angle rank as colours with an axis and a legend ramp
 plot(las, color = "ScanAngleRank", axis = TRUE, legend = TRUE, bg = "white")
 ```
 
-## Optimized Usage
+### Lidar point clouds have additional attributes beyond X, Y and Z
+
+Points are typically assigned `Classification` values to differentiate surfaces. This is often already done by the data provider or through user applied algorithms to classify for example [noise and ground](https://rdrr.io/cran/lidR/man/classify.html "lidR classify function (not covered in this workshop)"). The meaning of these ID values depends on the LAS file version and source.
+
+Our example ALS dataset, collected in 2014 over Zürich uses an older **LAS 1.1 standard**. Its classification codes are interpreted as follows:
+
+| Class Code | Meaning | Interpretation |
+|:-----------------|:-------------------------------|:-----------------|
+| 2 | **Ground** | The bare earth surface. |
+| 3/4/5 | **Low/Medium/High Vegetation** | Vegetation under 1 meter. |
+| 7 | **Low Point (Noise)** | Erroneous points, likely below ground. |
+| 12 | **Overlap Points** | User-defined class for points in overlapping flight lines. |
 
 ### Selecting Attributes of Interest
 
@@ -119,8 +131,7 @@ The `readLAS()` function allows us to select specific attributes to be loaded in
 
 ```{r select_attributes}
 # Load only the xyz coordinates (X, Y, Z) and ignore other attributes
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz", select = "xyz")
-
+las <- readLAS(files = "data/zrh_norm.laz", select = "xyz")
 # Inspect the loaded attributes
 las@data
 
@@ -134,7 +145,7 @@ We can also load only a subset of the lidar points based on certain criteria usi
 
 ```{r filter_points}
 # Load only the first return points
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz", filter = "-keep_first")
+las <- readLAS(files = "data/zrh_norm.laz", filter = "-keep_first")
 
 # Inspect the loaded points
 las
@@ -152,13 +163,13 @@ plot(las)
 plot(las, bg = "white")
 ```
 
-### Applying Transformation on-the-fly
+### Filtering points on-the-fly (efficient)
 
 The `filter` argument in `readLAS()` can be used to apply transformations on-the-fly during loading. This can be useful for tasks such as filtering specific classifications.
 
 ```{r on_the_fly_transform}
 # Load and visualize with an applied filter
-las <- readLAS(files = "data/MixedEucaNat.laz", filter = "-keep_class 2 -keep_class 1")
+las <- readLAS(files = "data/zrh_class.laz", filter = "-keep_class 2")
 ```
 
 ``` r
@@ -177,8 +188,8 @@ An alternative method for filtering points is using the `filter_poi()` function,
 # Filter points with Classification == 2
 class_2 <- filter_poi(las = las, Classification == 2L)
 
-# Combine queries to filter points with Classification == 1 and ReturnNumber == 1
-first_returns <- filter_poi(las = las, Classification == 1L & ReturnNumber == 1L)
+# Combine queries to filter points with Classification 2 and ReturnNumber == 1
+first_returns <- filter_poi(las = las, Classification == 2L & ReturnNumber == 1L)
 ```
 
 ``` r
@@ -197,38 +208,14 @@ plot(first_returns)
 plot(first_returns, bg = "white")
 ```
 
-### `LAS` Objects Validation
 
-The `lidR` package provides a function `las_check()` to validate LAS objects for common issues.
-
-```{r las_object_validation}
-# Load and validate LAS data
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz")
-las_check(las)
-
-# Visualize corrupted LAS data
-las <- readLAS(files = "data/example_corrupted.laz")
-```
-
-``` r
-plot(las)
-```
-
-```{r corrupt, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-plot(las, bg = "white")
-```
-
-```{r validate_corrupted}
-# Validate corrupted LAS data
-las_check(las)
-```
 
 ## Exercises and Questions
 
 Using:
 
 ``` r
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz")
+las <- readLAS(files = "data/zrh_norm.laz")
 ```
 
 #### E1.
@@ -245,7 +232,7 @@ The withheld points seem to be legitimate points that we want to keep. Try to lo
 
 #### E4.
 
-Load only the ground points and plot the point cloud colored by the return number of the point. Do it loading the strict minimal amount of memory (4.7 Mb). Hint: use `?lidR::readLAS` and see what `select` options might help.
+Load only the ground points and plot the point cloud coloured by the return number of the point. Do it loading the strict minimal amount of memory (4.7 Mb). Hint: use `?lidR::readLAS` and see what `select` options might help.
 
 ## Conclusion
 

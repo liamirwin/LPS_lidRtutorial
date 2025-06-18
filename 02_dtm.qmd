@@ -47,8 +47,8 @@ In this section, we'll generate a Digital Terrain Model (DTM) from LiDAR data us
 ### Data Preprocessing
 
 ```{r dtm_data_preprocessing}
-# Load LiDAR data and filter out non-ground points
-las <- readLAS(files = "data/MixedEucaNat.laz", filter = "-set_withheld_flag 0")
+# Load LiDAR data where points are already pre-classified
+las <- readLAS(files = "data/zrh_class.laz")
 ```
 
 Here, we load the LiDAR data and exclude points flagged as withheld.
@@ -66,13 +66,14 @@ plot(las)
 plot(las, bg = "white")
 ```
 
-Visualizing the LiDAR data again, this time to distinguish ground points (blue) more effectively.
+Visualizing the LiDAR data again, this time to distinguish ground points (\[blue\]{style="color: blue;"}) more effectively.
 
 ``` r
 plot(las, color = "Classification")
 ```
 
 ```{r dtm_visualize_data_bg, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+
 # Visualize using the classification attribute as colors
 plot(las, color = "Classification", bg = "white")
 ```
@@ -204,16 +205,16 @@ Plot and compare these two normalized point-clouds. Why do they look different? 
 
 ``` r
 # Load and visualize nlas1 and nlas2
-las1 = readLAS("data/MixedEucaNat.laz", filter = "-set_withheld_flag 0")
+las1 = readLAS("data/zrh_class.laz")
 nlas1 = normalize_height(las1, tin())
-nlas2 = readLAS("data/MixedEucaNat_normalized.laz", filter = "-set_withheld_flag 0")
+nlas2 = readLAS("data/zrh_norm.laz")
 plot(nlas1)
 plot(nlas2)
 ```
 
 #### E2.
 
-Clip a plot somewhere in `MixedEucaNat.laz` (the non-normalized file).
+Clip a plot somewhere in `zrh_class.laz` (the non-normalized file).
 
 #### E3.
 

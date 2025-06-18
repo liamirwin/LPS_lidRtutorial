@@ -42,7 +42,7 @@ library(sf)
 library(terra)
 
 # Read in LiDAR file and set some color palettes
-las <- readLAS("data/MixedEucaNat_normalized.laz",  filter = "-set_withheld_flag 0")
+las <- readLAS("data/zrh_norm.laz")
 col <- height.colors(50)
 col1 <- pastel.colors(900)
 ```
@@ -300,12 +300,41 @@ plot(x = cvx_hulls["Z"])
 
 We use `crown_metrics()` with `.stdtreemetrics` to segment trees and extract metrics based on crown delineation.
 
+## ITD using `LAScatalog`
+
+In this section, we explore Individual Tree Detection (ITD) using the `LAScatalog`. We first configure catalog options for ITD.
+
+```{r set_catalog_options_itd, warning = FALSE, message = FALSE}
+# Load catalog
+ctg <- catalog('data/ctg_norm')
+
+# Set catalog options
+opt_filter(ctg) <- "-drop_z_below 0 -drop_z_above 50"
+opt_select(ctg) <- "xyz"
+opt_chunk_size(ctg) <- 500
+opt_chunk_buffer(ctg) <- 10
+opt_progress(ctg) <- TRUE
+
+# Explicitly tell R to use the is.empty function from the lidR package - avoid terra error
+is.empty <- lidR::is.empty
+
+# Detect treetops and plot
+ttops <- locate_trees(las = ctg, algorithm = lmf(ws = 3, hmin = 10))
+chm <- rasterize_canopy(ctg, algorithm = p2r(), res = 1)
+plot(chm)
+plot(ttops, add = TRUE, cex = 0.1, col = "red")
+```
+
+
+
+
+
 ## Exercises
 
 # Using:
 
 ``` r
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz", filter = "-set_withheld_flag 0")
+las <- readLAS(files = "data/zrh_norm.laz")
 ```
 
 #### E1.

@@ -190,6 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#r-version-and-rstudio" id="toc-r-version-and-rstudio" class="nav-link" data-scroll-target="#r-version-and-rstudio">R version and Rstudio</a></li>
   <li><a href="#r-packages" id="toc-r-packages" class="nav-link" data-scroll-target="#r-packages">R Packages</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a></li>
   </ul></li>
   <li><a href="#estimated-schedule" id="toc-estimated-schedule" class="nav-link" data-scroll-target="#estimated-schedule">Estimated schedule</a></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
@@ -284,6 +285,13 @@ Tip
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"geometry"</span>,<span class="st">"viridis"</span>,<span class="st">"future"</span>,<span class="st">"sf"</span>,<span class="st">"gstat"</span>,<span class="st">"terra"</span>,<span class="st">"mapview"</span>,<span class="st">"mapedit"</span>,<span class="st">"concaveman"</span>,<span class="st">"microbenchmark"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(libs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the metrics section we will work with a user-made package that supports <code>lidR</code> with additional functions To follow along with these steps optionally install <code>lidRmetrics</code> from GitHub (not on CRAN)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ptompalski/lidRmetrics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="datasets" class="level3">
+<h3 class="anchored" data-anchor-id="datasets">Datasets</h3>
+<p>We will be working with a sample ALS dataset <a href="https://geolion.zh.ch/geodatensatz/show?nbid=2618" title="Data Description and Access">openly available</a> for Canton Zürich flown in spring 2014.</p>
+<p>The raw data has been thinned to a uniform density to speed up processing.</p>
 </section>
 </section>
 <section id="estimated-schedule" class="level2 smaller">

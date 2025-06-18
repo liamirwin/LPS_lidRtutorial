@@ -191,6 +191,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#select-circular-and-rectangular-areas" id="toc-select-circular-and-rectangular-areas" class="nav-link" data-scroll-target="#select-circular-and-rectangular-areas">Select Circular and Rectangular Areas</a></li>
   </ul></li>
   <li><a href="#extraction-of-complex-geometries-from-shapefiles" id="toc-extraction-of-complex-geometries-from-shapefiles" class="nav-link" data-scroll-target="#extraction-of-complex-geometries-from-shapefiles">Extraction of Complex Geometries from Shapefiles</a></li>
+  <li><a href="#clipping-rois-with-a-catalog" id="toc-clipping-rois-with-a-catalog" class="nav-link" data-scroll-target="#clipping-rois-with-a-catalog">Clipping ROIs with a catalog</a></li>
+  <li><a href="#validate-clipped-data" id="toc-validate-clipped-data" class="nav-link" data-scroll-target="#validate-clipped-data">Validate clipped data</a></li>
+  <li><a href="#independent-files-e.g.-plots-as-catalogs" id="toc-independent-files-e.g.-plots-as-catalogs" class="nav-link" data-scroll-target="#independent-files-e.g.-plots-as-catalogs">Independent files (e.g.&nbsp;plots) as catalogs</a></li>
   <li><a href="#exercises-and-questions" id="toc-exercises-and-questions" class="nav-link" data-scroll-target="#exercises-and-questions">Exercises and Questions</a>
   <ul>
   <li><a href="#e1." id="toc-e1." class="nav-link" data-scroll-target="#e1.">E1.</a></li>
@@ -236,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="environment" class="level2">
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
-<div class="cell" data-layout-align="center" data-warnings="false">
+<div class="cell" data-warnings="false">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clear environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="fu">globalenv</span>()))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -250,171 +253,340 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="load-lidar-data-and-inspect" class="level3">
 <h3 class="anchored" data-anchor-id="load-lidar-data-and-inspect">Load LiDAR Data and Inspect</h3>
 <p>We start by loading some LiDAR data and inspecting its header and number of point records.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">'data/zrh_norm.laz'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the header and the number of point records</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>las<span class="sc">@</span>header</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; File signature:           LASF </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; File source ID:           0 </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Global encoding:</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - GPS Time Type: GPS Week Time </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - Synthetic Return Numbers: no </span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - Well Know Text: CRS is GeoTIFF </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - Aggregate Model: false </span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Project ID - GUID:        00000000-0000-0000-0000-000000000000 </span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Version:                  1.2</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; System identifier:         </span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Generating software:      rlas R package </span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; File creation d/y:        0/2013</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; header size:              227 </span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Offset to point data:     297 </span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Num. var. length record:  1 </span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Point data format:        0 </span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Point data record length: 20 </span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Num. of point records:    551117 </span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Num. of points by return: 402654 125588 21261 1571 43 </span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Scale factor X Y Z:       0.01 0.01 0.01 </span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Offset X Y Z:             2e+05 7300000 0 </span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; min X Y Z:                203830 7358900 0 </span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; max X Y Z:                203980 7359050 34.46 </span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Variable Length Records (VLR):</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Variable Length Record 1 of 1 </span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Description: by LAStools of rapidlasso GmbH </span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        Tags:</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           Key 3072 value 31983 </span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Extended Variable Length Records (EVLR):  void</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>las<span class="sc">@</span>header<span class="sc">$</span><span class="st">`</span><span class="at">Number of point records</span><span class="st">`</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 551117</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>las<span class="sc">@</span>header</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>File signature:           LASF 
+File source ID:           0 
+Global encoding:
+ - GPS Time Type: GPS Week Time 
+ - Synthetic Return Numbers: no 
+ - Well Know Text: CRS is GeoTIFF 
+ - Aggregate Model: false 
+Project ID - GUID:        00000000-0000-0000-5053-004d00000000 
+Version:                  1.1
+System identifier:         
+Generating software:      rlas R package 
+File creation d/y:        0/0
+header size:              227 
+Offset to point data:     305 
+Num. var. length record:  1 
+Point data format:        1 
+Point data record length: 28 
+Num. of point records:    1270080 
+Num. of points by return: 471651 342346 241371 135987 56797 
+Scale factor X Y Z:       0.01 0.01 0.01 
+Offset X Y Z:             0 0 0 
+min X Y Z:                2670505 1258734 -0.88 
+max X Y Z:                2670755 1258984 48.31 
+Variable Length Records (VLR):
+   Variable Length Record 1 of 1 
+       Description: by LAStools of rapidlasso GmbH 
+       Tags:
+          Key 1024 value 1 
+          Key 3072 value 2056 
+Extended Variable Length Records (EVLR):  void</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>las<span class="sc">@</span>header<span class="sc">$</span><span class="st">`</span><span class="at">Number of point records</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1270080</code></pre>
+</div>
 </div>
 </section>
 <section id="select-circular-and-rectangular-areas" class="level3">
 <h3 class="anchored" data-anchor-id="select-circular-and-rectangular-areas">Select Circular and Rectangular Areas</h3>
 <p>We can select circular and rectangular areas from the LiDAR data based on specified coordinates and radii or dimensions.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish coordinates</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">203890</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">7358935</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a circular area</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>circle <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(<span class="at">las =</span> las, <span class="at">xcenter =</span> x, <span class="at">ycenter =</span> y, <span class="at">radius =</span> <span class="dv">30</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the circular area and the number of point records</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>circle</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class        : LAS (v1.2 format 0)</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; memory       : 3.4 Mb </span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent       : 203860, 203920, 7358905, 7358965 (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref.  : SIRGAS 2000 / UTM zone 23S </span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; area         : 2909 m²</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; points       : 74.7 thousand points</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density      : 25.69 points/m²</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density      : 17.71 pulses/m²</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>circle<span class="sc">@</span>header<span class="sc">$</span><span class="st">`</span><span class="at">Number of point records</span><span class="st">`</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 74737</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish coordinates</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2670592</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">1258890</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a circular area</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>circle <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(<span class="at">las =</span> las, <span class="at">xcenter =</span> x, <span class="at">ycenter =</span> y, <span class="at">radius =</span> <span class="dv">30</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the circular area and the number of point records</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>circle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class        : LAS (v1.1 format 1)
+memory       : 3.1 Mb 
+extent       : 2670562, 2670622, 1258860, 1258920 (xmin, xmax, ymin, ymax)
+coord. ref.  : CH1903+ / LV95 
+area         : 2903 m²
+points       : 58.4 thousand points
+density      : 20.13 points/m²
+density      : 7.55 pulses/m²</code></pre>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the circular area</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(circle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="S1_roi_files/figure-html/plot_circle-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>circle<span class="sc">@</span>header<span class="sc">$</span><span class="st">`</span><span class="at">Number of point records</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 58447</code></pre>
 </div>
 </div>
-</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the circular area</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(circle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can do the same with a rectangular area by defining corner coordinates.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a rectangular area</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rect <span class="ot">&lt;-</span> <span class="fu">clip_rectangle</span>(<span class="at">las =</span> las, <span class="at">xleft =</span> x, <span class="at">ybottom =</span> y, <span class="at">xright =</span> x <span class="sc">+</span> <span class="dv">40</span>, <span class="at">ytop =</span> y <span class="sc">+</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a rectangular area</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>rect <span class="ot">&lt;-</span> <span class="fu">clip_rectangle</span>(<span class="at">las =</span> las, <span class="at">xleft =</span> x, <span class="at">ybottom =</span> y, <span class="at">xright =</span> x <span class="sc">+</span> <span class="dv">40</span>, <span class="at">ytop =</span> y <span class="sc">+</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the rectangular area</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rect)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="S1_roi_files/figure-html/plot_rectangle-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the rectangular area</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rect)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can also supply multiple coordinate pairs to clip multiple ROIs.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select multiple random circular areas</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">2</span>, x, x)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">2</span>, <span class="dv">7358900</span>, <span class="dv">7359050</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(<span class="at">las =</span> las, <span class="at">xcenter =</span> x, <span class="at">ycenter =</span> y, <span class="at">radius =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select multiple random circular areas</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">2</span>, x, x)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">2</span>, <span class="dv">1258840</span>, <span class="dv">1258890</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(<span class="at">las =</span> las, <span class="at">xcenter =</span> x, <span class="at">ycenter =</span> y, <span class="at">radius =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot each of the multiple circular areas</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="S1_roi_files/figure-html/plot_1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot each of the multiple circular areas</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="S1_roi_files/figure-html/plot_2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot each of the multiple circular areas</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot each of the multiple circular areas</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="extraction-of-complex-geometries-from-shapefiles" class="level2">
 <h2 class="anchored" data-anchor-id="extraction-of-complex-geometries-from-shapefiles">Extraction of Complex Geometries from Shapefiles</h2>
 <p>We demonstrate how to extract complex geometries from shapefiles using the <code>clip_roi()</code> function from the <code>lidR</code> package.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Reminder about <strong>legacy packages</strong>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>maptools</code>, <code>rgdal</code>, and <code>rgeos</code>, underpinning the <code>sp</code> package, will retire in October 2023. Please refer to R-spatial evolution reports for details, especially https://r-spatial.org/r/2023/05/15/evolution4.html.</p>
-</div>
-</div>
 <p>We use the <code>sf</code> package to load an ROI and then clip to its extents.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the shapefile using sf</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>planting <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"data/shapefiles/MixedEucaNat.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the LiDAR header information without the map</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las<span class="sc">@</span>header, <span class="at">map =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the planting areas on top of the LiDAR header plot</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(planting, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"#08B5FF39"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the shapefile using sf</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>stand_bdy <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"data/roi/roi.gpkg"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the LiDAR header information without the map</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las<span class="sc">@</span>header, <span class="at">map =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the stand boundary areas on top of the LiDAR header plot</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stand_bdy, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"#08B5FF39"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="S1_roi_files/figure-html/extraction_complex_geometries_sf-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="S1_roi_files/figure-html/extraction_complex_geometries_sf-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract points within the planting areas using clip_roi()</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>eucalyptus <span class="ot">&lt;-</span> <span class="fu">clip_roi</span>(<span class="at">las =</span> las, <span class="at">geometry =</span> planting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract points within the stand boundary using clip_roi()</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>stand <span class="ot">&lt;-</span> <span class="fu">clip_roi</span>(<span class="at">las =</span> las, <span class="at">geometry =</span> stand_bdy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the extracted points within the planting areas</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eucalyptus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the extracted points within the planting areas</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stand)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="clipping-rois-with-a-catalog" class="level2">
+<h2 class="anchored" data-anchor-id="clipping-rois-with-a-catalog">Clipping ROIs with a catalog</h2>
+<p>We clip the <code>LAS</code> data in the catalog using specified coordinate groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">catalog</span>(<span class="st">"data/ctg_norm"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set coordinate groups</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2670578</span>, <span class="dv">2671234</span>, <span class="dv">2671499</span>, <span class="dv">2671755</span>, <span class="dv">2671122</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1258601</span>, <span class="dv">1259050</span>, <span class="dv">1259450</span>, <span class="dv">1259900</span>, <span class="dv">1258750</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize coordinate groups</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="S1_roi_files/figure-html/plot_euc-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="S1_roi_files/figure-html/clip_las-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clip plots</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>rois <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(<span class="at">las =</span> ctg, <span class="at">xcenter =</span> x, <span class="at">ycenter =</span> y, <span class="at">radius =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rois[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rois[[<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="validate-clipped-data" class="level2">
+<h2 class="anchored" data-anchor-id="validate-clipped-data">Validate clipped data</h2>
+<p>We validate the clipped LAS data using the <code>las_check</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">las_check</span>(rois[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Checking the data
+  - Checking coordinates... ✓
+  - Checking coordinates type... ✓
+  - Checking coordinates range... ✓
+  - Checking coordinates quantization... ✓
+  - Checking attributes type... ✓
+  - Checking ReturnNumber validity... ✓
+  - Checking NumberOfReturns validity... ✓
+  - Checking ReturnNumber vs. NumberOfReturns... ✓
+  - Checking RGB validity... ✓
+  - Checking absence of NAs... ✓
+  - Checking duplicated points... ✓
+  - Checking degenerated ground points... ✓
+  - Checking attribute population...
+    🛈 'ScanDirectionFlag' attribute is not populated
+    🛈 'EdgeOfFlightline' attribute is not populated
+  - Checking gpstime incoherances
+    ✗ 4 pulses (points with the same gpstime) have points with identical ReturnNumber
+  - Checking flag attributes... ✓
+  - Checking user data attribute... ✓
+ Checking the header
+  - Checking header completeness... ✓
+  - Checking scale factor validity... ✓
+  - Checking point data format ID validity... ✓
+  - Checking extra bytes attributes validity... ✓
+  - Checking the bounding box validity... ✓
+  - Checking coordinate reference system... ✓
+ Checking header vs data adequacy
+  - Checking attributes vs. point format... ✓
+  - Checking header bbox vs. actual content... ✓
+  - Checking header number of points vs. actual content... ✓
+  - Checking header return number vs. actual content... ✓
+ Checking coordinate reference system...
+  - Checking if the CRS was understood by R... ✓
+ Checking preprocessing already done 
+  - Checking ground classification... yes
+  - Checking normalization... yes
+  - Checking negative outliers...
+    ⚠ 14 points below 0
+  - Checking flightline classification... yes
+ Checking compression
+  - Checking attribute compression...
+   -  ScanDirectionFlag is compressed
+   -  EdgeOfFlightline is compressed
+   -  Synthetic_flag is compressed
+   -  Keypoint_flag is compressed
+   -  Withheld_flag is compressed
+   -  UserData is compressed</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">las_check</span>(rois[[<span class="dv">3</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Checking the data
+  - Checking coordinates... ✓
+  - Checking coordinates type... ✓
+  - Checking coordinates range... ✓
+  - Checking coordinates quantization... ✓
+  - Checking attributes type... ✓
+  - Checking ReturnNumber validity... ✓
+  - Checking NumberOfReturns validity... ✓
+  - Checking ReturnNumber vs. NumberOfReturns... ✓
+  - Checking RGB validity... ✓
+  - Checking absence of NAs... ✓
+  - Checking duplicated points... ✓
+  - Checking degenerated ground points... ✓
+  - Checking attribute population...
+    🛈 'ScanDirectionFlag' attribute is not populated
+    🛈 'EdgeOfFlightline' attribute is not populated
+  - Checking gpstime incoherances
+    ✗ 26 pulses (points with the same gpstime) have points with identical ReturnNumber
+  - Checking flag attributes... ✓
+  - Checking user data attribute... ✓
+ Checking the header
+  - Checking header completeness... ✓
+  - Checking scale factor validity... ✓
+  - Checking point data format ID validity... ✓
+  - Checking extra bytes attributes validity... ✓
+  - Checking the bounding box validity... ✓
+  - Checking coordinate reference system... ✓
+ Checking header vs data adequacy
+  - Checking attributes vs. point format... ✓
+  - Checking header bbox vs. actual content... ✓
+  - Checking header number of points vs. actual content... ✓
+  - Checking header return number vs. actual content... ✓
+ Checking coordinate reference system...
+  - Checking if the CRS was understood by R... ✓
+ Checking preprocessing already done 
+  - Checking ground classification... yes
+  - Checking normalization... yes
+  - Checking negative outliers...
+    ⚠ 12 points below 0
+  - Checking flightline classification... yes
+ Checking compression
+  - Checking attribute compression...
+   -  ScanDirectionFlag is compressed
+   -  EdgeOfFlightline is compressed
+   -  Synthetic_flag is compressed
+   -  Keypoint_flag is compressed
+   -  Withheld_flag is compressed
+   -  UserData is compressed</code></pre>
+</div>
+</div>
+</section>
+<section id="independent-files-e.g.-plots-as-catalogs" class="level2">
+<h2 class="anchored" data-anchor-id="independent-files-e.g.-plots-as-catalogs">Independent files (e.g.&nbsp;plots) as catalogs</h2>
+<p>We read an individual LAS file as a catalog and perform operations on it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read single file as catalog</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set options for output files</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">tempdir</span>(),<span class="st">"/{XCENTER}_{XCENTER}"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Write file as .laz</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_laz_compression</span>(ctg) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get random plot locations and clip</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">min =</span> ctg<span class="sc">$</span>Min.X, <span class="at">max =</span> ctg<span class="sc">$</span>Max.X)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">min =</span> ctg<span class="sc">$</span>Min.Y, <span class="at">max =</span> ctg<span class="sc">$</span>Max.Y)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>rois <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(<span class="at">las =</span> ctg, <span class="at">xcenter =</span> x, <span class="at">ycenter =</span> y, <span class="at">radius =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="S1_roi_files/figure-html/independent_files-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chunk 1 of 4 (25%): state ✓
+Chunk 2 of 4 (50%): state ✓
+Chunk 3 of 4 (75%): state ✓
+Chunk 4 of 4 (100%): state ✓</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read catalog of plots</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ctg_plots <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="fu">tempdir</span>())</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set independent files option</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_independent_files</span>(ctg_plots) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg_plots) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">tempdir</span>(),<span class="st">"/{XCENTER}_{XCENTER}"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate plot-level terrain models</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rasterize_terrain</span>(<span class="at">las =</span> ctg_plots, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">tin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="S1_roi_files/figure-html/plots_catalog-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chunk 1 of 4 (25%): state ✓
+Chunk 2 of 4 (50%): state ✓
+Chunk 3 of 4 (75%): state ✓
+Chunk 4 of 4 (100%): state ✓</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 33, 159, 1  (nrow, ncol, nlyr)
+resolution  : 1, 1  (x, y)
+extent      : 2670566, 2670725, 1258770, 1258803  (xmin, xmax, ymin, ymax)
+coord. ref. : CH1903+ / LV95 (EPSG:2056) 
+source      : rasterize_terrain.vrt 
+name        : Z 
+min value   : 0 
+max value   : 0 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check files</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">tempdir</span>())</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>file_list <span class="ot">&lt;-</span> <span class="fu">list.files</span>(path, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>file <span class="ot">&lt;-</span> file_list[<span class="fu">grep</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">.tif$"</span>, file_list)][[<span class="dv">1</span>]]</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plot dtm</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(terra<span class="sc">::</span><span class="fu">rast</span>(file))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="S1_roi_files/figure-html/check_plot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -422,31 +594,31 @@ Reminder about <strong>legacy packages</strong>
 </section>
 <section id="exercises-and-questions" class="level2">
 <h2 class="anchored" data-anchor-id="exercises-and-questions">Exercises and Questions</h2>
-<p>Now, let’s read a shapefile called <code>MixedEucaNatPlot.shp</code> using <code>sf::st_read()</code> and plot it on top of the LiDAR header plot.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the shapefile "MixedEucaNatPlot.shp" using st_read()</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"data/shapefiles/MixedEucaNatPlot.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the LiDAR header information without the map</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las<span class="sc">@</span>header, <span class="at">map =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the extracted points within the planting areas</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, let’s read a shapefile called <code>roi.gpkg`` using</code>sf::st_read()` and plot it on top of the LiDAR header plot.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the shapefile "roi.gpkg" using st_read()</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"data/roi/roi.gpkg"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the LiDAR header information without the map</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las<span class="sc">@</span>header, <span class="at">map =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the extracted points within the stand area</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="e1." class="level4">
 <h4 class="anchored" data-anchor-id="e1.">E1.</h4>
 <p>Clip the 5 plots with a radius of 11.3 m.</p>
 </section>
 <section id="e2." class="level4">
 <h4 class="anchored" data-anchor-id="e2.">E2.</h4>
-<p>Clip a transect from A <code>c(203850, 7358950)</code> to B <code>c(203950, 7959000)</code>.</p>
+<p>Clip a transect from A <code>c(2670525, 1258740)</code> to B <code>c(2670740, 1258970)</code>.</p>
 </section>
 <section id="e3." class="level4">
 <h4 class="anchored" data-anchor-id="e3.">E3.</h4>
-<p>Clip a transect from A <code>c(203850, 7358950)</code> to B <code>c(203950, 7959000)</code> but reorient it so it is no longer on the XY diagonal. Hint = <code>?clip_transect</code></p>
+<p>Clip a transect from A <code>c(2670525, 1258740)</code> to B <code>c(2670740, 1258970)</code> but reorient it so it is no longer on the XY diagonal. Hint = <code>?clip_transect</code></p>
 </section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This concludes our tutorial on selecting simple geometries and extracting complex geometries from shapefiles using the <code>lidR</code> package in R.</p>
+<p>This concludes our tutorial on selecting simple geometries and extracting complex geometries from geopackage files (or shapefiles etc…) using the <code>lidR</code> package in R.</p>
 
 
 </section>

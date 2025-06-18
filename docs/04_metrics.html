@@ -242,123 +242,131 @@ Metrics describing the shape of the distribution of returns often capture additi
 Often referred directly to as <em>canopy cover</em>, these metrics generally describe the proportion of returns (as a %) above a certain threshold. Typically used to generally describe how much vegetation (e.g.&nbsp;above 2m) there is compared to ground and other lower surfaces (designed for forest).</p></li>
 </ol>
 <p>Basic usage involves computing mean and max height of points within 10x10 m pixels and visualizing the results. The code shows how to compute multiple metrics simultaneously and use predefined metric sets. Advanced usage introduces user-defined metrics for more specialized calculations.</p>
-<p><img src="images/clipboard-269210651.png" class="img-fluid"></p>
+<p><img src="img/als_metrics_cs.png" class="img-fluid"></p>
 </section>
 <section id="environment" class="level2">
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
-<div class="cell" data-layout-align="center" data-warnings="false">
+<div class="cell" data-warnings="false">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clear environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="fu">globalenv</span>()))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lidR)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lidRmetrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="basic-usage" class="level2">
 <h2 class="anchored" data-anchor-id="basic-usage">Basic Usage</h2>
 <p>We’ll cover the basic usage of the <code>lidR</code> package to compute metrics from LiDAR data.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load LiDAR data, excluding withheld flag points</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">select =</span> <span class="st">"*"</span>,  <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the normalized LiDAR data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>pixel_metrics()</code> function calculates structural metrics within a defined spatial resolution (<code>res</code>).</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the mean height of points within 10x10 m pixels</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>hmean <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">mean</span>(Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hmean</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 15, 15, 1  (nrow, ncol, nlyr)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 203830, 203980, 7358900, 7359050  (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : SIRGAS 2000 / UTM zone 23S (EPSG:31983) </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; source(s)   : memory</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; name        :           V1 </span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; min value   :  0.001065319 </span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; max value   : 17.730712824</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hmean, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hmean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 26, 26, 1  (nrow, ncol, nlyr)
+resolution  : 10, 10  (x, y)
+extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)
+coord. ref. : CH1903+ / LV95 (EPSG:2056) 
+source(s)   : memory
+name        :          V1 
+min value   :  0.01491925 
+max value   : 28.90163739 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hmean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="04_metrics_files/figure-html/mean_height_pixel_metrics-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_metrics_files/figure-html/mean_height_pixel_metrics-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the max height of points within 10x10 m pixels</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hmax <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>hmax</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 15, 15, 1  (nrow, ncol, nlyr)</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 203830, 203980, 7358900, 7359050  (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : SIRGAS 2000 / UTM zone 23S (EPSG:31983) </span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; source(s)   : memory</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; name        :    V1 </span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; min value   :  0.75 </span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; max value   : 34.46</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hmax, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the max height of points within 10x10 m pixels</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hmax <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>hmax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 26, 26, 1  (nrow, ncol, nlyr)
+resolution  : 10, 10  (x, y)
+extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)
+coord. ref. : CH1903+ / LV95 (EPSG:2056) 
+source(s)   : memory
+name        :    V1 
+min value   :  0.93 
+max value   : 48.31 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hmax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="04_metrics_files/figure-html/max_height_pixel_metrics-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_metrics_files/figure-html/max_height_pixel_metrics-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>You can specify that multiple metrics should be calculated by housing them in a <code>list()</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute several metrics at once using a list</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">list</span>(<span class="at">hmax =</span> <span class="fu">max</span>(Z), <span class="at">hmean =</span> <span class="fu">mean</span>(Z)), <span class="at">res =</span> <span class="dv">10</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>metrics</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 15, 15, 2  (nrow, ncol, nlyr)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 203830, 203980, 7358900, 7359050  (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : SIRGAS 2000 / UTM zone 23S (EPSG:31983) </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; source(s)   : memory</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; names       :  hmax,        hmean </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; min values  :  0.75,  0.001065319 </span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; max values  : 34.46, 17.730712824</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metrics, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute several metrics at once using a list</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">list</span>(<span class="at">hmax =</span> <span class="fu">max</span>(Z), <span class="at">hmean =</span> <span class="fu">mean</span>(Z)), <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 26, 26, 2  (nrow, ncol, nlyr)
+resolution  : 10, 10  (x, y)
+extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)
+coord. ref. : CH1903+ / LV95 (EPSG:2056) 
+source(s)   : memory
+names       :  hmax,       hmean 
+min values  :  0.93,  0.01491925 
+max values  : 48.31, 28.90163739 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="04_metrics_files/figure-html/multiple_metrics_pixel_metrics-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_metrics_files/figure-html/multiple_metrics_pixel_metrics-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Pre-defined metric sets are available, such as <code>.stdmetrics_z</code>. See more <a href="https://github.com/r-lidar/lidR/wiki/stdmetrics">here</a>.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplify computing metrics with predefined sets of metrics</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> .stdmetrics_z, <span class="at">res =</span> <span class="dv">10</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>metrics</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 15, 15, 36  (nrow, ncol, nlyr)</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 203830, 203980, 7358900, 7359050  (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : SIRGAS 2000 / UTM zone 23S (EPSG:31983) </span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; source(s)   : memory</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; names       :  zmax,        zmean,         zsd,     zskew,       zkurt,    zentropy, ... </span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; min values  :  0.75,  0.001065319,  0.02499118, -1.860858,    1.127885, 0.005277377, ... </span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; max values  : 34.46, 17.730712824, 12.95950270, 41.207184, 1738.774391, 0.955121240, ...</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metrics, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplify computing metrics with predefined sets of metrics</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> .stdmetrics_z, <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>metrics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 26, 26, 36  (nrow, ncol, nlyr)
+resolution  : 10, 10  (x, y)
+extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)
+coord. ref. : CH1903+ / LV95 (EPSG:2056) 
+source(s)   : memory
+names       :  zmax,       zmean,         zsd,     zskew,      zkurt,   zentropy, ... 
+min values  :  0.93,  0.01491925,  0.07074514, -2.027288,   1.109003, 0.02902023, ... 
+max values  : 48.31, 28.90163739, 17.97744082, 16.645088, 308.212065, 0.93158775, ... </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="04_metrics_files/figure-html/predefined_metrics_pixel_metrics-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_metrics_files/figure-html/predefined_metrics_pixel_metrics-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a specific metric from the predefined set</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metrics, <span class="st">"zsd"</span>, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a specific metric from the predefined set</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metrics, <span class="st">"zsd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="04_metrics_files/figure-html/predefined_metrics_pixel_metrics-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_metrics_files/figure-html/predefined_metrics_pixel_metrics-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -372,27 +380,51 @@ Often referred directly to as <em>canopy cover</em>, these metrics generally des
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<a href="https://r-lidar.github.io/lidRbook/metrics.html#metrics-3rd-party">3rd party metric packages</a>
+<a href="https://r-lidar.github.io/lidRbook/metrics.html#metrics-3rd-party">3rd party LiDAR metrics packages</a>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>lidR</code> provides flexibility for users to define custom metrics. Check out 3rd party packages like <a href="https://github.com/ptompalski/lidRmetrics"><code>lidRmetrics</code></a> for suites of metrics.</p>
+<p><code>lidR</code> provides flexibility for users to define custom metrics. Check out 3rd party packages like <a href="https://github.com/ptompalski/lidRmetrics"><code>lidRmetrics</code></a> for suites of advanced metrics typically demonstrated in peer-reviewed articles and implemented in <code>lidR</code> through <a href="https://github.com/ptompalski/lidRmetrics"><code>lidRmetrics</code></a>.</p>
+</div>
+</div>
+<p><a href="https://ptompalski.github.io/lidRmetrics/reference/metrics_percabove.html" title="Proportion of returns above a threshold (2m) is commonly used to approximate canopy cover in forests and beyond">Canopy Cover</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>cc_metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">metrics_percabove</span>(<span class="at">z =</span> Z, <span class="at">threshold =</span> <span class="dv">2</span>, <span class="at">zmin =</span> <span class="dv">0</span>), <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cc_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_metrics_files/figure-html/canopy_cover-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://ptompalski.github.io/lidRmetrics/reference/metrics_lad.html" title="LAD profiles are commonly used in predictive modelling to approximate the leaf area index (LAI) of vegetation with LiDAR">Leaf Area Density Profiles</a> (<a href="http://dx.doi.org/10.1016/j.rse.2014.10.004" title="Journal article credited with LAD metrics formulae">Bouvier et al.&nbsp;2015</a>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lad_metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">metrics_lad</span>(<span class="at">z =</span> Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lad_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_metrics_files/figure-html/lad_metrics-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can also create our own user-defined metric functions. This demonstrates the flexibility of the <code>lidR</code> package!</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a user-defined function to compute weighted mean</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, weight) { <span class="fu">sum</span>(x<span class="sc">*</span>weight)<span class="sc">/</span><span class="fu">sum</span>(weight) }</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute grid metrics for the user-defined function</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">f</span>(Z, Intensity), <span class="at">res =</span> <span class="dv">10</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the output</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a user-defined function to compute weighted mean between two attributes</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, weight) { <span class="fu">sum</span>(x<span class="sc">*</span>weight)<span class="sc">/</span><span class="fu">sum</span>(weight) }</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute weighted mean of height (Z) as a function of return intensity</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>user_metric <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">f</span>(Z, Intensity), <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the output</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(user_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="04_metrics_files/figure-html/user_defined_metric_pixel_metrics-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_metrics_files/figure-html/user_defined_metric_pixel_metrics-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -401,7 +433,7 @@ Often referred directly to as <em>canopy cover</em>, these metrics generally des
 <section id="exercises-and-questions" class="level2">
 <h2 class="anchored" data-anchor-id="exercises-and-questions">Exercises and Questions</h2>
 <p>Using:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">select =</span> <span class="st">"*"</span>,  <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="e1." class="level4">
 <h4 class="anchored" data-anchor-id="e1.">E1.</h4>
 <p>Assuming that biomass is estimated using the equation <code>B = 0.5 * mean Z + 0.9 * 90th percentile of Z</code> applied on first returns only, map the biomass.</p>

@@ -39,6 +39,7 @@ website:
     location: navbar
     type: overlay
 
+
 format:
   html:
     theme: [simple, assets/styles.scss]
@@ -47,4 +48,4 @@ format:
     toc-depth: 4
     code-overflow: wrap
 
-editor: visual
+editor: source

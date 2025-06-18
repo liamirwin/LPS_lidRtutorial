@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="environment" class="level2">
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
-<div class="cell" data-layout-align="center" data-warnings="false">
+<div class="cell" data-warnings="false">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clear environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="fu">globalenv</span>()))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -241,88 +241,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing</h2>
 <p>We load the LiDAR, keep a random fraction to reduce point density, and visualize the resulting point cloud.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load LiDAR data and reduce point density</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-keep_random_fraction 0.4 -set_withheld_flag 0"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>col <span class="ot">&lt;-</span> <span class="fu">height.colors</span>(<span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the LiDAR point cloud</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="03_chm_files/figure-html/chm_las-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="point-to-raster-based-algorithm" class="level2">
 <h2 class="anchored" data-anchor-id="point-to-raster-based-algorithm">Point-to-Raster Based Algorithm</h2>
 <p>We demonstrate a simple method for generating Canopy Height Models (CHMs) that assigns the elevation of the highest point to each pixel at a 2 meter spatial resolution.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the CHM using a simple point-to-raster based algorithm</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="dv">2</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>())</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the CHM</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/point_to_raster_algorithm-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/point_to_raster_algorithm-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>In the first code chunk, we generate a CHM using a point-to-raster based algorithm. The <code>rasterize_canopy()</code> function with the <code>p2r()</code> algorithm assigns the elevation of the highest point within each grid cell to the corresponding pixel. The resulting CHM is then visualized using the <code>plot()</code> function.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make spatial resolution 1 m</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>())</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_higher_resolution-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_higher_resolution-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>By increasing the resolution of the CHM (reducing the grid cell size), we get a more detailed representation of the canopy, but also have more empty pixels.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the 'subcircle' option turns each point into a disc of 8 points with a radius r</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_subcircle-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_subcircle-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The <code>rasterize_canopy()</code> function with the <code>p2r()</code> algorithm allows the use of the <code>subcircle</code> option, which turns each LiDAR point into a disc of 8 points with a specified radius. This can help to capture more fine-grained canopy details in the resulting CHM.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Increasing the subcircle radius, but it may not have meaningful results</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.8</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_larger_subcircle_radius-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_larger_subcircle_radius-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Increasing the <code>subcircle</code> radius may not necessarily result in meaningful CHMs, as it could lead to over-smoothing or loss of important canopy information.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can fill empty pixels using TIN interpolation</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>, <span class="at">na.fill =</span> <span class="fu">tin</span>()))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_fill_empty_pixels-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/point_to_raster_algorithm_fill_empty_pixels-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -345,29 +336,29 @@ Pit-free algorithm
 <p>Check out <a href="https://www.ingentaconnect.com/content/asprs/pers/2014/00000080/00000009/art00003?crawler=true">Khosravipour et al.&nbsp;2014</a> to see the original implementation of the algorithm!</p>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the Khosravipour et al. 2014 pit-free algorithm with specified thresholds and maximum edge length</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>max_edge <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.35</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">pitfree</span>(thresholds, max_edge))</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/triangulation_algorithm_pitfree-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/triangulation_algorithm_pitfree-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The <code>subcircle</code> option can be used with the pit-free algorithm to create finer spatial resolution CHMs with subcircles for each LiDAR point, similar to the point-to-raster based algorithm.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the 'subcircle' option with the pit-free algorithm</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">pitfree</span>(thresholds, max_edge, <span class="fl">0.1</span>))</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/triangulation_algorithm_subcircle-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/triangulation_algorithm_subcircle-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -376,7 +367,7 @@ Pit-free algorithm
 <section id="post-processing" class="level2">
 <h2 class="anchored" data-anchor-id="post-processing">Post-Processing</h2>
 <p>CHMs can be post-processed by smoothing or other manipulations. Here, we demonstrate post-processing using the <code>terra::focal()</code> function for average smoothing within a 3x3 moving window.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-process the CHM using the 'terra' package and focal() function for smoothing</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ker <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>schm <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">focal</span>(chm, <span class="at">w =</span> ker, <span class="at">fun =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -384,9 +375,9 @@ Pit-free algorithm
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the smoothed CHM</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(schm, <span class="at">col =</span> col)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="03_chm_files/figure-html/post_processing-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="03_chm_files/figure-html/post_processing-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

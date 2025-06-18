@@ -45,7 +45,6 @@ options(lidR.progress = FALSE)
 **Introduction slides:** [Intro to Airborne LiDAR & lidR](docs/LPS_lidR_LiDAR_Intro.html)
 :::
 
-
 **Download the workshop release for code and lidar files ADD LINK**
 
 ## Requirements
@@ -70,6 +69,19 @@ libs <- c("geometry","viridis","future","sf","gstat","terra","mapview","mapedit"
 
 install.packages(libs)
 ```
+
+In the metrics section we will work with a user-made package that supports `lidR` with additional functions
+To follow along with these steps optionally install `lidRmetrics` from GitHub (not on CRAN)
+
+```r
+devtools::install_github("ptompalski/lidRmetrics")
+```
+
+### Datasets
+
+We will be working with a sample ALS dataset [openly available](https://geolion.zh.ch/geodatensatz/show?nbid=2618 "Data Description and Access") for Canton Zürich flown in spring 2014.
+
+The raw data has been thinned to a uniform density to speed up processing.
 
 ## Estimated schedule {.smaller}
 
