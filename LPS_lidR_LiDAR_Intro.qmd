@@ -47,6 +47,10 @@ fig-dpi: 300
 [![](img/plot_z_360.gif){fig-align='right'}]
 
 ::: notes
+As with many remote sensing data analyses tasks we are seeking to produce `information` from `simplification` to pull a signal of interest (in this case variability in vegetation structure) out of our dataset (a dense point cloud of three-dimensional coordinates that characterize the vegetation)
+
+To do so we often generate summary metrics that act similarly to spectral indices in passive optical remote sensing, they ratio or generate statistics on the distribution of points (max, mean height, canopy cover, percentiles, leaf-area density profiles)
+
 :::
 
 ## lidR
