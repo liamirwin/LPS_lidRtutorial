@@ -117,7 +117,7 @@ When working on exercises:
 The current release version of `lidR` can be found on [CRAN](https://cran.r-project.org/web/packages/lidR/) and source code is hosted on [GitHub](https://github.com/r-lidar/lidR).
 
 ::: callout-note
-![](images/clipboard-3437637337.png)
+![](img/rlidar_banner.png)
 
 ## Note
 

@@ -81,6 +81,8 @@ plot(las)
 ```
 
 ```{r visualize_lidar_data, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-basic
+#| fig-cap: "Point cloud coloured by the Z (elevation) attribute."
 # Visualize the lidar data with a default colour palette
 plot(las, bg = "white")
 ```
@@ -90,6 +92,8 @@ plot(las, color = "Intensity")
 ```
 
 ```{r visualize_lidar_data_int, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-intensity
+#| fig-cap: "Point cloud coloured by the Intensity attribute."
 # Visualize using intensity values as colours
 plot(las, color = "Intensity", bg = "white")
 ```
@@ -99,6 +103,8 @@ plot(las, color = "Classification")
 ```
 
 ```{r visualize_lidar_data_class, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-classification
+#| fig-cap: "Point cloud coloured by Classification. Ground is brown, vegetation is green."
 # Visualize using the classification attribute as colours
 plot(las, color = "Classification", bg = "white")
 ```
@@ -108,6 +114,8 @@ plot(las, color = "ScanAngleRank", axis = TRUE, legend = TRUE)
 ```
 
 ```{r visualize_lidar_data_scan, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-scan-angle
+#| fig-cap: "Point cloud coloured by ScanAngleRank, with axes and legend displayed."
 # Visualize using the scan angle rank as colours with an axis and a legend ramp
 plot(las, color = "ScanAngleRank", axis = TRUE, legend = TRUE, bg = "white")
 ```
@@ -159,6 +167,8 @@ plot(las)
 ```
 
 ```{r visualize_lidar_data_filter, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-first-returns
+#| fig-cap: "Point cloud showing only first returns, filtered on load with `-keep_first`."
 # Visualize the filtered points
 plot(las, bg = "white")
 ```
@@ -177,6 +187,8 @@ plot(las)
 ```
 
 ```{r visualize_lidar_data_filter_class, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-ground-filter
+#| fig-cap: "Point cloud showing only ground points, filtered on readLAS with `-keep_class 2`."
 plot(las, bg = "white")
 ```
 
@@ -196,7 +208,9 @@ first_returns <- filter_poi(las = las, Classification == 2L & ReturnNumber == 1L
 plot(class_2)
 ```
 
-```{r class_2, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+```{r visualize-filter-poi-ground, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-filter-poi-ground
+#| fig-cap: "Ground points filtered from the LAS object using `filter_poi()`."
 plot(class_2, bg = "white")
 ```
 
@@ -204,7 +218,9 @@ plot(class_2, bg = "white")
 plot(first_returns)
 ```
 
-```{r first_ground, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+```{r visualize-first_ground, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-filter-poi-first-ground
+#| fig-cap: "First-return ground points filtered using `filter_poi()`."
 plot(first_returns, bg = "white")
 ```
 
