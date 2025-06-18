@@ -51,8 +51,6 @@ In this section, we'll generate a Digital Terrain Model (DTM) from LiDAR data us
 las <- readLAS(files = "data/zrh_class.laz")
 ```
 
-Here, we load the LiDAR data and exclude points flagged as withheld.
-
 ### Visualizing LiDAR Data
 
 We start by visualizing the entire LiDAR point cloud to get an initial overview.
@@ -66,7 +64,7 @@ plot(las)
 plot(las, bg = "white")
 ```
 
-Visualizing the LiDAR data again, this time to distinguish ground points (\[blue\]{style="color: blue;"}) more effectively.
+Visualizing the LiDAR data again, this time to distinguish ground points (blue) more effectively.
 
 ``` r
 plot(las, color = "Classification")
@@ -89,8 +87,11 @@ dtm_tin <- rasterize_terrain(las = las, res = 1, algorithm = tin())
 
 ::: callout-note
 ## Degenerated points
-
-A degenerated point in LiDAR data refers to a point with identical XY(Z) coordinates as another point. This means two or more points occupy exactly the same location in XY/3D space. Degenerated points can cause issues in tasks like creating a digital terrain model, as they don't add new information and can lead to inconsistencies. Identifying and handling degenerated points appropriately is crucial for accurate and meaningful results.
+You may receive a warning about degenerated points when creating a DTM.
+A degenerated point in LiDAR data refers to a point with identical XY(Z) coordinates as another point. 
+This means two or more points occupy exactly the same location in XY/3D space. 
+Degenerated points can cause issues in tasks like creating a digital terrain model, as they don't add new information and can lead to inconsistencies. 
+Identifying and handling degenerated points appropriately is crucial for accurate and meaningful results.
 :::
 
 ### Visualizing DTM in 3D
@@ -201,40 +202,14 @@ plot(nlas_tin, bg = "white")
 
 #### E1.
 
-Plot and compare these two normalized point-clouds. Why do they look different? Fix that. Hint: `filter`.
-
-``` r
-# Load and visualize nlas1 and nlas2
-las1 = readLAS("data/zrh_class.laz")
-nlas1 = normalize_height(las1, tin())
-nlas2 = readLAS("data/zrh_norm.laz")
-plot(nlas1)
-plot(nlas2)
-```
 
 #### E2.
 
-Clip a plot somewhere in `zrh_class.laz` (the non-normalized file).
 
 #### E3.
 
-Compute a DTM for this plot. Which method are you choosing and why?
+Compute two DTMs for this point cloud with differing spatial resolutions, plot both e.g. `plot(dtm1)`
 
-#### E4.
-
-Compute a DSM (digital surface model). Hint: Look back to how you made a CHM.
-
-#### E5.
-
-Normalize the plot.
-
-#### E6.
-
-Compute a CHM.
-
-#### E7.
-
-Compute some metrics of interest in this plot with `cloud_metrics()`.
 
 ## Conclusion
 

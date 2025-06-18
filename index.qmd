@@ -42,7 +42,7 @@ options(lidR.progress = FALSE)
 -   Exercises will be done depending on available time - users are encouraged to work on these after the workshop!
 
 ::: callout-tip
-**Introduction slides:** [Intro to Airborne LiDAR & lidR](docs/LPS_lidR_LiDAR_Intro.html)
+**Introduction slides:** [Intro to Airborne LiDAR & lidR](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/docs/LPS_lidR_LiDAR_Intro.html)
 :::
 
 **Download the workshop release for code and lidar files ADD LINK**
@@ -65,7 +65,7 @@ install.packages("lidR")
 To run all code in the tutorial yourself, you will need to install the following packages. You can use `lidR` without them, however.
 
 ``` r
-libs <- c("geometry","viridis","future","sf","gstat","terra","mapview","mapedit","concaveman","microbenchmark")
+libs <- c("geometry","viridis","future","sf","gstat","terra","mapview","mapedit")
 
 install.packages(libs)
 ```

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -263,7 +263,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Introduction slides:</strong> <a href="docs/LPS_lidR_LiDAR_Intro.html">Intro to Airborne LiDAR &amp; lidR</a></p>
+<p><strong>Introduction slides:</strong> <a href="https://github.com/liamirwin/LPS_lidRtutorial/blob/master/docs/LPS_lidR_LiDAR_Intro.html">Intro to Airborne LiDAR &amp; lidR</a></p>
 </div>
 </div>
 <p><strong>Download the workshop release for code and lidar files ADD LINK</strong></p>
@@ -282,7 +282,7 @@ Tip
 <p>You need to install the <code>lidR</code> package in its latest version (v &gt;= 4.0.0).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lidR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To run all code in the tutorial yourself, you will need to install the following packages. You can use <code>lidR</code> without them, however.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"geometry"</span>,<span class="st">"viridis"</span>,<span class="st">"future"</span>,<span class="st">"sf"</span>,<span class="st">"gstat"</span>,<span class="st">"terra"</span>,<span class="st">"mapview"</span>,<span class="st">"mapedit"</span>,<span class="st">"concaveman"</span>,<span class="st">"microbenchmark"</span>)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"geometry"</span>,<span class="st">"viridis"</span>,<span class="st">"future"</span>,<span class="st">"sf"</span>,<span class="st">"gstat"</span>,<span class="st">"terra"</span>,<span class="st">"mapview"</span>,<span class="st">"mapedit"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(libs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the metrics section we will work with a user-made package that supports <code>lidR</code> with additional functions To follow along with these steps optionally install <code>lidRmetrics</code> from GitHub (not on CRAN)</p>

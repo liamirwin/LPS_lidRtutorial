@@ -30,9 +30,11 @@ options(lidR.progress = FALSE)
 
 ## Overview
 
-This code demonstrates an example of generating **pixel-based summary metrics** of LiDAR data. This is a common task to capture critical information describing the vertical distribution of lidar returns across a regular grid (raster). Pixel metrics are used in various predictive modelling tasks and often used to capture critical vegetation characteristics ranging from height to variability and cover. 
+This code demonstrates an example of generating **pixel-based summary metrics** of LiDAR data. This is a common task to capture critical information describing the vertical distribution of lidar returns across a regular grid (raster). Pixel metrics are used in various predictive modelling tasks and often to capture critical vegetation characteristics ranging from height to variability and cover. 
 
-Beyond statistical summary metrics such as (*mean*, *max*, *sd*, etc), many researchers have developed custom metrics linked to critical vegetation attributes such as **leaf-area index**, **vertical complexity indices**, etc. These metrics can also be generated with `lidR` using **voxel approaches**, where three-dimensional sub-compartments are fit to better capture complexity — at the cost of vastly increasing computational requirements and introducing additional parameters.
+Beyond statistical summary metrics such as (*mean*, *max*, *sd*, etc), many researchers have developed custom metrics linked to critical vegetation attributes such as **leaf-area index**, **vertical complexity indices**, etc. 
+
+Additional metrics can also be generated with `lidR` using **voxel approaches**, where three-dimensional sub-compartments are fit to better capture complexity — *at the cost of vastly increasing computational* requirements and introducing additional parameters.
 
 Classically, lidar metrics used in vegetation characterization typically fall under three categories:
 
@@ -45,7 +47,6 @@ Classically, lidar metrics used in vegetation characterization typically fall un
 3.  **Cover metrics**\
     Often referred directly to as *canopy cover*, these metrics generally describe the proportion of returns (as a %) above a certain threshold. Typically used to generally describe how much vegetation (e.g. above 2m) there is compared to ground and other lower surfaces (designed for forest).
 
-Basic usage involves computing mean and max height of points within 10x10 m pixels and visualizing the results. The code shows how to compute multiple metrics simultaneously and use predefined metric sets. Advanced usage introduces user-defined metrics for more specialized calculations.
 
 ![](img/als_metrics_cs.png)
 
@@ -63,7 +64,7 @@ library(lidRmetrics)
 
 ## Basic Usage
 
-We'll cover the basic usage of the `lidR` package to compute metrics from LiDAR data.
+To begin we compute simple metrics including mean and max height of points within 10x10 m pixels and visualizing the results. The code shows how to compute multiple metrics simultaneously and use predefined metric sets. Advanced usage introduces user-defined metrics for more specialized calculations.
 
 ```{r load_lidar_data}
 # Load the normalized LiDAR data
@@ -129,6 +130,11 @@ lad_metrics <- pixel_metrics(las, ~metrics_lad(z = Z), res = 10)
 plot(lad_metrics)
 ```
 
+ADD VERTICAL COMPLEXITY INDEX
+
+
+
+
 We can also create our own user-defined metric functions. This demonstrates the flexibility of the `lidR` package!
 
 ```{r user_defined_metric_pixel_metrics}
@@ -152,15 +158,16 @@ las <- readLAS("data/zrh_norm.laz")
 
 #### E1.
 
-Assuming that biomass is estimated using the equation `B = 0.5 * mean Z + 0.9 * 90th percentile of Z` applied on first returns only, map the biomass.
+Generate another metric set provided by the lidRmetrics package (voxel metrics will take too long)
 
 #### E2.
 
-Map the density of ground returns at a 5 m resolution with `pixel_metrics(filter = ~Classification == LASGROUND)`.
+Map the density of ground returns at a 5 m resolution with `hint filter = -keep_class 2`
 
 #### E3.
 
-Map pixels that are flat (planar) using `stdshapemetrics`. These could indicate potential roads.
+Assuming that biomass is estimated using the equation `B = 0.5 * mean Z + 0.9 * 90th percentile of Z` applied on first returns only, map the biomass.
+
 
 ## Conclusion
 

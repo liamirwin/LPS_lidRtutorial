@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -289,8 +289,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-drop_withheld"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-drop_withheld"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -301,8 +304,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"Withheld_flag"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"Withheld_flag"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -312,10 +318,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-keep_class 2 -set_withheld_flag 0"</span>, <span class="at">select =</span> <span class="st">"r"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"ReturnNumber"</span>, <span class="at">legend =</span> T)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">object.size</span>(las), <span class="st">"Mb"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "4.6 Mb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-keep_class 2 -set_withheld_flag 0"</span>, <span class="at">select =</span> <span class="st">"r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"ReturnNumber"</span>, <span class="at">legend =</span> T)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">object.size</span>(las), <span class="st">"Mb"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "4.6 Mb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -323,19 +332,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="roi" class="level2">
 <h2 class="anchored" data-anchor-id="roi">2-ROI</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">select =</span> <span class="st">"xyz"</span>) <span class="co"># Re-load </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: There are 127471 points flagged 'withheld'.</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"data/shapefiles/MixedEucaNatPlot.shp"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Reading layer `MixedEucaNatPlot' from data source </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `E:\Misc\LPS_lidRtutorial\data\shapefiles\MixedEucaNatPlot.shp' </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   using driver `ESRI Shapefile'</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Simple feature collection with 5 features and 1 field</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Geometry type: POINT</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Dimension:     XY</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bounding box:  xmin: 203879.6 ymin: 7358932 xmax: 203960.6 ymax: 7359033</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Projected CRS: SIRGAS 2000 / UTM zone 23S</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las<span class="sc">@</span>header, <span class="at">map =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots, <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">select =</span> <span class="st">"xyz"</span>) <span class="co"># Re-load </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#&gt; Warning: There are 127471 points flagged 'withheld'.
+plots &lt;- st_read("data/shapefiles/MixedEucaNatPlot.shp")
+#&gt; Reading layer `MixedEucaNatPlot' from data source 
+#&gt;   `C:\Users\lakirwin\Documents\GitHub\LPS_lidRtutorial\data\shapefiles\MixedEucaNatPlot.shp' 
+#&gt;   using driver `ESRI Shapefile'
+#&gt; Simple feature collection with 5 features and 1 field
+#&gt; Geometry type: POINT
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 203879.6 ymin: 7358932 xmax: 203960.6 ymax: 7359033
+#&gt; Projected CRS: SIRGAS 2000 / UTM zone 23S
+plot(las@header, map = FALSE)
+plot(plots, add = TRUE)</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -350,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="ot">&lt;-</span> <span class="fu">clip_roi</span>(las, plots, <span class="at">radius =</span> <span class="fl">11.3</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inventory[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>inventory <span class="ot">&lt;-</span> <span class="fu">clip_roi</span>(las, plots, <span class="at">radius =</span> <span class="fl">11.3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(inventory[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -361,8 +370,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">clip_transect</span>(las, <span class="fu">c</span>(<span class="dv">203850</span>, <span class="dv">7358950</span>), <span class="fu">c</span>(<span class="dv">203950</span>, <span class="dv">7359000</span>), <span class="at">width =</span> <span class="dv">5</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tr, <span class="at">axis =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">clip_transect</span>(las, <span class="fu">c</span>(<span class="dv">203850</span>, <span class="dv">7358950</span>), <span class="fu">c</span>(<span class="dv">203950</span>, <span class="dv">7359000</span>), <span class="at">width =</span> <span class="dv">5</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tr, <span class="at">axis =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -372,10 +381,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ptr <span class="ot">&lt;-</span> <span class="fu">clip_transect</span>(las, <span class="fu">c</span>(<span class="dv">203850</span>, <span class="dv">7358950</span>), <span class="fu">c</span>(<span class="dv">203950</span>, <span class="dv">7359000</span>), <span class="at">width =</span> <span class="dv">5</span>, <span class="at">xz =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tr, <span class="at">axis =</span> T)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ptr, <span class="at">axis =</span> T)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ptr<span class="sc">$</span>X, ptr<span class="sc">$</span>Z, <span class="at">cex =</span> <span class="fl">0.25</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">asp =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ptr <span class="ot">&lt;-</span> <span class="fu">clip_transect</span>(las, <span class="fu">c</span>(<span class="dv">203850</span>, <span class="dv">7358950</span>), <span class="fu">c</span>(<span class="dv">203950</span>, <span class="dv">7359000</span>), <span class="at">width =</span> <span class="dv">5</span>, <span class="at">xz =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tr, <span class="at">axis =</span> T)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ptr, <span class="at">axis =</span> T)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ptr<span class="sc">$</span>X, ptr<span class="sc">$</span>Z, <span class="at">cex =</span> <span class="fl">0.25</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">asp =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -390,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="aba" class="level2">
 <h2 class="anchored" data-anchor-id="aba">3-ABA</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">select =</span> <span class="st">"*"</span>,  <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">select =</span> <span class="st">"*"</span>,  <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="e1.-2" class="level4">
 <h4 class="anchored" data-anchor-id="e1.-2">E1.</h4>
@@ -398,8 +407,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fl">0.5</span><span class="sc">*</span><span class="fu">mean</span>(Z) <span class="sc">+</span> <span class="fl">0.9</span><span class="sc">*</span><span class="fu">quantile</span>(Z, <span class="at">probs =</span> <span class="fl">0.9</span>), <span class="dv">10</span>, <span class="at">filter =</span> <span class="sc">~</span>ReturnNumber <span class="sc">==</span> <span class="dv">1</span>L)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(B, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fl">0.5</span><span class="sc">*</span><span class="fu">mean</span>(Z) <span class="sc">+</span> <span class="fl">0.9</span><span class="sc">*</span><span class="fu">quantile</span>(Z, <span class="at">probs =</span> <span class="fl">0.9</span>), <span class="dv">10</span>, <span class="at">filter =</span> <span class="sc">~</span>ReturnNumber <span class="sc">==</span> <span class="dv">1</span>L)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(B, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -410,10 +419,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, .stdmetrics_z, <span class="dv">10</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>B[[<span class="st">"zmean"</span>]] <span class="sc">+</span> <span class="fl">0.9</span><span class="sc">*</span>B[[<span class="st">"zq90"</span>]]</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(B, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, .stdmetrics_z, <span class="dv">10</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>B[[<span class="st">"zmean"</span>]] <span class="sc">+</span> <span class="fl">0.9</span><span class="sc">*</span>B[[<span class="st">"zq90"</span>]]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(B, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -424,17 +433,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">as.list</span>(<span class="fu">quantile</span>(Z), <span class="dv">10</span>))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 8, 8, 5  (nrow, ncol, nlyr)</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 20, 20  (x, y)</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 203820, 203980, 7358900, 7359060  (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : SIRGAS 2000 / UTM zone 23S (EPSG:31983) </span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; source(s)   : memory</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; names       : 0%,   25%,   50%,  75%,  100% </span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; min values  :  0,  0.00,  0.00,  0.0,  0.79 </span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; max values  :  0, 12.32, 17.19, 27.4, 34.46</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">as.list</span>(<span class="fu">quantile</span>(Z), <span class="dv">10</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 8, 8, 5  (nrow, ncol, nlyr)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 20, 20  (x, y)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 203820, 203980, 7358900, 7359060  (xmin, xmax, ymin, ymax)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : SIRGAS 2000 / UTM zone 23S (EPSG:31983) </span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; source(s)   : memory</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; names       : 0%,   25%,   50%,  75%,  100% </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; min values  :  0,  0.00,  0.00,  0.0,  0.79 </span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; max values  :  0, 12.32, 17.19, 27.4, 34.46</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -444,8 +453,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>GND <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">length</span>(Z)<span class="sc">/</span><span class="dv">25</span>, <span class="at">res =</span> <span class="dv">5</span>, <span class="at">filter =</span> <span class="sc">~</span>Classification <span class="sc">==</span> LASGROUND)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GND, <span class="at">col =</span> <span class="fu">heat.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>GND <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">length</span>(Z)<span class="sc">/</span><span class="dv">25</span>, <span class="at">res =</span> <span class="dv">5</span>, <span class="at">filter =</span> <span class="sc">~</span>Classification <span class="sc">==</span> LASGROUND)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GND, <span class="at">col =</span> <span class="fu">heat.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -462,8 +471,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, .stdshapemetrics, <span class="at">res =</span> <span class="dv">3</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m[[<span class="st">"planarity"</span>]], <span class="at">col =</span> <span class="fu">heat.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, .stdshapemetrics, <span class="at">res =</span> <span class="dv">3</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m[[<span class="st">"planarity"</span>]], <span class="at">col =</span> <span class="fu">heat.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -474,8 +483,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>flat <span class="ot">&lt;-</span> m[[<span class="st">"planarity"</span>]] <span class="sc">&gt;</span> <span class="fl">0.85</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(flat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flat <span class="ot">&lt;-</span> m[[<span class="st">"planarity"</span>]] <span class="sc">&gt;</span> <span class="fl">0.85</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(flat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -496,14 +505,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>las1 <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>nlas1 <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(las1, <span class="fu">tin</span>())</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>nlas2 <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas1)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas2)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>nlas1 <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(nlas1, Z <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.1</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>las1 <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nlas1 <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(las1, <span class="fu">tin</span>())</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>nlas2 <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas1)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas2)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>nlas1 <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(nlas1, Z <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.1</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -513,8 +528,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>circ <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(las, <span class="dv">203930</span>, <span class="dv">7359000</span>, <span class="dv">25</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(circ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>circ <span class="ot">&lt;-</span> <span class="fu">clip_circle</span>(las, <span class="dv">203930</span>, <span class="dv">7359000</span>, <span class="dv">25</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(circ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -524,8 +539,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dtm <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(circ, <span class="fl">0.5</span>, <span class="fu">kriging</span>())</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(dtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dtm <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(circ, <span class="fl">0.5</span>, <span class="fu">kriging</span>())</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(dtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -535,8 +550,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dsm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(circ, <span class="dv">1</span>, <span class="fu">p2r</span>(<span class="fl">0.1</span>))</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dsm, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dsm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(circ, <span class="dv">1</span>, <span class="fu">p2r</span>(<span class="fl">0.1</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dsm, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -553,8 +568,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ncirc <span class="ot">&lt;-</span> circ <span class="sc">-</span> dtm</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ncirc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ncirc <span class="ot">&lt;-</span> circ <span class="sc">-</span> dtm</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ncirc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -564,8 +579,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(ncirc, <span class="dv">1</span>, <span class="fu">p2r</span>(<span class="fl">0.1</span>))</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(ncirc, <span class="dv">1</span>, <span class="fu">p2r</span>(<span class="fl">0.1</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -582,115 +597,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">cloud_metrics</span>(ncirc, .stdmetrics_z)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>metrics</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zmax</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 31.41</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zmean</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.11374</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zsd</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.44308</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zskew</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4123246</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zkurt</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.42725</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zentropy</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pzabovezmean</span></span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 42.39526</span></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pzabove2</span></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 60.61408</span></span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq5</span></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq10</span></span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq15</span></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq20</span></span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq25</span></span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq30</span></span>
-<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
-<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq35</span></span>
-<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.18</span></span>
-<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq40</span></span>
-<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.14</span></span>
-<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq45</span></span>
-<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.62</span></span>
-<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq50</span></span>
-<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.25</span></span>
-<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq55</span></span>
-<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8.903</span></span>
-<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq60</span></span>
-<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 13.12</span></span>
-<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq65</span></span>
-<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18.32</span></span>
-<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq70</span></span>
-<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 22.1</span></span>
-<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq75</span></span>
-<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 24.31</span></span>
-<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq80</span></span>
-<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 25.62</span></span>
-<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq85</span></span>
-<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 26.7</span></span>
-<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq90</span></span>
-<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 27.53</span></span>
-<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq95</span></span>
-<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 28.39</span></span>
-<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum1</span></span>
-<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18.12365</span></span>
-<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum2</span></span>
-<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30.03214</span></span>
-<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum3</span></span>
-<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 35.78736</span></span>
-<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum4</span></span>
-<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 41.12687</span></span>
-<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum5</span></span>
-<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 45.38727</span></span>
-<span id="cb23-98"><a href="#cb23-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-99"><a href="#cb23-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum6</span></span>
-<span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 49.90123</span></span>
-<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-102"><a href="#cb23-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum7</span></span>
-<span id="cb23-103"><a href="#cb23-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 56.24318</span></span>
-<span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-105"><a href="#cb23-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum8</span></span>
-<span id="cb23-106"><a href="#cb23-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 68.07501</span></span>
-<span id="cb23-107"><a href="#cb23-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb23-108"><a href="#cb23-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum9</span></span>
-<span id="cb23-109"><a href="#cb23-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 91.75045</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">cloud_metrics</span>(ncirc, .stdmetrics_z)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>metrics</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zmax</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 31.41</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zmean</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.11374</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zsd</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.44308</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zskew</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4123246</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zkurt</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.42725</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zentropy</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pzabovezmean</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 42.39526</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $pzabove2</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 60.61408</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq5</span></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq10</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq15</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq20</span></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq25</span></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq30</span></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq35</span></span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.18</span></span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq40</span></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.14</span></span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq45</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.62</span></span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq50</span></span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.25</span></span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq55</span></span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8.903</span></span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq60</span></span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 13.12</span></span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq65</span></span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18.32</span></span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq70</span></span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 22.1</span></span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq75</span></span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 24.31</span></span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq80</span></span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 25.62</span></span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq85</span></span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 26.7</span></span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq90</span></span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 27.53</span></span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zq95</span></span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 28.39</span></span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum1</span></span>
+<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18.12365</span></span>
+<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum2</span></span>
+<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30.03214</span></span>
+<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum3</span></span>
+<span id="cb29-91"><a href="#cb29-91" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 35.78736</span></span>
+<span id="cb29-92"><a href="#cb29-92" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-93"><a href="#cb29-93" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum4</span></span>
+<span id="cb29-94"><a href="#cb29-94" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 41.12687</span></span>
+<span id="cb29-95"><a href="#cb29-95" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-96"><a href="#cb29-96" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum5</span></span>
+<span id="cb29-97"><a href="#cb29-97" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 45.38727</span></span>
+<span id="cb29-98"><a href="#cb29-98" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-99"><a href="#cb29-99" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum6</span></span>
+<span id="cb29-100"><a href="#cb29-100" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 49.90123</span></span>
+<span id="cb29-101"><a href="#cb29-101" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-102"><a href="#cb29-102" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum7</span></span>
+<span id="cb29-103"><a href="#cb29-103" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 56.24318</span></span>
+<span id="cb29-104"><a href="#cb29-104" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-105"><a href="#cb29-105" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum8</span></span>
+<span id="cb29-106"><a href="#cb29-106" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 68.07501</span></span>
+<span id="cb29-107"><a href="#cb29-107" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-108"><a href="#cb29-108" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $zpcum9</span></span>
+<span id="cb29-109"><a href="#cb29-109" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 91.75045</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -699,8 +714,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="its">6-ITS</h2>
 <p>Using:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">height.colors</span>(<span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/MixedEucaNat_normalized.laz"</span>, <span class="at">filter =</span> <span class="st">"-set_withheld_flag 0"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>col1 <span class="ot">&lt;-</span> <span class="fu">height.colors</span>(<span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="e1.-4" class="level4">
 <h4 class="anchored" data-anchor-id="e1.-4">E1.</h4>
@@ -708,9 +723,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ttops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(<span class="at">las =</span> las, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="at">ws =</span> <span class="dv">3</span>, <span class="at">hmin =</span> <span class="dv">5</span>))</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">plot</span>(las)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">add_treetops3d</span>(<span class="at">x =</span> x, <span class="at">ttops =</span> ttops)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ttops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(<span class="at">las =</span> las, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="at">ws =</span> <span class="dv">3</span>, <span class="at">hmin =</span> <span class="dv">5</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">plot</span>(las)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">add_treetops3d</span>(<span class="at">x =</span> x, <span class="at">ttops =</span> ttops)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -720,10 +735,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="at">x =</span> ttops)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">res</span>(r) <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rasterize</span>(<span class="at">x =</span> ttops, <span class="at">y =</span> r, <span class="st">"treeID"</span>, <span class="at">fun =</span> <span class="st">'count'</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">col =</span> viridis<span class="sc">::</span><span class="fu">viridis</span>(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="at">x =</span> ttops)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">res</span>(r) <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rasterize</span>(<span class="at">x =</span> ttops, <span class="at">y =</span> r, <span class="st">"treeID"</span>, <span class="at">fun =</span> <span class="st">'count'</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">col =</span> viridis<span class="sc">::</span><span class="fu">viridis</span>(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -740,8 +755,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>))</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm, <span class="at">col =</span> col1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -752,10 +767,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ttops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(<span class="at">las =</span> chm, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="at">ws =</span> <span class="fl">2.5</span>))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">segment_trees</span>(<span class="at">las =</span> las, <span class="fu">dalponte2016</span>(<span class="at">chm =</span> chm, <span class="at">treetops =</span> ttops))</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"treeID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ttops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(<span class="at">las =</span> chm, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="at">ws =</span> <span class="fl">2.5</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">segment_trees</span>(<span class="at">las =</span> las, <span class="fu">dalponte2016</span>(<span class="at">chm =</span> chm, <span class="at">treetops =</span> ttops))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"treeID"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -765,16 +780,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>value_of_interest <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y,z)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">stdtreemetrics</span>(x,y,z)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  avgz <span class="ot">&lt;-</span> <span class="fu">mean</span>(z)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="fl">2.5</span><span class="sc">*</span>m<span class="sc">$</span>convhull_area <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> avgz</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">V =</span> v))</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>V <span class="ot">&lt;-</span> <span class="fu">crown_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">value_of_interest</span>(X,Y,Z))</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> V[<span class="st">"V"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>value_of_interest <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y,z)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">stdtreemetrics</span>(x,y,z)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  avgz <span class="ot">&lt;-</span> <span class="fu">mean</span>(z)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="fl">2.5</span><span class="sc">*</span>m<span class="sc">$</span>convhull_area <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> avgz</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">V =</span> v))</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>V <span class="ot">&lt;-</span> <span class="fu">crown_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">value_of_interest</span>(X,Y,Z))</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> V[<span class="st">"V"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -791,8 +806,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Vtot <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(V, r, <span class="st">"V"</span>, <span class="at">fun =</span> <span class="st">"sum"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Vtot, <span class="at">col =</span> viridis<span class="sc">::</span><span class="fu">viridis</span>(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Vtot <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(V, r, <span class="st">"V"</span>, <span class="at">fun =</span> <span class="st">"sum"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Vtot, <span class="at">col =</span> viridis<span class="sc">::</span><span class="fu">viridis</span>(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -809,7 +824,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This exercise is complex because it involves options not yet described. Be sure to use the <a href="https://r-lidar.github.io/lidRbook/index.html">lidRbook</a> and <a href="https://cran.r-project.org/web/packages/lidR/lidR.pdf">package documentation</a>.</p>
 <p>Using:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/Farm_A/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/Farm_A/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="e1.-5" class="level4">
 <h4 class="anchored" data-anchor-id="e1.-5">E1.</h4>
@@ -817,8 +832,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">"data/Farm_A/"</span>, <span class="at">filter =</span> <span class="st">"-drop_withheld -drop_z_below 0 -drop_z_above 40"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>D1 <span class="ot">&lt;-</span> <span class="fu">rasterize_density</span>(<span class="at">las =</span> ctg, <span class="at">res =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="st">"data/Farm_A/"</span>, <span class="at">filter =</span> <span class="st">"-drop_withheld -drop_z_below 0 -drop_z_above 40"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>D1 <span class="ot">&lt;-</span> <span class="fu">rasterize_density</span>(<span class="at">las =</span> ctg, <span class="at">res =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -828,30 +843,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <pre><code>#&gt; Chunk 1 of 25 (4%): state ✓
-#&gt; Chunk 2 of 25 (8%): state ✓
-#&gt; Chunk 3 of 25 (12%): state ✓
-#&gt; Chunk 4 of 25 (16%): state ✓
-#&gt; Chunk 5 of 25 (20%): state ✓
-#&gt; Chunk 6 of 25 (24%): state ✓
-#&gt; Chunk 7 of 25 (28%): state ✓
-#&gt; Chunk 8 of 25 (32%): state ✓
-#&gt; Chunk 9 of 25 (36%): state ✓
-#&gt; Chunk 10 of 25 (40%): state ✓
-#&gt; Chunk 11 of 25 (44%): state ✓
-#&gt; Chunk 12 of 25 (48%): state ✓
-#&gt; Chunk 13 of 25 (52%): state ✓
-#&gt; Chunk 14 of 25 (56%): state ✓
-#&gt; Chunk 15 of 25 (60%): state ✓
-#&gt; Chunk 16 of 25 (64%): state ✓
-#&gt; Chunk 17 of 25 (68%): state ✓
-#&gt; Chunk 18 of 25 (72%): state ✓
-#&gt; Chunk 19 of 25 (76%): state ✓
-#&gt; Chunk 20 of 25 (80%): state ✓
-#&gt; Chunk 21 of 25 (84%): state ✓
-#&gt; Chunk 22 of 25 (88%): state ✓
-#&gt; Chunk 23 of 25 (92%): state ✓
-#&gt; Chunk 24 of 25 (96%): state ✓
-#&gt; Chunk 25 of 25 (100%): state ✓
+#&gt; 
+                                                                                
+Chunk 2 of 25 (8%): state ✓
+#&gt; 
+                                                                                
+Chunk 3 of 25 (12%): state ✓
+#&gt; 
+                                                                                
+Chunk 4 of 25 (16%): state ✓
+#&gt; 
+                                                                                
+Chunk 5 of 25 (20%): state ✓
+#&gt; 
+                                                                                
+Chunk 6 of 25 (24%): state ✓
+#&gt; 
+                                                                                
+Chunk 7 of 25 (28%): state ✓
+#&gt; 
+[====&gt;                                             ] 8% ETA: 25s     
+                                                                                
+Chunk 8 of 25 (32%): state ✓
+#&gt; 
+[====&gt;                                             ] 8% ETA: 26s     
+                                                                                
+Chunk 9 of 25 (36%): state ✓
+#&gt; 
+[====&gt;                                             ] 8% ETA: 29s     
+                                                                                
+Chunk 10 of 25 (40%): state ✓
+#&gt; 
+                                                                                
+Chunk 11 of 25 (44%): state ✓
+#&gt; 
+                                                                                
+Chunk 12 of 25 (48%): state ✓
+#&gt; 
+                                                                                
+Chunk 13 of 25 (52%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 25s     
+                                                                                
+Chunk 14 of 25 (56%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 26s     
+                                                                                
+Chunk 15 of 25 (60%): state ✓
+#&gt; 
+                                                                                
+Chunk 16 of 25 (64%): state ✓
+#&gt; 
+                                                                                
+Chunk 17 of 25 (68%): state ✓
+#&gt; 
+                                                                                
+Chunk 18 of 25 (72%): state ✓
+#&gt; 
+                                                                                
+Chunk 19 of 25 (76%): state ✓
+#&gt; 
+                                                                                
+Chunk 20 of 25 (80%): state ✓
+#&gt; 
+                                                                                
+Chunk 21 of 25 (84%): state ✓
+#&gt; 
+                                                                                
+Chunk 22 of 25 (88%): state ✓
+#&gt; 
+                                                                                
+Chunk 23 of 25 (92%): state ✓
+#&gt; 
+                                                                                
+Chunk 24 of 25 (96%): state ✓
+#&gt; 
+                                                                                
+Chunk 25 of 25 (100%): state ✓
+#&gt; 
+                                                                                
 plot(D1, col = heat.colors(50))</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -868,16 +938,16 @@ plot(D1, col = heat.colors(50))</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>newctg <span class="ot">&lt;-</span> <span class="fu">decimate_points</span>(<span class="at">las =</span> ctg, <span class="at">algorithm =</span> <span class="fu">homogenize</span>(<span class="at">density =</span> <span class="dv">10</span>, <span class="at">res =</span> <span class="dv">5</span>))</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Error: This function requires that the LAScatalog provides an output file template.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>newctg <span class="ot">&lt;-</span> <span class="fu">decimate_points</span>(<span class="at">las =</span> ctg, <span class="at">algorithm =</span> <span class="fu">homogenize</span>(<span class="at">density =</span> <span class="dv">10</span>, <span class="at">res =</span> <span class="dv">5</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Error: This function requires that the LAScatalog provides an output file template.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_withheld"</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">tempdir</span>(), <span class="st">"/{ORIGINALFILENAME}"</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>newctg <span class="ot">&lt;-</span> <span class="fu">decimate_points</span>(<span class="at">las =</span> ctg, <span class="at">algorithm =</span> <span class="fu">homogenize</span>(<span class="at">density =</span> <span class="dv">10</span>, <span class="at">res =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_withheld"</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">tempdir</span>(), <span class="st">"/{ORIGINALFILENAME}"</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>newctg <span class="ot">&lt;-</span> <span class="fu">decimate_points</span>(<span class="at">las =</span> ctg, <span class="at">algorithm =</span> <span class="fu">homogenize</span>(<span class="at">density =</span> <span class="dv">10</span>, <span class="at">res =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -887,30 +957,99 @@ plot(D1, col = heat.colors(50))</code></pre>
 </div>
 </div>
 <pre><code>#&gt; Chunk 1 of 25 (4%): state ✓
-#&gt; Chunk 2 of 25 (8%): state ✓
-#&gt; Chunk 3 of 25 (12%): state ✓
-#&gt; Chunk 4 of 25 (16%): state ✓
-#&gt; Chunk 5 of 25 (20%): state ✓
-#&gt; Chunk 6 of 25 (24%): state ✓
-#&gt; Chunk 7 of 25 (28%): state ✓
-#&gt; Chunk 8 of 25 (32%): state ✓
-#&gt; Chunk 9 of 25 (36%): state ✓
-#&gt; Chunk 10 of 25 (40%): state ✓
-#&gt; Chunk 11 of 25 (44%): state ✓
-#&gt; Chunk 12 of 25 (48%): state ✓
-#&gt; Chunk 13 of 25 (52%): state ✓
-#&gt; Chunk 14 of 25 (56%): state ✓
-#&gt; Chunk 15 of 25 (60%): state ✓
-#&gt; Chunk 16 of 25 (64%): state ✓
-#&gt; Chunk 17 of 25 (68%): state ✓
-#&gt; Chunk 18 of 25 (72%): state ✓
-#&gt; Chunk 19 of 25 (76%): state ✓
-#&gt; Chunk 20 of 25 (80%): state ✓
-#&gt; Chunk 21 of 25 (84%): state ✓
-#&gt; Chunk 22 of 25 (88%): state ✓
-#&gt; Chunk 23 of 25 (92%): state ✓
-#&gt; Chunk 24 of 25 (96%): state ✓
-#&gt; Chunk 25 of 25 (100%): state ✓</code></pre>
+#&gt; 
+                                                                                
+Chunk 2 of 25 (8%): state ✓
+#&gt; 
+                                                                                
+Chunk 3 of 25 (12%): state ✓
+#&gt; 
+                                                                                
+Chunk 4 of 25 (16%): state ✓
+#&gt; 
+                                                                                
+Chunk 5 of 25 (20%): state ✓
+#&gt; 
+                                                                                
+Chunk 6 of 25 (24%): state ✓
+#&gt; 
+                                                                                
+Chunk 7 of 25 (28%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 23s     
+[====&gt;                                             ] 9% ETA: 24s     
+                                                                                
+Chunk 8 of 25 (32%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 24s     
+[====&gt;                                             ] 9% ETA: 25s     
+                                                                                
+Chunk 9 of 25 (36%): state ✓
+#&gt; 
+[====&gt;                                             ] 8% ETA: 25s     
+[====&gt;                                             ] 8% ETA: 26s     
+                                                                                
+Chunk 10 of 25 (40%): state ✓
+#&gt; 
+                                                                                
+Chunk 11 of 25 (44%): state ✓
+#&gt; 
+                                                                                
+Chunk 12 of 25 (48%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 23s     
+[====&gt;                                             ] 9% ETA: 25s     
+                                                                                
+Chunk 13 of 25 (52%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 22s     
+[=====&gt;                                            ] 10% ETA: 23s     
+                                                                                
+Chunk 14 of 25 (56%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 23s     
+[====&gt;                                             ] 9% ETA: 23s     
+                                                                                
+Chunk 15 of 25 (60%): state ✓
+#&gt; 
+                                                                                
+Chunk 16 of 25 (64%): state ✓
+#&gt; 
+                                                                                
+Chunk 17 of 25 (68%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 21s     
+[====&gt;                                             ] 9% ETA: 22s     
+                                                                                
+Chunk 18 of 25 (72%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 19s     
+[====&gt;                                             ] 9% ETA: 23s     
+[====&gt;                                             ] 9% ETA: 24s     
+                                                                                
+Chunk 19 of 25 (76%): state ✓
+#&gt; 
+[=====&gt;                                            ] 10% ETA: 20s     
+[=====&gt;                                            ] 10% ETA: 21s     
+                                                                                
+Chunk 20 of 25 (80%): state ✓
+#&gt; 
+                                                                                
+Chunk 21 of 25 (84%): state ✓
+#&gt; 
+                                                                                
+Chunk 22 of 25 (88%): state ✓
+#&gt; 
+                                                                                
+Chunk 23 of 25 (92%): state ✓
+#&gt; 
+                                                                                
+Chunk 24 of 25 (96%): state ✓
+#&gt; 
+                                                                                
+Chunk 25 of 25 (100%): state ✓
+#&gt; 
+                                                                                </code></pre>
 </div>
 </section>
 <section id="e3.-5" class="level4">
@@ -919,8 +1058,8 @@ plot(D1, col = heat.colors(50))</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(newctg) <span class="ot">&lt;-</span> <span class="st">""</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>D2 <span class="ot">&lt;-</span> <span class="fu">rasterize_density</span>(<span class="at">las =</span> newctg, <span class="at">res =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(newctg) <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>D2 <span class="ot">&lt;-</span> <span class="fu">rasterize_density</span>(<span class="at">las =</span> newctg, <span class="at">res =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -930,30 +1069,80 @@ plot(D1, col = heat.colors(50))</code></pre>
 </div>
 </div>
 <pre><code>#&gt; Chunk 1 of 25 (4%): state ✓
-#&gt; Chunk 2 of 25 (8%): state ✓
-#&gt; Chunk 3 of 25 (12%): state ✓
-#&gt; Chunk 4 of 25 (16%): state ✓
-#&gt; Chunk 5 of 25 (20%): state ✓
-#&gt; Chunk 6 of 25 (24%): state ✓
-#&gt; Chunk 7 of 25 (28%): state ✓
-#&gt; Chunk 8 of 25 (32%): state ✓
-#&gt; Chunk 9 of 25 (36%): state ✓
-#&gt; Chunk 10 of 25 (40%): state ✓
-#&gt; Chunk 11 of 25 (44%): state ✓
-#&gt; Chunk 12 of 25 (48%): state ✓
-#&gt; Chunk 13 of 25 (52%): state ✓
-#&gt; Chunk 14 of 25 (56%): state ✓
-#&gt; Chunk 15 of 25 (60%): state ✓
-#&gt; Chunk 16 of 25 (64%): state ✓
-#&gt; Chunk 17 of 25 (68%): state ✓
-#&gt; Chunk 18 of 25 (72%): state ✓
-#&gt; Chunk 19 of 25 (76%): state ✓
-#&gt; Chunk 20 of 25 (80%): state ✓
-#&gt; Chunk 21 of 25 (84%): state ✓
-#&gt; Chunk 22 of 25 (88%): state ✓
-#&gt; Chunk 23 of 25 (92%): state ✓
-#&gt; Chunk 24 of 25 (96%): state ✓
-#&gt; Chunk 25 of 25 (100%): state ✓
+#&gt; 
+                                                                                
+Chunk 2 of 25 (8%): state ✓
+#&gt; 
+                                                                                
+Chunk 3 of 25 (12%): state ✓
+#&gt; 
+                                                                                
+Chunk 4 of 25 (16%): state ✓
+#&gt; 
+                                                                                
+Chunk 5 of 25 (20%): state ✓
+#&gt; 
+                                                                                
+Chunk 6 of 25 (24%): state ✓
+#&gt; 
+                                                                                
+Chunk 7 of 25 (28%): state ✓
+#&gt; 
+                                                                                
+Chunk 8 of 25 (32%): state ✓
+#&gt; 
+                                                                                
+Chunk 9 of 25 (36%): state ✓
+#&gt; 
+                                                                                
+Chunk 10 of 25 (40%): state ✓
+#&gt; 
+                                                                                
+Chunk 11 of 25 (44%): state ✓
+#&gt; 
+                                                                                
+Chunk 12 of 25 (48%): state ✓
+#&gt; 
+                                                                                
+Chunk 13 of 25 (52%): state ✓
+#&gt; 
+                                                                                
+Chunk 14 of 25 (56%): state ✓
+#&gt; 
+                                                                                
+Chunk 15 of 25 (60%): state ✓
+#&gt; 
+                                                                                
+Chunk 16 of 25 (64%): state ✓
+#&gt; 
+                                                                                
+Chunk 17 of 25 (68%): state ✓
+#&gt; 
+                                                                                
+Chunk 18 of 25 (72%): state ✓
+#&gt; 
+                                                                                
+Chunk 19 of 25 (76%): state ✓
+#&gt; 
+                                                                                
+Chunk 20 of 25 (80%): state ✓
+#&gt; 
+                                                                                
+Chunk 21 of 25 (84%): state ✓
+#&gt; 
+                                                                                
+Chunk 22 of 25 (88%): state ✓
+#&gt; 
+                                                                                
+Chunk 23 of 25 (92%): state ✓
+#&gt; 
+                                                                                
+Chunk 24 of 25 (96%): state ✓
+#&gt; 
+                                                                                
+Chunk 25 of 25 (100%): state ✓
+#&gt; 
+                                                                                
 plot(D2, col = heat.colors(50))</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -970,8 +1159,11 @@ plot(D2, col = heat.colors(50))</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(newctg)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(newctg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -981,10 +1173,10 @@ plot(D2, col = heat.colors(50))</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_size</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">280</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_buffer</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_alignment</span>(ctg) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(ctg<span class="sc">$</span>Min.X), <span class="fu">min</span>(ctg<span class="sc">$</span>Min.Y))</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg, <span class="at">chunk =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_size</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">280</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_buffer</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_alignment</span>(ctg) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">min</span>(ctg<span class="sc">$</span>Min.X), <span class="fu">min</span>(ctg<span class="sc">$</span>Min.Y))</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg, <span class="at">chunk =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -995,19 +1187,37 @@ plot(D2, col = heat.colors(50))</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"{tempdir()}/PRJ_A_{XLEFT}_{YBOTTOM}"</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>newctg <span class="ot">&lt;-</span> <span class="fu">catalog_retile</span>(<span class="at">ctg =</span> ctg)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 2 of 9 (22.2%): state ✓</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 3 of 9 (33.3%): state ✓</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 4 of 9 (44.4%): state ✓</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 5 of 9 (55.6%): state ✓</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 6 of 9 (66.7%): state ✓</span></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 7 of 9 (77.8%): state ✓</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 8 of 9 (88.9%): state ✓</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 9 of 9 (100%): state ✓</span></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(newctg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"{tempdir()}/PRJ_A_{XLEFT}_{YBOTTOM}"</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>newctg <span class="ot">&lt;-</span> <span class="fu">catalog_retile</span>(<span class="at">ctg =</span> ctg)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">2</span> of <span class="dv">9</span> (<span class="fl">22.2</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">3</span> of <span class="dv">9</span> (<span class="fl">33.3</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">4</span> of <span class="dv">9</span> (<span class="fl">44.4</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">5</span> of <span class="dv">9</span> (<span class="fl">55.6</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">6</span> of <span class="dv">9</span> (<span class="fl">66.7</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">7</span> of <span class="dv">9</span> (<span class="fl">77.8</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">8</span> of <span class="dv">9</span> (<span class="fl">88.9</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>Chunk <span class="dv">9</span> of <span class="dv">9</span> (<span class="dv">100</span>%)<span class="sc">:</span> state ✓</span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>                                                                                </span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(newctg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1027,30 +1237,30 @@ plot(D2, col = heat.colors(50))</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>filter_noise <span class="ot">&lt;-</span> <span class="cf">function</span>(las, sensitivity)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  p95 <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">quantile</span>(Z, <span class="at">probs =</span> <span class="fl">0.95</span>), <span class="dv">10</span>)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">merge_spatial</span>(las, p95, <span class="st">"p95"</span>)</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(las, Z <span class="sc">&lt;</span> <span class="dv">1</span><span class="sc">+</span>p95<span class="sc">*</span>sensitivity, Z <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.5</span>)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  las<span class="sc">$</span>p95 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(las)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>filter_noise_collection <span class="ot">=</span> <span class="cf">function</span>(las, sensitivity)</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">filter_noise</span>(las, sensitivity)</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(las, buffer <span class="sc">==</span> <span class="dv">0</span>L)</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(las)</span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">=</span> <span class="fu">readLAScatalog</span>(<span class="st">"data/Farm_A/"</span>)</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_select</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"*"</span></span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_withheld"</span></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"{tempdir()}/*"</span></span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_buffer</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_size</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">catalog_map</span>(ctg, filter_noise_collection, <span class="at">sensitivity =</span> <span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>filter_noise <span class="ot">&lt;-</span> <span class="cf">function</span>(las, sensitivity)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  p95 <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">quantile</span>(Z, <span class="at">probs =</span> <span class="fl">0.95</span>), <span class="dv">10</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">merge_spatial</span>(las, p95, <span class="st">"p95"</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(las, Z <span class="sc">&lt;</span> <span class="dv">1</span><span class="sc">+</span>p95<span class="sc">*</span>sensitivity, Z <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">0.5</span>)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  las<span class="sc">$</span>p95 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(las)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>filter_noise_collection <span class="ot">=</span> <span class="cf">function</span>(las, sensitivity)</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">filter_noise</span>(las, sensitivity)</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>  las <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(las, buffer <span class="sc">==</span> <span class="dv">0</span>L)</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(las)</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">=</span> <span class="fu">readLAScatalog</span>(<span class="st">"data/Farm_A/"</span>)</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_select</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"*"</span></span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_withheld"</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_output_files</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"{tempdir()}/*"</span></span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_buffer</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_size</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">catalog_map</span>(ctg, filter_noise_collection, <span class="at">sensitivity =</span> <span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1060,32 +1270,237 @@ plot(D2, col = heat.colors(50))</code></pre>
 </div>
 </div>
 <pre><code>#&gt; Chunk 1 of 25 (4%): state ✓
-#&gt; Chunk 2 of 25 (8%): state ✓
-#&gt; Chunk 3 of 25 (12%): state ✓
-#&gt; Chunk 4 of 25 (16%): state ✓
-#&gt; Chunk 5 of 25 (20%): state ✓
-#&gt; Chunk 6 of 25 (24%): state ✓
-#&gt; Chunk 7 of 25 (28%): state ✓
-#&gt; Chunk 8 of 25 (32%): state ✓
-#&gt; Chunk 9 of 25 (36%): state ✓
-#&gt; Chunk 10 of 25 (40%): state ✓
-#&gt; Chunk 11 of 25 (44%): state ✓
-#&gt; Chunk 12 of 25 (48%): state ✓
-#&gt; Chunk 13 of 25 (52%): state ✓
-#&gt; Chunk 14 of 25 (56%): state ✓
-#&gt; Chunk 15 of 25 (60%): state ✓
-#&gt; Chunk 16 of 25 (64%): state ✓
-#&gt; Chunk 17 of 25 (68%): state ✓
-#&gt; Chunk 18 of 25 (72%): state ✓
-#&gt; Chunk 19 of 25 (76%): state ✓
-#&gt; Chunk 20 of 25 (80%): state ✓
-#&gt; Chunk 21 of 25 (84%): state ✓
-#&gt; Chunk 22 of 25 (88%): state ✓
-#&gt; Chunk 23 of 25 (92%): state ✓
-#&gt; Chunk 24 of 25 (96%): state ✓
-#&gt; Chunk 25 of 25 (100%): state ✓
+#&gt; 
+                                                                                
+Chunk 2 of 25 (8%): state ✓
+#&gt; 
+                                                                                
+Chunk 3 of 25 (12%): state ✓
+#&gt; 
+                                                                                
+Chunk 4 of 25 (16%): state ✓
+#&gt; 
+                                                                                
+Chunk 5 of 25 (20%): state ✓
+#&gt; 
+                                                                                
+Chunk 6 of 25 (24%): state ✓
+#&gt; 
+                                                                                
+Chunk 7 of 25 (28%): state ✓
+#&gt; 
+[======&gt;                                           ] 12% ETA: 15s     
+[======&gt;                                           ] 12% ETA: 16s     
+[======&gt;                                           ] 12% ETA: 17s     
+[======&gt;                                           ] 12% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+                                                                                
+Chunk 8 of 25 (32%): state ✓
+#&gt; 
+[======&gt;                                           ] 12% ETA: 17s     
+[======&gt;                                           ] 12% ETA: 18s     
+[======&gt;                                           ] 12% ETA: 18s     
+[======&gt;                                           ] 12% ETA: 17s     
+[======&gt;                                           ] 12% ETA: 18s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 18s     
+[======&gt;                                           ] 13% ETA: 18s     
+                                                                                
+Chunk 9 of 25 (36%): state ✓
+#&gt; 
+[=====&gt;                                            ] 11% ETA: 18s     
+[=====&gt;                                            ] 11% ETA: 18s     
+[======&gt;                                           ] 12% ETA: 18s     
+[======&gt;                                           ] 12% ETA: 19s     
+[======&gt;                                           ] 12% ETA: 18s     
+[======&gt;                                           ] 12% ETA: 18s     
+[======&gt;                                           ] 12% ETA: 19s     
+[======&gt;                                           ] 12% ETA: 18s     
+[======&gt;                                           ] 13% ETA: 19s     
+                                                                                
+Chunk 10 of 25 (40%): state ✓
+#&gt; 
+[=========&gt;                                        ] 18% ETA: 9s     
+                                                                                
+Chunk 11 of 25 (44%): state ✓
+#&gt; 
+                                                                                
+Chunk 12 of 25 (48%): state ✓
+#&gt; 
+[======&gt;                                           ] 12% ETA: 15s     
+[======&gt;                                           ] 12% ETA: 17s     
+[======&gt;                                           ] 12% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 17s     
+                                                                                
+Chunk 13 of 25 (52%): state ✓
+#&gt; 
+[======&gt;                                           ] 12% ETA: 13s     
+[======&gt;                                           ] 12% ETA: 13s     
+[======&gt;                                           ] 13% ETA: 14s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 16s     
+[=======&gt;                                          ] 14% ETA: 16s     
+[=======&gt;                                          ] 14% ETA: 17s     
+[=======&gt;                                          ] 14% ETA: 17s     
+                                                                                
+Chunk 14 of 25 (56%): state ✓
+#&gt; 
+[======&gt;                                           ] 12% ETA: 14s     
+[======&gt;                                           ] 12% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 17s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 17s     
+[=======&gt;                                          ] 14% ETA: 17s     
+[=======&gt;                                          ] 14% ETA: 17s     
+                                                                                
+Chunk 15 of 25 (60%): state ✓
+#&gt; 
+                                                                                
+Chunk 16 of 25 (64%): state ✓
+#&gt; 
+                                                                                
+Chunk 17 of 25 (68%): state ✓
+#&gt; 
+[======&gt;                                           ] 12% ETA: 14s     
+[======&gt;                                           ] 12% ETA: 15s     
+[======&gt;                                           ] 12% ETA: 15s     
+[======&gt;                                           ] 13% ETA: 15s     
+[======&gt;                                           ] 13% ETA: 15s     
+[======&gt;                                           ] 13% ETA: 15s     
+[======&gt;                                           ] 13% ETA: 15s     
+[======&gt;                                           ] 13% ETA: 15s     
+[=======&gt;                                          ] 14% ETA: 15s     
+                                                                                
+Chunk 18 of 25 (72%): state ✓
+#&gt; 
+[======&gt;                                           ] 12% ETA: 14s     
+[======&gt;                                           ] 12% ETA: 15s     
+[======&gt;                                           ] 12% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 16s     
+[======&gt;                                           ] 13% ETA: 15s     
+[======&gt;                                           ] 13% ETA: 15s     
+[=======&gt;                                          ] 14% ETA: 15s     
+[=======&gt;                                          ] 14% ETA: 16s     
+                                                                                
+Chunk 19 of 25 (76%): state ✓
+#&gt; 
+[======&gt;                                           ] 13% ETA: 13s     
+[======&gt;                                           ] 13% ETA: 14s     
+[======&gt;                                           ] 13% ETA: 14s     
+[======&gt;                                           ] 13% ETA: 14s     
+[=======&gt;                                          ] 14% ETA: 14s     
+[=======&gt;                                          ] 14% ETA: 14s     
+[=======&gt;                                          ] 14% ETA: 14s     
+[=======&gt;                                          ] 14% ETA: 14s     
+[=======&gt;                                          ] 14% ETA: 14s     
+                                                                                
+Chunk 20 of 25 (80%): state ✓
+#&gt; 
+                                                                                
+Chunk 21 of 25 (84%): state ✓
+#&gt; 
+                                                                                
+Chunk 22 of 25 (88%): state ✓
+#&gt; 
+                                                                                
+Chunk 23 of 25 (92%): state ✓
+#&gt; 
+                                                                                
+Chunk 24 of 25 (96%): state ✓
+#&gt; 
+                                                                                
+Chunk 25 of 25 (100%): state ✓
+#&gt; 
+                                                                                
 
 las &lt;- readLAS(output)
+#&gt; 
+[==============================================&gt;   ] 93% ETA: 0s     
+[==============================================&gt;   ] 93% ETA: 0s     
+[==============================================&gt;   ] 93% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 94% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[===============================================&gt;  ] 95% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 96% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[================================================&gt; ] 97% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 98% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+[=================================================&gt;] 99% ETA: 0s     
+                                                                                
 plot(las)</code></pre>
 </div>
 

@@ -260,33 +260,6 @@ file <- file_list[grep("\\.tif$", file_list)][[1]]
 plot(terra::rast(file))
 ```
 
-## Exercises and Questions
-
-Now, let's read a shapefile called `roi.gpkg`` using `sf::st_read()` and plot it on top of the LiDAR header plot.
-
-``` r
-# Read the shapefile "roi.gpkg" using st_read()
-plots <- sf::st_read(dsn = "data/roi/roi.gpkg", quiet = TRUE)
-
-# Plot the LiDAR header information without the map
-plot(las@header, map = FALSE)
-
-# Plot the extracted points within the stand area
-plot(plots, add = TRUE)
-```
-
-#### E1.
-
-Clip the 5 plots with a radius of 11.3 m.
-
-#### E2.
-
-Clip a transect from A `c(2670525, 1258740)` to B `c(2670740, 1258970)`.
-
-#### E3.
-
-Clip a transect from A `c(2670525, 1258740)` to B `c(2670740, 1258970)` but reorient it so it is no longer on the XY diagonal. Hint = `?clip_transect`
-
 ## Conclusion
 
 This concludes our tutorial on selecting simple geometries and extracting complex geometries from geopackage files (or shapefiles etc...) using the `lidR` package in R.

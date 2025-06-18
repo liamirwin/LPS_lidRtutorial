@@ -25,11 +25,11 @@ options(lidR.progress = FALSE)
 
 -   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/01_read.R)
 
--   [lidRbook section](https://r-lidar.github.io/lidRbook/index.htm)
+-   [lidRbook section](https://r-lidar.github.io/lidRbook/index.html)
 
 ## Overview
 
-Welcome to this lidar processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, *query*, and *validate* lidar data. We'll explore basic information about a lidar file including the *header* and *tabular data,* as well as *visualize* point clouds using different colour schemes based on attributes. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly. We'll validate the lidar data using the `las_check` function on different data files to ensure data integrity.
+Welcome to this lidar processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, *query*, and *validate* lidar data. We'll explore basic information about a lidar file including the *header* and *tabular data,* as well as *visualize* point clouds using different colour schemes based on attributes. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly.
 
 Let's get started with processing lidar data efficiently using `lidR` and R! Happy learning!
 
@@ -234,22 +234,22 @@ Using:
 las <- readLAS(files = "data/zrh_norm.laz")
 ```
 
-#### E1.
+<!-- #### E1. -->
 
-What are withheld points? Where are they in our point cloud?
+<!-- What are withheld points? Where are they in our point cloud? -->
 
-#### E2.
+<!-- #### E2. -->
 
-Read the file dropping withheld points.
+<!-- Read the file dropping withheld points. -->
 
-#### E3.
+<!-- #### E3. -->
 
-The withheld points seem to be legitimate points that we want to keep. Try to load the file including the withheld points but get rid of the warning (without using `suppressWarnings()`). Hint: Check available `-set_withheld` filters using `readLAS(filter = "-h")`.
+<!-- The withheld points seem to be legitimate points that we want to keep. Try to load the file including the withheld points but get rid of the warning (without using `suppressWarnings()`). Hint: Check available `-set_withheld` filters using `readLAS(filter = "-h")`. -->
 
-#### E4.
+<!-- #### E4. -->
 
-Load only the ground points and plot the point cloud coloured by the return number of the point. Do it loading the strict minimal amount of memory (4.7 Mb). Hint: use `?lidR::readLAS` and see what `select` options might help.
+<!-- Load only the ground points and plot the point cloud coloured by the return number of the point. Do it loading the strict minimal amount of memory (4.7 Mb). Hint: use `?lidR::readLAS` and see what `select` options might help. -->
 
 ## Conclusion
 
-This concludes our tutorial on the basic usage of the `lidR` package in R for processing and analyzing lidar data. We covered loading lidar data, inspecting and visualizing the data, selecting specific attributes, filtering points, and validating LAS objects for issues.
+This concludes our tutorial on the basic usage of the `lidR` package in R for processing and analyzing lidar data. We covered loading lidar data, inspecting and visualizing the data, selecting specific attributes, and filtering points of interest.

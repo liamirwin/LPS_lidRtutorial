@@ -24,7 +24,7 @@ options(lidR.progress = FALSE)
 ## Relevant Resources
 
 -   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/04_chm.R)
--   [lidRbook section](https://r-lidar.github.io/lidRbook/chm.html)
+-   [lidRbook section](https://r-lidar.github.io/lidRbook/dsm.html)
 
 ## Overview
 
@@ -38,13 +38,12 @@ rm(list = ls(globalenv()))
 
 # Load packages
 library(lidR)
-library(microbenchmark)
 library(terra)
 ```
 
 ## Data Preprocessing
 
-We load the LiDAR, keep a random fraction to reduce point density, and visualize the resulting point cloud.
+We once again load the LiDAR and visualize the resulting point cloud.
 
 ```{r load_lidar_data}
 # Load LiDAR data and reduce point density
@@ -64,7 +63,7 @@ plot(las, bg = "white")
 
 ## Point-to-Raster Based Algorithm
 
-We demonstrate a simple method for generating Canopy Height Models (CHMs) that assigns the elevation of the highest point to each pixel at a 2 meter spatial resolution.
+We demonstrate a simple method for generating Canopy Height Models (CHMs). Below, the `rasterize_canopy()` function with the `p2r()` algorithm assigns the elevation of the highest point within each grid cell to a corresponding pixel. The resulting CHM is then visualized using the `plot()` function.
 
 ```{r point_to_raster_algorithm}
 # Generate the CHM using a simple point-to-raster based algorithm
@@ -74,7 +73,7 @@ chm <- rasterize_canopy(las = las, res = 2, algorithm = p2r())
 plot(chm, col = col)
 ```
 
-In the first code chunk, we generate a CHM using a point-to-raster based algorithm. The `rasterize_canopy()` function with the `p2r()` algorithm assigns the elevation of the highest point within each grid cell to the corresponding pixel. The resulting CHM is then visualized using the `plot()` function.
+First we generate a CHM at 2m spatial resolution
 
 ```{r point_to_raster_algorithm_higher_resolution}
 # Make spatial resolution 1 m
@@ -82,7 +81,7 @@ chm <- rasterize_canopy(las = las, res = 1, algorithm = p2r())
 plot(chm, col = col)
 ```
 
-By increasing the resolution of the CHM (reducing the grid cell size), we get a more detailed representation of the canopy, but also have more empty pixels.
+By increasing the resolution of the CHM to 1m (reducing the grid cell size), we get a more detailed representation of the canopy, but also have more empty pixels.
 
 ```{r point_to_raster_algorithm_subcircle}
 # Using the 'subcircle' option turns each point into a disc of 8 points with a radius r
@@ -90,7 +89,10 @@ chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.15))
 plot(chm, col = col)
 ```
 
-The `rasterize_canopy()` function with the `p2r()` algorithm allows the use of the `subcircle` option, which turns each LiDAR point into a disc of 8 points with a specified radius. This can help to capture more fine-grained canopy details in the resulting CHM.
+Further increasing to 50 cm causes more empty pixels where no valid points are present. (see tiny white dots on CHM)
+
+
+The `rasterize_canopy()` function with the `p2r()` algorithm allows the use of the `subcircle` option, which turns each LiDAR point into a disc of 8 points with a specified radius. This can help to capture more fine-grained canopy details, especially from lower density point clouds, resulting in a complete CHM.
 
 ```{r point_to_raster_algorithm_larger_subcircle_radius}
 # Increasing the subcircle radius, but it may not have meaningful results
@@ -102,7 +104,7 @@ Increasing the `subcircle` radius may not necessarily result in meaningful CHMs,
 
 ```{r point_to_raster_algorithm_fill_empty_pixels}
 # We can fill empty pixels using TIN interpolation
-chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.15, na.fill = tin()))
+chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.0, na.fill = tin()))
 plot(chm, col = col)
 ```
 
@@ -147,6 +149,16 @@ schm <- terra::focal(chm, w = ker, fun = mean, na.rm = TRUE)
 plot(schm, col = col)
 ```
 
+## Exercises
+
+#### E1.
+
+
+#### E2.
+
+
+#### E3.
+
 ## Conclusion
 
-This tutorial covered different algorithms for generating Canopy Height Models (CHMs) from LiDAR data using the `lidR` package in R. It includes point-to-raster-based algorithms and triangulation-based algorithms, as well as post-processing using the `terra` package. The code chunks are well-labeled to help the audience navigate through the tutorial easily.
+This tutorial covered different algorithms for generating Canopy Height Models (CHMs) from LiDAR data using the `lidR` package in R. It includes point-to-raster-based algorithms and triangulation-based algorithms, as well as post-processing using the `terra` package.

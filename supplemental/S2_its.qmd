@@ -36,6 +36,10 @@ This code demonstrates individual tree segmentation (ITS) using LiDAR data. It c
 # Clear environment
 rm(list = ls(globalenv()))
 
+# REQUIRE AND INSTALL
+"concaveman"
+
+
 # Load packages
 library(lidR)
 library(sf)
@@ -324,38 +328,6 @@ chm <- rasterize_canopy(ctg, algorithm = p2r(), res = 1)
 plot(chm)
 plot(ttops, add = TRUE, cex = 0.1, col = "red")
 ```
-
-
-
-
-
-## Exercises
-
-# Using:
-
-``` r
-las <- readLAS(files = "data/zrh_norm.laz")
-```
-
-#### E1.
-
-Find and count the trees.
-
-#### E2.
-
-Compute and map the density of trees with a 10 m resolution.
-
-#### E3.
-
-Segment the trees.
-
-#### E4.
-
-Assuming that the biomass of a tree can be estimated using the crown area and the mean Z of the points with the formula `2.5 * area + 3 * mean Z`, estimate the biomass of each tree.
-
-#### E5.
-
-Map the total biomass at a resolution of 10 m. The output is a mix of ABA and ITS. Hint: use the `terra` package to rasterize spatial object with the function `rasterize()`.
 
 ## Conclusion
 

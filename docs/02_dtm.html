@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -207,10 +207,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#e1." id="toc-e1." class="nav-link" data-scroll-target="#e1.">E1.</a></li>
   <li><a href="#e2." id="toc-e2." class="nav-link" data-scroll-target="#e2.">E2.</a></li>
   <li><a href="#e3." id="toc-e3." class="nav-link" data-scroll-target="#e3.">E3.</a></li>
-  <li><a href="#e4." id="toc-e4." class="nav-link" data-scroll-target="#e4.">E4.</a></li>
-  <li><a href="#e5." id="toc-e5." class="nav-link" data-scroll-target="#e5.">E5.</a></li>
-  <li><a href="#e6." id="toc-e6." class="nav-link" data-scroll-target="#e6.">E6.</a></li>
-  <li><a href="#e7." id="toc-e7." class="nav-link" data-scroll-target="#e7.">E7.</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
@@ -251,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="environment" class="level2">
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
-<div class="cell" data-layout-align="center" data-warnings="false">
+<div class="cell" data-warnings="false">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clear environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="fu">globalenv</span>()))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -264,41 +260,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this section, we’ll generate a Digital Terrain Model (DTM) from LiDAR data using two different algorithms: <code>tin()</code> and <code>knnidw()</code>.</p>
 <section id="data-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing</h3>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load LiDAR data where points are already pre-classified</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_class.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here, we load the LiDAR data and exclude points flagged as withheld.</p>
 </section>
 <section id="visualizing-lidar-data" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-lidar-data">Visualizing LiDAR Data</h3>
 <p>We start by visualizing the entire LiDAR point cloud to get an initial overview.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_dtm_files/figure-html/dtm_visualize_data-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Visualizing the LiDAR data again, this time to distinguish ground points ([blue]{style=“color: blue;”}) more effectively.</p>
+<p>Visualizing the LiDAR data again, this time to distinguish ground points (blue) more effectively.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"Classification"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_dtm_files/figure-html/dtm_visualize_data_bg-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="triangulation-algorithm---tin" class="level3">
 <h3 class="anchored" data-anchor-id="triangulation-algorithm---tin">Triangulation Algorithm - <code>tin()</code></h3>
 <p>We create a DTM using the <code>tin()</code> algorithm with a resolution of 1 meter.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a DTM using the TIN (Triangulated Irregular Network) algorithm</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dtm_tin <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">tin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -312,7 +289,7 @@ Degenerated points
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A degenerated point in LiDAR data refers to a point with identical XY(Z) coordinates as another point. This means two or more points occupy exactly the same location in XY/3D space. Degenerated points can cause issues in tasks like creating a digital terrain model, as they don’t add new information and can lead to inconsistencies. Identifying and handling degenerated points appropriately is crucial for accurate and meaningful results.</p>
+<p>You may receive a warning about degenerated points when creating a DTM. A degenerated point in LiDAR data refers to a point with identical XY(Z) coordinates as another point. This means two or more points occupy exactly the same location in XY/3D space. Degenerated points can cause issues in tasks like creating a digital terrain model, as they don’t add new information and can lead to inconsistencies. Identifying and handling degenerated points appropriately is crucial for accurate and meaningful results.</p>
 </div>
 </div>
 </section>
@@ -321,15 +298,6 @@ Degenerated points
 <p>To better conceptualize the terrain, we visualize the generated DTM in a 3D plot.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the DTM in 3D</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(dtm_tin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_dtm_files/figure-html/dtm_visualize_3d-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="visualizing-dtm-with-lidar-data" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-dtm-with-lidar-data">Visualizing DTM with LiDAR Data</h3>
@@ -340,20 +308,11 @@ Degenerated points
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the LiDAR data with the overlaid DTM in 3D</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">plot</span>(las_ng, <span class="at">bg =</span> <span class="st">"white"</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">add_dtm3d</span>(x, dtm_tin, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_dtm_files/figure-html/dtm_visualize_with_lidar-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="inverse-distance-weighting-idw-algorithm---knnidw" class="level3">
 <h3 class="anchored" data-anchor-id="inverse-distance-weighting-idw-algorithm---knnidw">Inverse-Distance Weighting (IDW) Algorithm - <code>knnidw()</code></h3>
 <p>Next, we generate a DTM using the IDW algorithm to compare results with the TIN-based DTM.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a DTM using the IDW (Inverse-Distance Weighting) algorithm</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dtm_idw <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">knnidw</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -363,15 +322,6 @@ Degenerated points
 <p>We visualize the DTM generated using the IDW algorithm in a 3D plot.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the IDW-based DTM in 3D</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(dtm_idw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_dtm_files/figure-html/dtm_visualize_idw_3d-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="normalization" class="level2">
@@ -380,7 +330,7 @@ Degenerated points
 <section id="dtm-based-normalization" class="level3">
 <h3 class="anchored" data-anchor-id="dtm-based-normalization">DTM-based Normalization</h3>
 <p>We perform DTM-based normalization on the LiDAR data using the previously generated DTM.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the LiDAR data using DTM-based normalization</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nlas_dtm <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(<span class="at">las =</span> las, <span class="at">algorithm =</span> dtm_tin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -390,20 +340,11 @@ Degenerated points
 <p>We visualize the normalized LiDAR data, illustrating heights relative to the DTM.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the normalized LiDAR data</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas_dtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-layout-align="center" data-rgl="true">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_dtm_files/figure-html/normalization_visualize-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="dtm-based-normalization-with-tin-algorithm" class="level3">
 <h3 class="anchored" data-anchor-id="dtm-based-normalization-with-tin-algorithm">DTM-based Normalization with TIN Algorithm</h3>
 <p>We perform DTM-based normalization on the LiDAR data using the TIN algorithm.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the LiDAR data using DTM-based normalization with TIN algorithm</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nlas_tin <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(<span class="at">las =</span> las, <span class="at">algorithm =</span> <span class="fu">tin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -411,7 +352,7 @@ Degenerated points
 <section id="visualizing-normalized-lidar-data-with-tin" class="level3">
 <h3 class="anchored" data-anchor-id="visualizing-normalized-lidar-data-with-tin">Visualizing Normalized LiDAR Data with TIN</h3>
 <p>We visualize the normalized LiDAR data using the TIN algorithm, showing heights relative to the DTM.</p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the normalized LiDAR data using the TIN algorithm</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas_tin, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -421,37 +362,13 @@ Degenerated points
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
 <section id="e1." class="level4">
 <h4 class="anchored" data-anchor-id="e1.">E1.</h4>
-<p>Plot and compare these two normalized point-clouds. Why do they look different? Fix that. Hint: <code>filter</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and visualize nlas1 and nlas2</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>las1 <span class="ot">=</span> <span class="fu">readLAS</span>(<span class="st">"data/zrh_class.laz"</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>nlas1 <span class="ot">=</span> <span class="fu">normalize_height</span>(las1, <span class="fu">tin</span>())</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>nlas2 <span class="ot">=</span> <span class="fu">readLAS</span>(<span class="st">"data/zrh_norm.laz"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas1)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="e2." class="level4">
 <h4 class="anchored" data-anchor-id="e2.">E2.</h4>
-<p>Clip a plot somewhere in <code>zrh_class.laz</code> (the non-normalized file).</p>
 </section>
 <section id="e3." class="level4">
 <h4 class="anchored" data-anchor-id="e3.">E3.</h4>
-<p>Compute a DTM for this plot. Which method are you choosing and why?</p>
-</section>
-<section id="e4." class="level4">
-<h4 class="anchored" data-anchor-id="e4.">E4.</h4>
-<p>Compute a DSM (digital surface model). Hint: Look back to how you made a CHM.</p>
-</section>
-<section id="e5." class="level4">
-<h4 class="anchored" data-anchor-id="e5.">E5.</h4>
-<p>Normalize the plot.</p>
-</section>
-<section id="e6." class="level4">
-<h4 class="anchored" data-anchor-id="e6.">E6.</h4>
-<p>Compute a CHM.</p>
-</section>
-<section id="e7." class="level4">
-<h4 class="anchored" data-anchor-id="e7.">E7.</h4>
-<p>Compute some metrics of interest in this plot with <code>cloud_metrics()</code>.</p>
+<p>Compute two DTMs for this point cloud with differing spatial resolutions, plot both e.g.&nbsp;<code>plot(dtm1)</code></p>
 </section>
 </section>
 <section id="conclusion" class="level2">
