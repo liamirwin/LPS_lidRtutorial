@@ -141,7 +141,7 @@ Map the density of ground returns at a 5 m resolution. Hint `filter = -keep_clas
 #| code-fold: true
 las <- readLAS(files = "data/zrh_norm.laz", filter = "-keep_class 2")
 gnd <- pixel_metrics(las, ~length(Z)/25, res=5)
-plot(gnd, col = heat.colors(50))
+plot(gnd)
 ```
 
 #### E3.
@@ -152,7 +152,7 @@ ssuming that biomass is estimated using the equation `B = 0.5 * mean Z + 0.9 * 9
 #| code-fold: true
 las <- readLAS(files = "data/zrh_norm.laz")
 B <- pixel_metrics(las, ~0.5*mean(Z) + 0.9*quantile(Z, probs = 0.9), 10, filter = ~ReturnNumber == 1L)
-plot(B, col = height.colors(50))
+plot(B)
 ```
 
 
@@ -187,6 +187,7 @@ Generate a DTM at 1m spatial resolution for the provided catalog with only first
 ```{r lascatalog-e2}
 #| code-fold: true
 dtm_first <- rasterize_terrain(ctg, res = 1, algorithm = tin())
+plot(dtm_first)
 ```
 
 ::: callout-tip

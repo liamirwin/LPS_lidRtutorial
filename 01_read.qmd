@@ -117,7 +117,7 @@ LAS Standard Point classification is now standardized by the American Society fo
 Our example ALS dataset, collected in 2014 over Zürich uses an older **LAS 1.1 standard**. Its classification codes are interpreted as follows:
 
 | Class Code | Meaning | Interpretation |
-|:------------------|:--------------------------------|:------------------|
+|:-------------------|:--------------------------------|:-------------------|
 | 2 | **Ground** | The bare earth surface. |
 | 3/4/5 | **Low/Medium/High Vegetation** | Vegetation under 1 meter. |
 | 7 | **Noise** | Erroneous points, likely below ground or outliers above ground. |
@@ -162,7 +162,6 @@ plot(las)
 # Visualize the filtered points
 plot(las, bg = "white")
 ```
-
 
 The `filter` argument in `readLAS()` can be used to apply transformations on-the-fly during loading (memory efficient). This can be useful for tasks such as filtering specific classifications.
 
@@ -233,7 +232,7 @@ Create a filtered las object of returns that have an Intensity greater that 50, 
 
 #### E3.
 
-Read in the las file with only xyz and intensity only. Hint go to the lidRbook section to find out how to do this
+Read in the las file with only xyz and intensity only. Hint go to the [lidRbook section](https://r-lidar.github.io/lidRbook/io.html) to find out how to do this
 
 ## Conclusion
 

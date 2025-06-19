@@ -144,16 +144,14 @@ disp_metrics <- pixel_metrics(las, ~metrics_dispersion(z = Z, zmax = 40), res = 
 plot(disp_metrics)
 
 ```
-`Canopy Relief Ratio (CRR)`
-The Canopy Relief Ratio measures the position of the mean point height relative to the overall height range of the canopy. It is calculated as (mean(Z) - min(Z)) / (max(Z) - min(Z)). A value closer to 1 suggests that most of the vegetation volume is concentrated in the upper parts of the canopy.
+`Canopy Relief Ratio (CRR)` measures the position of the mean point height relative to the overall height range of the canopy. It is calculated as (mean(Z) - min(Z)) / (max(Z) - min(Z)). A value closer to 1 suggests that most of the vegetation volume is concentrated in the upper parts of the canopy.
 
 ```{r plot_crr}
 #| label: fig-metrics-crr
 #| fig-cap: "Canopy Relief Ratio (CRR) at 10m resolution, indicating the vertical position of the mean energy return within the canopy."
 plot(disp_metrics, "CRR")
 ```
-`Vertical Complexity Index (VCI)`
-The Vertical Complexity Index (VCI) uses entropy to quantify how evenly the LiDAR returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).
+`Vertical Complexity Index (VCI)` uses entropy to quantify how evenly the LiDAR returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).
 
 ```{r plot_vci}
 #| label: fig-metrics-vci

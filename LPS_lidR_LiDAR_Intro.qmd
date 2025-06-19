@@ -24,13 +24,13 @@ fig-dpi: 300
 
 ## Overview
 
--   Light Detection and Ranging (lidar)
+-   **Li**ght **D**etection **a**nd **R**anging (lidar)
 -   The lidR package - a brief introduction
 -   Workshop overview
 
 ## What is LiDAR?
 
--   Light Detection and Ranging
+-   **Li**ght **D**etection **a**nd **R**anging
 -   Active form of remote sensing
 -   Measures distance to target surfaces with millions of narrow light pulses
 -   Airborne laser scanning performs lidar systematically from aircraft or drones
@@ -44,17 +44,17 @@ fig-dpi: 300
 -   These datasets contain geo-referenced points with three-dimensional (XYZ) coordinates, and other attributes; intensity, return number etc...
 -   Point clouds can be processed into summaries of vegetation structure with lidR
 
-[![](img/plot_z_360.gif){fig-align='right'}]
+\[![](img/plot_z_360.gif){fig-align="right"}\]
 
 ::: notes
 As with many remote sensing data analyses tasks we are seeking to produce `information` from `simplification` to pull a signal of interest (in this case variability in vegetation structure) out of our dataset (a dense point cloud of three-dimensional coordinates that characterize the vegetation)
 
 To do so we often generate summary metrics that act similarly to spectral indices in passive optical remote sensing, they ratio or generate statistics on the distribution of points (max, mean height, canopy cover, percentiles, leaf-area density profiles)
-
 :::
 
 ## lidR
 
+-   Written by Jean-Romain Roussel
 -   Package for `manipulating` and `visualizing` ALS data
 -   Focused on forestry and ecological applications but broadly applicable beyond
 -   Written entirely open source within R-geospatial ecosystem (terra/sf)

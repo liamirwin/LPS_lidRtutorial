@@ -34,14 +34,14 @@ In this section, we will cover the basic usage of the `lidR` package, including 
 
 We begin by creating a LAS catalog (`ctg`) from a folder containing multiple `.las/.laz` files using the `readLAScatalog()` function.
 
-```{r read_catalog, warning = FALSE}
+```{r read_catalog, warnings = FALSE, message=FALSE}
 # Read catalog of files
 ctg <- readLAScatalog(folder = "data/ctg_norm")
 ```
 
 ### Catalog information
 
-We can receive a summary about the catalog by calling the object's name
+We can receive a summary about the catalog by calling the object's name.
 
 ```{r inspect_catalog}
 ctg
@@ -155,11 +155,11 @@ In this section, we explore parallel computing using the `lidR` package.
 Parallel computing can apply the 
 
 ::: {.callout-note}
-Resource Considerations for Parallel Processing:
+*Resource Considerations for Parallel Processing:*
 
 Be mindful of your system's resources. Parallel processing loads multiple tiles into memory (RAM) simultaneously. The required memory depends on the number of workers (cores), the point density and size of your tiles, and the complexity of the function being applied. If you encounter memory-related errors, try reducing the number of workers.
 
-Run `parallel::detectCores()` to see avaliable workers
+Run `parallel::detectCores()` to see avaliable workers - *limit your use to a fraction of available cores* as other processes on your machine require computation.
 :::
 
 
@@ -177,7 +177,7 @@ We define how the LAScatalog should be broken down into chunks for processing. A
 
 ```{r specify_catalog_options_parallel}
 #| label: fig-catalog-chunks
-#| fig-cap: "Visualization of the `LAScatalog` processing chunks, with a size of 500m and a 10m buffer."
+#| fig-cap: "Visualization of the `LAScatalog` processing chunks, with a size of 500m (red solid lines) and a 10m buffer (green dashed lines)."
 # Specify options
 opt_select(ctg) <- "xyz"
 opt_chunk_size(ctg) <- 500
@@ -200,13 +200,10 @@ plan(sequential) from `future` ensures that the code runs sequentially, not in p
 #| fig-cap: "Point density raster generated using a single processing core."
 # Process on single core
 plan(sequential)
-start_time <- Sys.time()
 
 # Generate a point density raster (points per square metre)
 dens_seq <- rasterize_density(ctg, res = 10)
 
-end_time <- Sys.time()
-cat("Single core processing took:", round(end_time - start_time, 2), "seconds\n")
 
 plot(dens_seq)
 ```
@@ -224,13 +221,9 @@ The result should be identical to the single-core version, and should be faster 
 #| fig-cap: "Point density raster generated in parallel using multiple cores."
 # Process on multi-core with three workers
 plan(multisession, workers = 3L)
-start_time <- Sys.time()
 
 # Generate the same density raster, but in parallel
 dens_par <- rasterize_density(ctg, res = 10)
-
-end_time <- Sys.time()
-cat("Parallel processing took:", round(end_time - start_time, 2), "seconds\n")
 
 plot(dens_par)
 ```

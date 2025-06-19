@@ -168,7 +168,7 @@ Using `terra::focal()` with the `w = matrix(1, 5, 5)` and `fun = max`, plot a ma
 
 #### E3.
 
-Create a 10 m CHM using a algorithm of your choice. Would this information still be useful at this scale
+Create a 10 m CHM using a algorithm of your choice. Would this information still be useful at this scale?
 
 ## Conclusion
 

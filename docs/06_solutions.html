@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -262,8 +262,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"ReturnNumber"</span>, <span class="at">axis =</span> <span class="cn">TRUE</span>, <span class="at">legend =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"ReturnNumber"</span>, <span class="at">axis =</span> <span class="cn">TRUE</span>, <span class="at">legend =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -273,9 +276,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>i_50 <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(<span class="at">las =</span> las, Intensity <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(i_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>i_50 <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(<span class="at">las =</span> las, Intensity <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(i_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -285,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>, <span class="at">select =</span> <span class="st">"xyzi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>, <span class="at">select =</span> <span class="st">"xyzi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -298,10 +304,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_class.laz"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dtm_5 <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">5</span>, <span class="at">algorithm=</span><span class="fu">tin</span>())</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dtm_10 <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">10</span>, <span class="at">algorithm=</span><span class="fu">tin</span>())</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dtm_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_class.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dtm_5 <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">5</span>, <span class="at">algorithm=</span><span class="fu">tin</span>())</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dtm_10 <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">10</span>, <span class="at">algorithm=</span><span class="fu">tin</span>())</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dtm_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -312,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dtm_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dtm_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -329,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(dtm_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dtm3d</span>(dtm_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -342,14 +351,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chm_p2r <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">2</span>, <span class="at">algorithm=</span><span class="fu">p2r</span>())</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>max_edge <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.35</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>chm_pitfree <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="dv">2</span>, <span class="at">algorithm =</span> <span class="fu">pitfree</span>(thresholds, max_edge))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm_p2r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>chm_p2r <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">2</span>, <span class="at">algorithm=</span><span class="fu">p2r</span>())</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>max_edge <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.35</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>chm_pitfree <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> las, <span class="at">res =</span> <span class="dv">2</span>, <span class="at">algorithm =</span> <span class="fu">pitfree</span>(thresholds, max_edge))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm_p2r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -360,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm_pitfree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm_pitfree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -377,8 +389,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>schm <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">focal</span>(chm_pitfree, <span class="at">w =</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="dv">5</span>, ,<span class="dv">5</span>), <span class="at">fun =</span> max, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(schm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>schm <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">focal</span>(chm_pitfree, <span class="at">w =</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="dv">5</span>, ,<span class="dv">5</span>), <span class="at">fun =</span> max, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(schm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -395,9 +407,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">10</span>, <span class="at">algorithm=</span><span class="fu">p2r</span>())</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las=</span>las, <span class="at">res=</span><span class="dv">10</span>, <span class="at">algorithm=</span><span class="fu">p2r</span>())</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -417,8 +432,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dispersion <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">metrics_percentiles</span>(<span class="at">z =</span> Z), <span class="at">res =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dispersion <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">metrics_percentiles</span>(<span class="at">z =</span> Z), <span class="at">res =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -428,9 +446,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>, <span class="at">filter =</span> <span class="st">"-keep_class 2"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gnd <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">length</span>(Z)<span class="sc">/</span><span class="dv">25</span>, <span class="at">res=</span><span class="dv">5</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gnd, <span class="at">col =</span> <span class="fu">heat.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>, <span class="at">filter =</span> <span class="st">"-keep_class 2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gnd <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">length</span>(Z)<span class="sc">/</span><span class="dv">25</span>, <span class="at">res=</span><span class="dv">5</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gnd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -447,9 +468,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fl">0.5</span><span class="sc">*</span><span class="fu">mean</span>(Z) <span class="sc">+</span> <span class="fl">0.9</span><span class="sc">*</span><span class="fu">quantile</span>(Z, <span class="at">probs =</span> <span class="fl">0.9</span>), <span class="dv">10</span>, <span class="at">filter =</span> <span class="sc">~</span>ReturnNumber <span class="sc">==</span> <span class="dv">1</span>L)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(B, <span class="at">col =</span> <span class="fu">height.colors</span>(<span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fl">0.5</span><span class="sc">*</span><span class="fu">mean</span>(Z) <span class="sc">+</span> <span class="fl">0.9</span><span class="sc">*</span><span class="fu">quantile</span>(Z, <span class="at">probs =</span> <span class="fl">0.9</span>), <span class="dv">10</span>, <span class="at">filter =</span> <span class="sc">~</span>ReturnNumber <span class="sc">==</span> <span class="dv">1</span>L)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -469,9 +493,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/ctg_norm"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Be careful, some tiles seem to overlap each other. lidR may return incorrect outputs with edge artifacts when processing this catalog.</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>dispersion <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(ctg, <span class="sc">~</span><span class="fu">metrics_dispersion</span>(<span class="at">z =</span> Z, <span class="at">dz =</span> <span class="dv">2</span>, <span class="at">zmax =</span> <span class="dv">30</span>), <span class="at">res =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/ctg_norm"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Be careful, some tiles seem to overlap each other. lidR may return incorrect outputs with edge artifacts when processing this catalog.</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>dispersion <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(ctg, <span class="sc">~</span><span class="fu">metrics_dispersion</span>(<span class="at">z =</span> Z, <span class="at">dz =</span> <span class="dv">2</span>, <span class="at">zmax =</span> <span class="dv">30</span>), <span class="at">res =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -481,14 +505,302 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; Chunk 2 of 9 (22.2%): state ✓
-#&gt; Chunk 3 of 9 (33.3%): state ✓
-#&gt; Chunk 4 of 9 (44.4%): state ✓
-#&gt; Chunk 5 of 9 (55.6%): state ✓
-#&gt; Chunk 6 of 9 (66.7%): state ✓
-#&gt; Chunk 7 of 9 (77.8%): state ✓
-#&gt; Chunk 8 of 9 (88.9%): state ✓
-#&gt; Chunk 9 of 9 (100%): state ✓
+#&gt; 
+[==========&gt;                                       ] 21% ETA: 7s     
+[==========&gt;                                       ] 21% ETA: 7s     
+[==========&gt;                                       ] 21% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 22% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 7s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 7s     
+                                                                                
+Chunk 2 of 9 (22.2%): state ✓
+#&gt; 
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 12s     
+[========&gt;                                         ] 16% ETA: 14s     
+[========&gt;                                         ] 16% ETA: 16s     
+                                                                                
+Chunk 3 of 9 (33.3%): state ✓
+#&gt; 
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 6s     
+[=============&gt;                                    ] 26% ETA: 6s     
+[=============&gt;                                    ] 26% ETA: 8s     
+                                                                                
+Chunk 4 of 9 (44.4%): state ✓
+#&gt; 
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 15% ETA: 12s     
+[=======&gt;                                          ] 15% ETA: 12s     
+[=======&gt;                                          ] 15% ETA: 12s     
+[=======&gt;                                          ] 15% ETA: 12s     
+[=======&gt;                                          ] 15% ETA: 12s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 13s     
+[========&gt;                                         ] 16% ETA: 13s     
+[========&gt;                                         ] 16% ETA: 15s     
+                                                                                
+Chunk 5 of 9 (55.6%): state ✓
+#&gt; 
+[====&gt;                                             ] 9% ETA: 18s     
+[====&gt;                                             ] 9% ETA: 18s     
+[====&gt;                                             ] 9% ETA: 18s     
+[====&gt;                                             ] 9% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 10% ETA: 18s     
+[=====&gt;                                            ] 11% ETA: 18s     
+[=====&gt;                                            ] 11% ETA: 18s     
+[=====&gt;                                            ] 11% ETA: 18s     
+[=====&gt;                                            ] 11% ETA: 23s     
+[=====&gt;                                            ] 11% ETA: 23s     
+[=====&gt;                                            ] 11% ETA: 24s     
+[=====&gt;                                            ] 11% ETA: 25s     
+                                                                                
+Chunk 6 of 9 (66.7%): state ✓
+#&gt; 
+[=======&gt;                                          ] 15% ETA: 10s     
+[=======&gt;                                          ] 15% ETA: 10s     
+[=======&gt;                                          ] 15% ETA: 10s     
+[=======&gt;                                          ] 15% ETA: 10s     
+[=======&gt;                                          ] 15% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 10s     
+[========&gt;                                         ] 16% ETA: 12s     
+[========&gt;                                         ] 16% ETA: 12s     
+                                                                                
+Chunk 7 of 9 (77.8%): state ✓
+#&gt; 
+[===========&gt;                                      ] 22% ETA: 6s     
+[===========&gt;                                      ] 22% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 8s     
+[============&gt;                                     ] 25% ETA: 9s     
+                                                                                
+Chunk 8 of 9 (88.9%): state ✓
+#&gt; 
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 12s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 14% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[=======&gt;                                          ] 15% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 11s     
+[========&gt;                                         ] 16% ETA: 15s     
+[========&gt;                                         ] 16% ETA: 16s     
+[========&gt;                                         ] 16% ETA: 17s     
+                                                                                
+Chunk 9 of 9 (100%): state ✓
+#&gt; 
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[===========&gt;                                      ] 23% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 24% ETA: 6s     
+[============&gt;                                     ] 25% ETA: 7s     
+                                                                                
 plot(dispersion)</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -505,9 +817,9 @@ plot(dispersion)</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/ctg_class"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Be careful, some tiles seem to overlap each other. lidR may return incorrect outputs with edge artifacts when processing this catalog.</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-keep_first -keep_class 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/ctg_class"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Be careful, some tiles seem to overlap each other. lidR may return incorrect outputs with edge artifacts when processing this catalog.</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-keep_first -keep_class 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -517,7 +829,7 @@ plot(dispersion)</code></pre>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dtm_first <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(ctg, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">tin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dtm_first <span class="ot">&lt;-</span> <span class="fu">rasterize_terrain</span>(ctg, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">tin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -527,14 +839,43 @@ plot(dispersion)</code></pre>
 </div>
 </div>
 <pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; Chunk 2 of 9 (22.2%): state ✓
-#&gt; Chunk 3 of 9 (33.3%): state ✓
-#&gt; Chunk 4 of 9 (44.4%): state ✓
-#&gt; Chunk 5 of 9 (55.6%): state ✓
-#&gt; Chunk 6 of 9 (66.7%): state ✓
-#&gt; Chunk 7 of 9 (77.8%): state ✓
-#&gt; Chunk 8 of 9 (88.9%): state ✓
-#&gt; Chunk 9 of 9 (100%): state ✓</code></pre>
+#&gt; 
+                                                                                
+Chunk 2 of 9 (22.2%): state ✓
+#&gt; 
+                                                                                
+Chunk 3 of 9 (33.3%): state ✓
+#&gt; 
+                                                                                
+Chunk 4 of 9 (44.4%): state ✓
+#&gt; 
+[&gt;                                                 ] 1% ETA: 107s     
+                                                                                
+Chunk 5 of 9 (55.6%): state ✓
+#&gt; 
+                                                                                
+Chunk 6 of 9 (66.7%): state ✓
+#&gt; 
+                                                                                
+Chunk 7 of 9 (77.8%): state ✓
+#&gt; 
+[=&gt;                                                ] 3% ETA: 50s     
+                                                                                
+Chunk 8 of 9 (88.9%): state ✓
+#&gt; 
+[&gt;                                                 ] 0% ETA: 397s     
+                                                                                
+Chunk 9 of 9 (100%): state ✓
+#&gt; 
+                                                                                
+plot(dtm_first)</code></pre>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="06_solutions_files/figure-html/lascatalog-e2-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="06_solutions_files/figure-html/lascatalog-e2-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">

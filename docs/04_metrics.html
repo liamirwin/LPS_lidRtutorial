@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -272,7 +272,7 @@ Often referred directly to as <em>canopy cover</em>, these metrics generally des
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>hmean <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">mean</span>(Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hmean</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -299,7 +299,7 @@ Figure&nbsp;1: Raster of mean LiDAR return height (Z) calculated at a 10m resolu
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hmax <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>hmax</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -327,7 +327,7 @@ Figure&nbsp;2: Raster of maximum LiDAR return height (Z) calculated at a 10m res
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">list</span>(<span class="at">hmax =</span> <span class="fu">max</span>(Z), <span class="at">hmean =</span> <span class="fu">mean</span>(Z)), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>metrics</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 2  (nrow, ncol, nlyr)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 2  (nrow, ncol, nlyr)</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -355,7 +355,7 @@ Figure&nbsp;3: Raster plot showing multiple metrics (maximum and mean height) ca
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> .stdmetrics_z, <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>metrics</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 36  (nrow, ncol, nlyr)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 36  (nrow, ncol, nlyr)</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -462,7 +462,7 @@ Figure&nbsp;8: A collection of dispersion metrics calculated at 10m resolution.
 </div>
 </div>
 </div>
-<p><code>Canopy Relief Ratio (CRR)</code> The Canopy Relief Ratio measures the position of the mean point height relative to the overall height range of the canopy. It is calculated as (mean(Z) - min(Z)) / (max(Z) - min(Z)). A value closer to 1 suggests that most of the vegetation volume is concentrated in the upper parts of the canopy.</p>
+<p><code>Canopy Relief Ratio (CRR)</code> measures the position of the mean point height relative to the overall height range of the canopy. It is calculated as (mean(Z) - min(Z)) / (max(Z) - min(Z)). A value closer to 1 suggests that most of the vegetation volume is concentrated in the upper parts of the canopy.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics, <span class="st">"CRR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -478,7 +478,7 @@ Figure&nbsp;9: Canopy Relief Ratio (CRR) at 10m resolution, indicating the verti
 </div>
 </div>
 </div>
-<p><code>Vertical Complexity Index (VCI)</code> The Vertical Complexity Index (VCI) uses entropy to quantify how evenly the LiDAR returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).</p>
+<p><code>Vertical Complexity Index (VCI)</code> uses entropy to quantify how evenly the LiDAR returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics, <span class="st">"VCI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
