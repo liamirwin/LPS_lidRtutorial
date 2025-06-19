@@ -1,29 +1,21 @@
 ---
 title: "`lidR`: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications"
-author: "Liam A.K. Irwin, Brent A. Murray, Tristan R.H. Goodbody, Jean-Romain Roussel"
-institute: "University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, r-lidar owner"
+author:
+  - name: "Liam A.K. Irwin"
+    affiliation: "Integrated Remote Sensing Studio, University of British Columbia"
+  - name: "Brent A. Murray"
+    affiliation: "Integrated Remote Sensing Studio, University of British Columbia"
+  - name: "Tristan R.H. Goodbody"
+    affiliation: "Integrated Remote Sensing Studio, University of British Columbia"
+  - name: "Jean-Romain Roussel"
+    affiliation: "r-lidar consulting & development"
 date: 2025-06-22
 ---
 
-```{r setup-rgl, echo = FALSE}
-library(rgl)
-
-r3dDefaults = rgl::r3dDefaults
-m = structure(c(0.921, -0.146, 0.362, 0, 0.386, 0.482, -0.787, 0, 
-                -0.06, 0.864, 0.5, 0, 0, 0, 0, 1), .Dim = c(4L, 4L))
-r3dDefaults$FOV = 50
-r3dDefaults$userMatrix = m
-r3dDefaults$zoom = 0.75
-
-knitr::opts_chunk$set(
-  comment =  "#>", 
-  collapse = TRUE,
-  fig.align = "center")
-
-rgl::setupKnitr(autoprint = TRUE) 
-options(lidR.progress = FALSE)
-
+```{r setup, include=FALSE}
+source("R/setup_rgl.R")
 ```
+
 
 ## People
 
@@ -65,15 +57,20 @@ install.packages("lidR")
 To run all code in the tutorial yourself, you will need to install the following packages. You can use `lidR` without them, however.
 
 ``` r
-libs <- c("geometry","viridis","future","sf","gstat","terra","mapview","mapedit")
+libs <- c("terra","viridis","future","sf","mapview")
 
 install.packages(libs)
 ```
 
-In the metrics section we will work with a user-made package that supports `lidR` with additional functions
-To follow along with these steps optionally install `lidRmetrics` from GitHub (not on CRAN)
+In the metrics section we introduce and work with a user-made package that supports `lidR` with additional functions to generate layers useful in vegetation and biodiversity mapping.
+
+To follow along with these steps; install `lidRmetrics` from GitHub (not available on CRAN), this requires the `devtools` package
 
 ```r
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+
 devtools::install_github("ptompalski/lidRmetrics")
 ```
 

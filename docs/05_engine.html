@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,6 +105,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+
+<script src="site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+<script src="site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+
+<script src="site_libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+
+<link href="site_libs/HomeButton-0.0.1/home-button.css" rel="stylesheet">
+
+<script src="site_libs/HomeButton-0.0.1/home-button.js"></script>
+
+<script src="site_libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+
+<script src="site_libs/clipboard-0.0.1/setClipboardText.js"></script>
+
+<link href="site_libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet">
+
+<link href="site_libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet">
+
 
 
 <link rel="stylesheet" href="assets/custom.css">
@@ -188,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#basic-usage" id="toc-basic-usage" class="nav-link" data-scroll-target="#basic-usage">Basic Usage</a>
   <ul>
   <li><a href="#read-catalog-from-directory-of-files" id="toc-read-catalog-from-directory-of-files" class="nav-link" data-scroll-target="#read-catalog-from-directory-of-files">Read catalog from directory of files</a></li>
-  <li><a href="#inspect-catalog" id="toc-inspect-catalog" class="nav-link" data-scroll-target="#inspect-catalog">Inspect catalog</a></li>
+  <li><a href="#catalog-information" id="toc-catalog-information" class="nav-link" data-scroll-target="#catalog-information">Catalog information</a></li>
   <li><a href="#visualize-catalog" id="toc-visualize-catalog" class="nav-link" data-scroll-target="#visualize-catalog">Visualize catalog</a></li>
   </ul></li>
   <li><a href="#file-indexing" id="toc-file-indexing" class="nav-link" data-scroll-target="#file-indexing">File indexing</a></li>
@@ -205,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#parallel-processing" id="toc-parallel-processing" class="nav-link" data-scroll-target="#parallel-processing">Parallel processing</a></li>
   <li><a href="#revert-to-single-core" id="toc-revert-to-single-core" class="nav-link" data-scroll-target="#revert-to-single-core">Revert to single core</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#exercises-and-questions" id="toc-exercises-and-questions" class="nav-link" data-scroll-target="#exercises-and-questions">Exercises and Questions</a>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
   <ul>
   <li><a href="#e1." id="toc-e1." class="nav-link" data-scroll-target="#e1.">E1.</a></li>
   <li><a href="#e2." id="toc-e2." class="nav-link" data-scroll-target="#e2.">E2.</a></li>
@@ -265,14 +304,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="read-catalog-from-directory-of-files">Read catalog from directory of files</h3>
 <p>We begin by creating a LAS catalog (<code>ctg</code>) from a folder containing multiple <code>.las/.laz</code> files using the <code>readLAScatalog()</code> function.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read catalog and drop withheld</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read catalog of files</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ctg <span class="ot">&lt;-</span> <span class="fu">readLAScatalog</span>(<span class="at">folder =</span> <span class="st">"data/ctg_norm"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Be careful, some tiles seem to overlap each other. lidR may return incorrect outputs with edge artifacts when processing this catalog.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="inspect-catalog" class="level3">
-<h3 class="anchored" data-anchor-id="inspect-catalog">Inspect catalog</h3>
-<p>We can inspect the contents of the catalog using standard R functions.</p>
+<section id="catalog-information" class="level3">
+<h3 class="anchored" data-anchor-id="catalog-information">Catalog information</h3>
+<p>We can receive a summary about the catalog by calling the object’s name</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ctg</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : LAScatalog (v1.1 format 1)</span></span>
@@ -280,33 +319,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 </span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; area        : 2.25 km²</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; points      : 22.51 million points</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type        : airborne</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 10 points/m²</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 4 pulses/m²</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; num. files  : 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 10 points/m²</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 4 pulses/m²</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; num. files  : 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualize-catalog" class="level3">
 <h3 class="anchored" data-anchor-id="visualize-catalog">Visualize catalog</h3>
-<p>We can visualize the catalog, showing the spatial coverage of the LiDAR data <em>header</em> extents. The map can be interactive if we use <code>map = TRUE</code>. Try clicking on a tile to see its header information.</p>
+<p>We can visualize the catalog, showing the spatial coverage of the LiDAR data <em>header</em> extents.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/visualize_catalog-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Visualization of the LAScatalog showing the spatial layout of the individual LiDAR tiles."><img src="05_engine_files/figure-html/fig-catalog-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Visualization of the <code>LAScatalog</code> showing the spatial layout of the individual LiDAR tiles.
+</figcaption>
 </figure>
 </div>
 </div>
+</div>
+<p>With the <code>mapview</code> package installed, this map can be interactive if we use <code>map = TRUE</code>. Try clicking on a tile to see its header information.</p>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg, <span class="at">map =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 'mapview' is required to display the LAScatalog interactively.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg, <span class="at">map =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-catalog-plot-interactive" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-plot-interactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-1d48f776d8981166921a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-1d48f776d8981166921a">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[8.373842181720971,8.373921220829775,8.380553772384669,8.380474172330262,8.373842181720971],"lat":[47.47349463570504,47.47799120931564,47.47793742968326,47.47344086057488,47.47349463570504]}]],[[{"lng":[8.373921222410724,8.37400027494394,8.380633387550931,8.380553773976837,8.373921222410724],"lat":[47.47799129924886,47.48248786601054,47.48243408187514,47.47793751961642,47.47799129924886]}]],[[{"lng":[8.374000260712991,8.374079342486692,8.380713016241087,8.380633373218988,8.374000260712991],"lat":[47.48248705661293,47.4869845158288,47.48693072718959,47.48243327247836,47.48248705661293]}]],[[{"lng":[8.380474304972587,8.380553905038214,8.3871864430734,8.387106282066105,8.380474304972587],"lat":[47.47344085949554,47.47793742860386,47.47788326858137,47.47338670400709,47.47344085949554]}]],[[{"lng":[8.380553906630382,8.380633520215701,8.387266619299051,8.387186444676789,8.380553906630382],"lat":[47.47793751853695,47.48243408079564,47.48237991623824,47.47788335851439,47.47793751853695]}]],[[{"lng":[8.380633521808141,8.380713148917078,8.387346809143892,8.387266620902711,8.380633521808141],"lat":[47.48243417072858,47.48693072611,47.48687655701693,47.48238000617109,47.48243417072858]}]],[[{"lng":[8.387106414708159,8.387186575726677,8.393819100146873,8.393738378190649,8.387106414708159],"lat":[47.47338670292016,47.47788326749436,47.47782872708321,47.47333216707492,47.47338670292016]}]],[[{"lng":[8.387186577330066,8.387266751963548,8.393899837427943,8.393819101761482,8.387186577330066],"lat":[47.47788335742738,47.48237991515114,47.48232537017324,47.47782881701617,47.47788335742738]}]],[[{"lng":[8.387266753567209,8.387346941819613,8.393980588423517,8.393899839042826,8.387266753567209],"lat":[47.48238000508398,47.48687655592971,47.48682200638432,47.48232546010602,47.48238000508398]}]]],null,"x@data",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},["<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2671000&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2670500&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1259000&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1258500&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>52.14&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-0.71&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td> 875509&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>693374&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>493044&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>276734&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>115940&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26705_12585.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>2&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2671000&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2670500&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1259500&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1259000&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>48.48&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-2.78&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td> 779650&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>666716&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>515422&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>320599&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>150125&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26705_12590.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>3&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2509720&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2671000&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2670500&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1260000&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1259500&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>39.27&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-0.41&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td>1241470&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>510463&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>374419&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>225118&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>104437&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26705_12595.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>4&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2671500&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2671000&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1259000&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1258500&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>47.81&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-1.96&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td> 983305&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>624908&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>465242&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>271929&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>113956&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26710_12585.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>5&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2671500&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2671000&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1259500&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1259000&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>49.97&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-2.33&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td> 777490&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>672687&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>515779&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>318252&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>147572&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26710_12590.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>6&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2671500&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2671000&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1260000&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1259500&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>38.08&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-0.57&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td>1353635&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>457872&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>333219&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>200513&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td> 97473&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26710_12595.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>7&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2672000&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2671500&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1259000&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1258500&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>45.94&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-0.34&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td>1047122&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>607412&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>446148&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>256727&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>105330&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26715_12585.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>8&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2672000&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2671500&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1259500&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1259000&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>46.54&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-2.09&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td> 829908&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>663527&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>494685&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>301868&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>140289&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26715_12590.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>","<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>9&emsp;<\/td><\/tr><tr><td>1<\/td><th>File.Signature&emsp;<\/th><td>LASF&emsp;<\/td><\/tr><tr><td>2<\/td><th>File.Source.ID&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>3<\/td><th>GUID&emsp;<\/th><td>00000000-0000-0000-5053-004d00000000&emsp;<\/td><\/tr><tr><td>4<\/td><th>Version.Major&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>5<\/td><th>Version.Minor&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>6<\/td><th>System.Identifier&emsp;<\/th><td>&emsp;<\/td><\/tr><tr><td>7<\/td><th>Generating.Software&emsp;<\/th><td>rlas R package&emsp;<\/td><\/tr><tr><td>8<\/td><th>File.Creation.Day.of.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>9<\/td><th>File.Creation.Year&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>10<\/td><th>Header.Size&emsp;<\/th><td>227&emsp;<\/td><\/tr><tr><td>11<\/td><th>Offset.to.point.data&emsp;<\/th><td>305&emsp;<\/td><\/tr><tr><td>12<\/td><th>Number.of.variable.length.records&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>13<\/td><th>Point.Data.Format.ID&emsp;<\/th><td>1&emsp;<\/td><\/tr><tr><td>14<\/td><th>Point.Data.Record.Length&emsp;<\/th><td>28&emsp;<\/td><\/tr><tr><td>15<\/td><th>Number.of.point.records&emsp;<\/th><td>2500000&emsp;<\/td><\/tr><tr><td>16<\/td><th>X.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>17<\/td><th>Y.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>18<\/td><th>Z.scale.factor&emsp;<\/th><td>0.01&emsp;<\/td><\/tr><tr><td>19<\/td><th>X.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>20<\/td><th>Y.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>21<\/td><th>Z.offset&emsp;<\/th><td>0&emsp;<\/td><\/tr><tr><td>22<\/td><th>Max.X&emsp;<\/th><td>2672000&emsp;<\/td><\/tr><tr><td>23<\/td><th>Min.X&emsp;<\/th><td>2671500&emsp;<\/td><\/tr><tr><td>24<\/td><th>Max.Y&emsp;<\/th><td>1260000&emsp;<\/td><\/tr><tr><td>25<\/td><th>Min.Y&emsp;<\/th><td>1259500&emsp;<\/td><\/tr><tr><td>26<\/td><th>Max.Z&emsp;<\/th><td>42.03&emsp;<\/td><\/tr><tr><td>27<\/td><th>Min.Z&emsp;<\/th><td>-0.92&emsp;<\/td><\/tr><tr><td>28<\/td><th>CRS&emsp;<\/th><td>2056&emsp;<\/td><\/tr><tr><td>29<\/td><th>Number.of.1st.return&emsp;<\/th><td>1214398&emsp;<\/td><\/tr><tr><td>30<\/td><th>Number.of.2nd.return&emsp;<\/th><td>518192&emsp;<\/td><\/tr><tr><td>31<\/td><th>Number.of.3rd.return&emsp;<\/th><td>381637&emsp;<\/td><\/tr><tr><td>32<\/td><th>Number.of.4th.return&emsp;<\/th><td>229026&emsp;<\/td><\/tr><tr><td>33<\/td><th>Number.of.5th.return&emsp;<\/th><td>105576&emsp;<\/td><\/tr><tr><td>34<\/td><th>filename&emsp;<\/th><td>data/ctg_norm/26715_12595.laz&emsp;<\/td><\/tr><tr><td>35<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>"],{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},["1","2","3","4","5","6","7","8","9"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[8.373842181720971,47.47333216707492,8.393980588423517,47.4869845158288,true,"x@data","Zoom to x@data","<strong> x@data <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"x@data",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["x@data"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"x@data"}]}],"limits":{"lat":[47.47333216707492,47.4869845158288],"lng":[8.373842181720971,8.393980588423517]},"fitBounds":[47.47333216707492,8.373842181720971,47.4869845158288,8.393980588423517,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-plot-interactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Interactive visualization of the <code>LAScatalog</code> using <code>mapview</code>
+</figcaption>
+</figure>
+</div>
 </div>
 </section>
 </section>
 <section id="file-indexing" class="level2">
 <h2 class="anchored" data-anchor-id="file-indexing">File indexing</h2>
 <p>We can explore indexing of <code>LAScatalog</code> objects for efficient processing.</p>
+<p>Indexing generates .lax files associated with each .laz/.las point cloud to speed up processing.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -330,7 +387,7 @@ Indexing
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_engine_files/figure-html/indexing_files-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><a href="05_engine_files/figure-html/indexing_files-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="05_engine_files/figure-html/indexing_files-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -354,164 +411,38 @@ is.indexed(ctg)
 <p>We create a CHM by rasterizing the point cloud data from the catalog similarly to how we processed a single file.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate CHM</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> ctg, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> ctg, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 2 of 9 (22.2%): state ✓</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 3 of 9 (33.3%): state ✓</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 4 of 9 (44.4%): state ✓</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 5 of 9 (55.6%): state ✓</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 6 of 9 (66.7%): state ✓</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 7 of 9 (77.8%): state ✓</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 8 of 9 (88.9%): state ✓</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 9 of 9 (100%): state ✓</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/generate_chm-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-chm-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-chm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-chm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Canopy Height Model (CHM) generated from the entire LAScatalog at 1.0m resolution."><img src="05_engine_files/figure-html/fig-catalog-chm-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-chm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Canopy Height Model (CHM) generated from the entire <code>LAScatalog</code> at 1.0m resolution.
+</figcaption>
 </figure>
 </div>
 </div>
-<pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; 
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 7s     
-                                                                                
-Chunk 2 of 9 (22.2%): state ✓
-#&gt; 
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 15s     
-                                                                                
-Chunk 3 of 9 (33.3%): state ✓
-#&gt; 
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 7s     
-                                                                                
-Chunk 4 of 9 (44.4%): state ✓
-#&gt; 
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 12s     
-[========&gt;                                         ] 16% ETA: 12s     
-[========&gt;                                         ] 16% ETA: 14s     
-                                                                                
-Chunk 5 of 9 (55.6%): state ✓
-#&gt; 
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 22s     
-[=====&gt;                                            ] 11% ETA: 23s     
-[=====&gt;                                            ] 11% ETA: 23s     
-[=====&gt;                                            ] 11% ETA: 25s     
-                                                                                
-Chunk 6 of 9 (66.7%): state ✓
-#&gt; 
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 12s     
-                                                                                
-Chunk 7 of 9 (77.8%): state ✓
-#&gt; 
-[============&gt;                                     ] 25% ETA: 8s     
-[============&gt;                                     ] 25% ETA: 8s     
-                                                                                
-Chunk 8 of 9 (88.9%): state ✓
-#&gt; 
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[=======&gt;                                          ] 15% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 14s     
-[========&gt;                                         ] 16% ETA: 15s     
-[========&gt;                                         ] 16% ETA: 17s     
-                                                                                
-Chunk 9 of 9 (100%): state ✓
-#&gt; 
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 7s     
-                                                                                
-plot(chm)</code></pre>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/generate_chm-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-chm-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-chm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-chm-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: Canopy Height Model (CHM) generated from the entire LAScatalog at 1.0m resolution."><img src="05_engine_files/figure-html/fig-catalog-chm-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-chm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Canopy Height Model (CHM) generated from the entire <code>LAScatalog</code> at 1.0m resolution.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -519,221 +450,43 @@ plot(chm)</code></pre>
 </section>
 <section id="catalog-processing-options" class="level2">
 <h2 class="anchored" data-anchor-id="catalog-processing-options">Catalog processing options</h2>
-<p>We explore and manipulate catalog options.</p>
+<p>We can manipulate catalog options to alter processing on-the-fly across all tiles.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting options and re-rasterizing the CHM</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_z_below 0 -drop_z_above 50"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_select</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"xyz"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> ctg, <span class="at">res =</span> <span class="fl">0.5</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting options and re-rasterizing the CHM</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_z_below 0 -drop_z_above 50"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_select</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"xyz"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>chm <span class="ot">&lt;-</span> <span class="fu">rasterize_canopy</span>(<span class="at">las =</span> ctg, <span class="at">res =</span> <span class="dv">1</span>, <span class="at">algorithm =</span> <span class="fu">p2r</span>(<span class="at">subcircle =</span> <span class="fl">0.15</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 2 of 9 (22.2%): state ✓</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 3 of 9 (33.3%): state ✓</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 4 of 9 (44.4%): state ✓</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 5 of 9 (55.6%): state ✓</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 6 of 9 (66.7%): state ✓</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 7 of 9 (77.8%): state ✓</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 8 of 9 (88.9%): state ✓</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 9 of 9 (100%): state ✓</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(chm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/catalog_options-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-chm-filtered-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-chm-filtered-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-chm-filtered-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: CHM generated from the LAScatalog after applying filters to drop points below 0m and above 50m."><img src="05_engine_files/figure-html/fig-catalog-chm-filtered-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-chm-filtered-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: CHM generated from the <code>LAScatalog</code> after applying filters to drop points below 0m and above 50m.
+</figcaption>
 </figure>
 </div>
 </div>
-<pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; 
-[===========&gt;                                      ] 22% ETA: 6s     
-[===========&gt;                                      ] 22% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 7s     
-                                                                                
-Chunk 2 of 9 (22.2%): state ✓
-#&gt; 
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 14s     
-[========&gt;                                         ] 16% ETA: 16s     
-                                                                                
-Chunk 3 of 9 (33.3%): state ✓
-#&gt; 
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-                                                                                
-Chunk 4 of 9 (44.4%): state ✓
-#&gt; 
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 14s     
-                                                                                
-Chunk 5 of 9 (55.6%): state ✓
-#&gt; 
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 18s     
-[=====&gt;                                            ] 11% ETA: 23s     
-[=====&gt;                                            ] 11% ETA: 23s     
-[=====&gt;                                            ] 11% ETA: 24s     
-[=====&gt;                                            ] 11% ETA: 26s     
-                                                                                
-Chunk 6 of 9 (66.7%): state ✓
-#&gt; 
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 12s     
-                                                                                
-Chunk 7 of 9 (77.8%): state ✓
-#&gt; 
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 8s     
-                                                                                
-Chunk 8 of 9 (88.9%): state ✓
-#&gt; 
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 12s     
-[========&gt;                                         ] 16% ETA: 15s     
-[========&gt;                                         ] 16% ETA: 16s     
-[========&gt;                                         ] 16% ETA: 17s     
-                                                                                
-Chunk 9 of 9 (100%): state ✓
-#&gt; 
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 7s     
-                                                                                
-plot(chm)</code></pre>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/catalog_options-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-chm-filtered-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-chm-filtered-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-chm-filtered-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: CHM generated from the LAScatalog after applying filters to drop points below 0m and above 50m."><img src="05_engine_files/figure-html/fig-catalog-chm-filtered-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-chm-filtered-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: CHM generated from the <code>LAScatalog</code> after applying filters to drop points below 0m and above 50m.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -743,210 +496,39 @@ plot(chm)</code></pre>
 <h2 class="anchored" data-anchor-id="generate-pixel-metrics-and-visualize">Generate pixel metrics and visualize</h2>
 <p>We calculate summary metric rasters using the <code>pixel_metrics</code> function and visualize the results.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate pixel-based metrics</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>max_z <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> ctg, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate pixel-based metrics</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>max_z <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> ctg, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">20</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 2 of 9 (22.2%): state ✓</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 3 of 9 (33.3%): state ✓</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 4 of 9 (44.4%): state ✓</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 5 of 9 (55.6%): state ✓</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 6 of 9 (66.7%): state ✓</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 7 of 9 (77.8%): state ✓</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 8 of 9 (88.9%): state ✓</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 9 of 9 (100%): state ✓</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(max_z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/generate_metrics-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-maxz-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-maxz-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-maxz-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: Raster of maximum point height (Z) calculated from the LAScatalog at a 20m resolution."><img src="05_engine_files/figure-html/fig-catalog-maxz-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-maxz-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Raster of maximum point height (Z) calculated from the <code>LAScatalog</code> at a 20m resolution.
+</figcaption>
 </figure>
 </div>
 </div>
-<pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; 
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[===========&gt;                                      ] 23% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 7s     
-                                                                                
-Chunk 2 of 9 (22.2%): state ✓
-#&gt; 
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 16s     
-                                                                                
-Chunk 3 of 9 (33.3%): state ✓
-#&gt; 
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-[=============&gt;                                    ] 26% ETA: 6s     
-[=============&gt;                                    ] 26% ETA: 7s     
-                                                                                
-Chunk 4 of 9 (44.4%): state ✓
-#&gt; 
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 14% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 13s     
-[========&gt;                                         ] 16% ETA: 14s     
-                                                                                
-Chunk 5 of 9 (55.6%): state ✓
-#&gt; 
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 10% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 17s     
-[=====&gt;                                            ] 11% ETA: 18s     
-[=====&gt;                                            ] 11% ETA: 23s     
-[=====&gt;                                            ] 11% ETA: 23s     
-[=====&gt;                                            ] 11% ETA: 24s     
-[=====&gt;                                            ] 11% ETA: 26s     
-                                                                                
-Chunk 6 of 9 (66.7%): state ✓
-#&gt; 
-[========&gt;                                         ] 16% ETA: 10s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 12s     
-                                                                                
-Chunk 7 of 9 (77.8%): state ✓
-#&gt; 
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 8s     
-                                                                                
-Chunk 8 of 9 (88.9%): state ✓
-#&gt; 
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[=======&gt;                                          ] 15% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 11s     
-[========&gt;                                         ] 16% ETA: 12s     
-[========&gt;                                         ] 16% ETA: 14s     
-[========&gt;                                         ] 16% ETA: 15s     
-[========&gt;                                         ] 16% ETA: 17s     
-                                                                                
-Chunk 9 of 9 (100%): state ✓
-#&gt; 
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 24% ETA: 6s     
-[============&gt;                                     ] 25% ETA: 6s     
-                                                                                
-plot(max_z)</code></pre>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/generate_metrics-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-maxz-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-maxz-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-maxz-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;8: Raster of maximum point height (Z) calculated from the LAScatalog at a 20m resolution."><img src="05_engine_files/figure-html/fig-catalog-maxz-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-maxz-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Raster of maximum point height (Z) calculated from the <code>LAScatalog</code> at a 20m resolution.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -954,77 +536,41 @@ plot(max_z)</code></pre>
 </section>
 <section id="first-returns-only" class="level2">
 <h2 class="anchored" data-anchor-id="first-returns-only">First returns only</h2>
-<p>We adjust the catalog options to calculate metrics based on first returns only.</p>
+<p>We can adjust the catalog options to calculate metrics based on first returns only.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_z_below 0 -drop_z_above 50 -keep_first"</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>max_z <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> ctg, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_filter</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"-drop_z_below 0 -drop_z_above 50 -keep_first"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>max_z <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> ctg, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">20</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 2 of 9 (22.2%): state ✓</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 3 of 9 (33.3%): state ✓</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 4 of 9 (44.4%): state ✓</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 5 of 9 (55.6%): state ✓</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 6 of 9 (66.7%): state ✓</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 7 of 9 (77.8%): state ✓</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 8 of 9 (88.9%): state ✓</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 9 of 9 (100%): state ✓</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(max_z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/generate_metrics_first_returns-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-maxz-first-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-maxz-first-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-maxz-first-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Figure&nbsp;9: Raster of maximum point height (Z) using only first returns, calculated from the LAScatalog at 20m resolution."><img src="05_engine_files/figure-html/fig-catalog-maxz-first-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-maxz-first-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Raster of maximum point height (Z) using only first returns, calculated from the <code>LAScatalog</code> at 20m resolution.
+</figcaption>
 </figure>
 </div>
 </div>
-<pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; 
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 25s     
-                                                                                
-Chunk 2 of 9 (22.2%): state ✓
-#&gt; 
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 57s     
-                                                                                
-Chunk 3 of 9 (33.3%): state ✓
-#&gt; 
-[======&gt;                                           ] 12% ETA: 13s     
-                                                                                
-Chunk 4 of 9 (44.4%): state ✓
-#&gt; 
-[===&gt;                                              ] 6% ETA: 30s     
-[===&gt;                                              ] 6% ETA: 30s     
-[===&gt;                                              ] 6% ETA: 30s     
-[===&gt;                                              ] 6% ETA: 30s     
-[===&gt;                                              ] 6% ETA: 29s     
-[===&gt;                                              ] 6% ETA: 29s     
-[===&gt;                                              ] 6% ETA: 29s     
-[===&gt;                                              ] 6% ETA: 36s     
-                                                                                
-Chunk 5 of 9 (55.6%): state ✓
-#&gt; 
-[=&gt;                                                ] 3% ETA: 57s     
-[=&gt;                                                ] 3% ETA: 57s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 86s     
-                                                                                
-Chunk 6 of 9 (66.7%): state ✓
-#&gt; 
-[====&gt;                                             ] 9% ETA: 22s     
-                                                                                
-Chunk 7 of 9 (77.8%): state ✓
-#&gt; 
-[=====&gt;                                            ] 10% ETA: 21s     
-                                                                                
-Chunk 8 of 9 (88.9%): state ✓
-#&gt; 
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 57s     
-                                                                                
-Chunk 9 of 9 (100%): state ✓
-#&gt; 
-[======&gt;                                           ] 12% ETA: 15s     
-                                                                                
-plot(max_z)</code></pre>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/generate_metrics_first_returns-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-maxz-first-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-maxz-first-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-maxz-first-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Figure&nbsp;10: Raster of maximum point height (Z) using only first returns, calculated from the LAScatalog at 20m resolution."><img src="05_engine_files/figure-html/fig-catalog-maxz-first-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-maxz-first-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Raster of maximum point height (Z) using only first returns, calculated from the <code>LAScatalog</code> at 20m resolution.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1032,597 +578,212 @@ plot(max_z)</code></pre>
 <section id="parallel-computing" class="level3">
 <h3 class="anchored" data-anchor-id="parallel-computing">Parallel computing</h3>
 <p>In this section, we explore parallel computing using the <code>lidR</code> package.</p>
+<p>Parallel computing can apply the</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resource Considerations for Parallel Processing:</p>
+<p>Be mindful of your system’s resources. Parallel processing loads multiple tiles into memory (RAM) simultaneously. The required memory depends on the number of workers (cores), the point density and size of your tiles, and the complexity of the function being applied. If you encounter memory-related errors, try reducing the number of workers.</p>
+<p>Run <code>parallel::detectCores()</code> to see avaliable workers</p>
+</div>
+</div>
 </section>
 </section>
 <section id="load-future-library" class="level2">
 <h2 class="anchored" data-anchor-id="load-future-library">Load <code>future</code> library</h2>
-<p>We load the <code>future</code> library to enable parallel processing.</p>
+<p>Firstly, we load the <code>future</code> library to enable parallel processing.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="specify-catalog-options" class="level2">
 <h2 class="anchored" data-anchor-id="specify-catalog-options">Specify catalog options</h2>
-<p>We specify catalog options for parallel processing.</p>
+<p>We define how the LAScatalog should be broken down into chunks for processing. A 10m buffer is added to each chunk to avoid edge artifacts when a function’s calculations depend on neighboring points (also automatically applied by default).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify options</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_select</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"xyz"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_size</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">500</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_buffer</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize and summarize the catalog chunks</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg, <span class="at">chunk =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify options</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_select</span>(ctg) <span class="ot">&lt;-</span> <span class="st">"xyz"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_size</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_chunk_buffer</span>(ctg) <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">opt_progress</span>(ctg) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize and summarize the catalog chunks</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ctg, <span class="at">chunk =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ctg)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : LAScatalog (v1.1 format 1)</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2672000, 1258500, 1260000 (xmin, xmax, ymin, ymax)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 </span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; area        : 2.25 km²</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; points      : 22.51 million points</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 10 points/m²</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 4 pulses/m²</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; num. files  : 9 </span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; proc. opt.  : buffer: 10 | chunk: 500</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; input opt.  : select: xyz | filter: -drop_z_below 0 -drop_z_above 50 -keep_first</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; output opt. : in memory | w2w guaranteed | merging enabled</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; drivers     :</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - Raster : format = GTiff  NAflag = -999999  </span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - stars : NA_value = -999999  </span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - Spatial : overwrite = FALSE  </span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - SpatRaster : overwrite = FALSE  NAflag = -999999  </span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - SpatVector : overwrite = FALSE  </span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - LAS : no parameter</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - sf : quiet = TRUE  </span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - data.frame : no parameter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/specify_catalog_options_parallel-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-chunks" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-chunks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-chunks-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Figure&nbsp;11: Visualization of the LAScatalog processing chunks, with a size of 500m and a 10m buffer."><img src="05_engine_files/figure-html/fig-catalog-chunks-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-chunks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Visualization of the <code>LAScatalog</code> processing chunks, with a size of 500m and a 10m buffer.
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ctg)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : LAScatalog (v1.1 format 1)</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2672000, 1258500, 1260000 (xmin, xmax, ymin, ymax)</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 </span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; area        : 2.25 km²</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; points      : 22.51 million points</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; type        : airborne</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 10 points/m²</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; density     : 4 pulses/m²</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; num. files  : 9 </span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; proc. opt.  : buffer: 10 | chunk: 500</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; input opt.  : select: xyz | filter: -drop_z_below 0 -drop_z_above 50 -keep_first</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; output opt. : in memory | w2w guaranteed | merging enabled</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; drivers     :</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - Raster : no parameter</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - stars : NA_value = -999999  </span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - Spatial : overwrite = FALSE  </span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - SpatRaster : overwrite = FALSE  NAflag = -999999  </span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - SpatVector : overwrite = FALSE  </span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - LAS : no parameter</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - sf : quiet = TRUE  </span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - data.frame : no parameter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="single-core-processing" class="level2">
 <h2 class="anchored" data-anchor-id="single-core-processing">Single core processing</h2>
-<p>We perform tree detection using a single core.</p>
+<p>To establish a baseline, we generate a point density raster using a single processing core.</p>
+<p>plan(sequential) from <code>future</code> ensures that the code runs sequentially, not in parallel.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process on single core</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(sequential)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect trees</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>ttops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(<span class="at">las =</span> ctg, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="at">ws =</span> <span class="dv">3</span>, <span class="at">hmin =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process on single core</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(sequential)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a point density raster (points per square metre)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>dens_seq <span class="ot">&lt;-</span> <span class="fu">rasterize_density</span>(ctg, <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 2 of 9 (22.2%): state ✓</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 3 of 9 (33.3%): state ✓</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 4 of 9 (44.4%): state ✓</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 5 of 9 (55.6%): state ✓</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 6 of 9 (66.7%): state ✓</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 7 of 9 (77.8%): state ✓</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 8 of 9 (88.9%): state ✓</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 9 of 9 (100%): state ✓</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Single core processing took:"</span>, <span class="fu">round</span>(end_time <span class="sc">-</span> start_time, <span class="dv">2</span>), <span class="st">"seconds</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Single core processing took: 15.2 seconds</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens_seq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/single_core_processing-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-density-seq-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-density-seq-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-density-seq-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Figure&nbsp;12: Point density raster generated using a single processing core."><img src="05_engine_files/figure-html/fig-catalog-density-seq-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-density-seq-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Point density raster generated using a single processing core.
+</figcaption>
 </figure>
 </div>
 </div>
-<pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; 
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 22s     
-[====&gt;                                             ] 8% ETA: 22s     
-[====&gt;                                             ] 8% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 29s     
-                                                                                
-Chunk 2 of 9 (22.2%): state ✓
-#&gt; 
-[==&gt;                                               ] 4% ETA: 41s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 36s     
-[==&gt;                                               ] 5% ETA: 36s     
-[==&gt;                                               ] 5% ETA: 36s     
-[==&gt;                                               ] 5% ETA: 36s     
-[==&gt;                                               ] 5% ETA: 35s     
-[===&gt;                                              ] 6% ETA: 35s     
-[===&gt;                                              ] 6% ETA: 35s     
-[===&gt;                                              ] 6% ETA: 35s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 36s     
-[===&gt;                                              ] 6% ETA: 38s     
-                                                                                
-Chunk 3 of 9 (33.3%): state ✓
-#&gt; 
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 34s     
-[==&gt;                                               ] 5% ETA: 34s     
-[==&gt;                                               ] 5% ETA: 34s     
-[==&gt;                                               ] 5% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 31s     
-[===&gt;                                              ] 6% ETA: 31s     
-[===&gt;                                              ] 6% ETA: 31s     
-[===&gt;                                              ] 7% ETA: 31s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 29s     
-[===&gt;                                              ] 7% ETA: 29s     
-[===&gt;                                              ] 7% ETA: 29s     
-[===&gt;                                              ] 7% ETA: 28s     
-[====&gt;                                             ] 8% ETA: 28s     
-[====&gt;                                             ] 8% ETA: 28s     
-[====&gt;                                             ] 8% ETA: 28s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 26s     
-[====&gt;                                             ] 8% ETA: 26s     
-[====&gt;                                             ] 8% ETA: 26s     
-[====&gt;                                             ] 9% ETA: 26s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 24s     
-[=====&gt;                                            ] 10% ETA: 24s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-                                                                                
-Chunk 4 of 9 (44.4%): state ✓
-#&gt; 
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 5% ETA: 40s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 44s     
-[==&gt;                                               ] 5% ETA: 45s     
-[==&gt;                                               ] 5% ETA: 47s     
-[==&gt;                                               ] 5% ETA: 53s     
-                                                                                
-Chunk 5 of 9 (55.6%): state ✓
-#&gt; 
-[=&gt;                                                ] 2% ETA: 88s     
-[=&gt;                                                ] 2% ETA: 88s     
-[=&gt;                                                ] 2% ETA: 87s     
-[=&gt;                                                ] 2% ETA: 87s     
-[=&gt;                                                ] 2% ETA: 86s     
-[=&gt;                                                ] 2% ETA: 85s     
-[=&gt;                                                ] 2% ETA: 85s     
-[=&gt;                                                ] 2% ETA: 84s     
-[=&gt;                                                ] 2% ETA: 83s     
-[=&gt;                                                ] 2% ETA: 83s     
-[=&gt;                                                ] 2% ETA: 82s     
-[=&gt;                                                ] 2% ETA: 82s     
-[=&gt;                                                ] 2% ETA: 81s     
-[=&gt;                                                ] 2% ETA: 81s     
-[=&gt;                                                ] 2% ETA: 80s     
-[=&gt;                                                ] 2% ETA: 80s     
-[=&gt;                                                ] 2% ETA: 80s     
-[=&gt;                                                ] 2% ETA: 79s     
-[=&gt;                                                ] 3% ETA: 79s     
-[=&gt;                                                ] 3% ETA: 78s     
-[=&gt;                                                ] 3% ETA: 78s     
-[=&gt;                                                ] 3% ETA: 78s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 79s     
-[=&gt;                                                ] 3% ETA: 83s     
-                                                                                
-Chunk 6 of 9 (66.7%): state ✓
-#&gt; 
-[=&gt;                                                ] 2% ETA: 68s     
-[=&gt;                                                ] 2% ETA: 67s     
-[=&gt;                                                ] 2% ETA: 66s     
-[=&gt;                                                ] 3% ETA: 65s     
-[=&gt;                                                ] 3% ETA: 64s     
-[=&gt;                                                ] 3% ETA: 64s     
-[=&gt;                                                ] 3% ETA: 63s     
-[=&gt;                                                ] 3% ETA: 62s     
-[=&gt;                                                ] 3% ETA: 62s     
-[=&gt;                                                ] 3% ETA: 61s     
-[=&gt;                                                ] 3% ETA: 61s     
-[=&gt;                                                ] 3% ETA: 60s     
-[=&gt;                                                ] 3% ETA: 60s     
-[=&gt;                                                ] 3% ETA: 59s     
-[=&gt;                                                ] 3% ETA: 59s     
-[=&gt;                                                ] 3% ETA: 58s     
-[=&gt;                                                ] 3% ETA: 58s     
-[=&gt;                                                ] 3% ETA: 58s     
-[==&gt;                                               ] 4% ETA: 57s     
-[==&gt;                                               ] 4% ETA: 57s     
-[==&gt;                                               ] 4% ETA: 56s     
-[==&gt;                                               ] 4% ETA: 56s     
-[==&gt;                                               ] 4% ETA: 56s     
-[==&gt;                                               ] 4% ETA: 55s     
-[==&gt;                                               ] 4% ETA: 55s     
-[==&gt;                                               ] 4% ETA: 55s     
-[==&gt;                                               ] 4% ETA: 54s     
-[==&gt;                                               ] 4% ETA: 54s     
-[==&gt;                                               ] 4% ETA: 54s     
-[==&gt;                                               ] 4% ETA: 54s     
-[==&gt;                                               ] 4% ETA: 53s     
-[==&gt;                                               ] 4% ETA: 53s     
-[==&gt;                                               ] 4% ETA: 53s     
-[==&gt;                                               ] 5% ETA: 53s     
-[==&gt;                                               ] 5% ETA: 52s     
-[==&gt;                                               ] 5% ETA: 52s     
-[==&gt;                                               ] 5% ETA: 52s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 53s     
-[==&gt;                                               ] 5% ETA: 53s     
-                                                                                
-Chunk 7 of 9 (77.8%): state ✓
-#&gt; 
-[======&gt;                                           ] 12% ETA: 14s     
-[======&gt;                                           ] 12% ETA: 14s     
-[======&gt;                                           ] 12% ETA: 15s     
-                                                                                
-Chunk 8 of 9 (88.9%): state ✓
-#&gt; 
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 22s     
-[====&gt;                                             ] 9% ETA: 23s     
-                                                                                
-Chunk 9 of 9 (100%): state ✓
-#&gt; 
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-                                                                                </code></pre>
+<div class="cell-output-display">
+<div id="fig-catalog-density-seq-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-density-seq-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-density-seq-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Figure&nbsp;13: Point density raster generated using a single processing core."><img src="05_engine_files/figure-html/fig-catalog-density-seq-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-density-seq-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Point density raster generated using a single processing core.
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="parallel-processing" class="level2">
 <h2 class="anchored" data-anchor-id="parallel-processing">Parallel processing</h2>
-<p>We perform tree detection using multiple cores in parallel.</p>
+<p>Now, we’ll perform the same operation but leverage multiple cores.</p>
+<p>In calling plan(multisession, workers = 3L) from <code>future</code>, lidR will automatically distribute the processing chunks across three CPU cores (workers).</p>
+<p>The result should be identical to the single-core version, and should be faster than single-core systems.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process multi-core with three workers each proccessing a tile</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multisession, <span class="at">workers =</span> <span class="dv">3</span>L)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect trees</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>ttops <span class="ot">&lt;-</span> <span class="fu">locate_trees</span>(<span class="at">las =</span> ctg, <span class="at">algorithm =</span> <span class="fu">lmf</span>(<span class="at">ws =</span> <span class="dv">3</span>, <span class="at">hmin =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process on multi-core with three workers</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(multisession, <span class="at">workers =</span> <span class="dv">3</span>L)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the same density raster, but in parallel</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>dens_par <span class="ot">&lt;-</span> <span class="fu">rasterize_density</span>(ctg, <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 1 of 9 (11.1%): state ✓</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 2 of 9 (22.2%): state ✓</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 3 of 9 (33.3%): state ✓</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 4 of 9 (44.4%): state ✓</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 5 of 9 (55.6%): state ✓</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 6 of 9 (66.7%): state ✓</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 7 of 9 (77.8%): state ✓</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 8 of 9 (88.9%): state ✓</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Chunk 9 of 9 (100%): state ✓</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Parallel processing took:"</span>, <span class="fu">round</span>(end_time <span class="sc">-</span> start_time, <span class="dv">2</span>), <span class="st">"seconds</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Parallel processing took: 38.23 seconds</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens_par)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="05_engine_files/figure-html/parallel_processing-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<div id="fig-catalog-density-par-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-density-par-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-density-par-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Figure&nbsp;14: Point density raster generated in parallel using multiple cores."><img src="05_engine_files/figure-html/fig-catalog-density-par-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-density-par-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Point density raster generated in parallel using multiple cores.
+</figcaption>
 </figure>
 </div>
 </div>
-<pre><code>#&gt; Chunk 1 of 9 (11.1%): state ✓
-#&gt; 
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 28s     
-                                                                                
-#&gt; Chunk 2 of 9 (22.2%): state ✓
-#&gt; 
-[==&gt;                                               ] 4% ETA: 41s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 40s     
-[==&gt;                                               ] 4% ETA: 39s     
-[==&gt;                                               ] 4% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 37s     
-[==&gt;                                               ] 5% ETA: 36s     
-[==&gt;                                               ] 5% ETA: 36s     
-[==&gt;                                               ] 5% ETA: 36s     
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 35s     
-[===&gt;                                              ] 6% ETA: 35s     
-[===&gt;                                              ] 6% ETA: 35s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 34s     
-[===&gt;                                              ] 6% ETA: 36s     
-[===&gt;                                              ] 6% ETA: 38s     
-                                                                                
-#&gt; Chunk 3 of 9 (33.3%): state ✓
-#&gt; 
-[==&gt;                                               ] 5% ETA: 35s     
-[==&gt;                                               ] 5% ETA: 34s     
-[==&gt;                                               ] 5% ETA: 34s     
-[==&gt;                                               ] 5% ETA: 34s     
-[==&gt;                                               ] 5% ETA: 33s     
-[==&gt;                                               ] 5% ETA: 33s     
-[==&gt;                                               ] 5% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 33s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 32s     
-[===&gt;                                              ] 6% ETA: 31s     
-[===&gt;                                              ] 6% ETA: 31s     
-[===&gt;                                              ] 6% ETA: 31s     
-[===&gt;                                              ] 6% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 30s     
-[===&gt;                                              ] 7% ETA: 29s     
-[===&gt;                                              ] 7% ETA: 29s     
-[===&gt;                                              ] 7% ETA: 29s     
-[===&gt;                                              ] 7% ETA: 29s     
-[===&gt;                                              ] 7% ETA: 28s     
-[===&gt;                                              ] 7% ETA: 28s     
-[====&gt;                                             ] 8% ETA: 28s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 27s     
-[====&gt;                                             ] 8% ETA: 26s     
-[====&gt;                                             ] 8% ETA: 26s     
-[====&gt;                                             ] 8% ETA: 26s     
-[====&gt;                                             ] 8% ETA: 26s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 25s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 24s     
-[====&gt;                                             ] 9% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 23s     
-[=====&gt;                                            ] 10% ETA: 22s     
-[=====&gt;                                            ] 10% ETA: 22s     
-[=====&gt;                                            ] 10% ETA: 22s     
-[=====&gt;                                            ] 10% ETA: 23s     
-                                                                                
-Chunk 4 of 9 (44.4%): state ✓
-#&gt; 
-[==&gt;                                               ] 4% ETA: 39s     
-[==&gt;                                               ] 4% ETA: 39s     
-[==&gt;                                               ] 4% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 39s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 38s     
-[==&gt;                                               ] 5% ETA: 43s     
-[==&gt;                                               ] 5% ETA: 45s     
-[==&gt;                                               ] 5% ETA: 46s     
-[==&gt;                                               ] 5% ETA: 52s     
-                                                                                
-Chunk 5 of 9 (55.6%): state ✓
-#&gt; 
-[=&gt;                                                ] 2% ETA: 88s     
-[=&gt;                                                ] 2% ETA: 87s     
-[=&gt;                                                ] 2% ETA: 87s     
-[=&gt;                                                ] 2% ETA: 86s     
-[=&gt;                                                ] 2% ETA: 86s     
-[=&gt;                                                ] 2% ETA: 85s     
-[=&gt;                                                ] 2% ETA: 84s     
-[=&gt;                                                ] 2% ETA: 84s     
-[=&gt;                                                ] 2% ETA: 83s     
-[=&gt;                                                ] 2% ETA: 83s     
-[=&gt;                                                ] 2% ETA: 82s     
-[=&gt;                                                ] 2% ETA: 81s     
-[=&gt;                                                ] 2% ETA: 81s     
-[=&gt;                                                ] 2% ETA: 81s     
-[=&gt;                                                ] 2% ETA: 80s     
-[=&gt;                                                ] 2% ETA: 80s     
-[=&gt;                                                ] 2% ETA: 79s     
-[=&gt;                                                ] 2% ETA: 79s     
-[=&gt;                                                ] 3% ETA: 79s     
-[=&gt;                                                ] 3% ETA: 78s     
-[=&gt;                                                ] 3% ETA: 78s     
-[=&gt;                                                ] 3% ETA: 78s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 75s     
-[=&gt;                                                ] 3% ETA: 76s     
-[=&gt;                                                ] 3% ETA: 77s     
-[=&gt;                                                ] 3% ETA: 79s     
-[=&gt;                                                ] 3% ETA: 83s     
-                                                                                
-Chunk 6 of 9 (66.7%): state ✓
-#&gt; 
-[=&gt;                                                ] 2% ETA: 66s     
-[=&gt;                                                ] 2% ETA: 65s     
-[=&gt;                                                ] 3% ETA: 64s     
-[=&gt;                                                ] 3% ETA: 63s     
-[=&gt;                                                ] 3% ETA: 62s     
-[=&gt;                                                ] 3% ETA: 62s     
-[=&gt;                                                ] 3% ETA: 61s     
-[=&gt;                                                ] 3% ETA: 61s     
-[=&gt;                                                ] 3% ETA: 60s     
-[=&gt;                                                ] 3% ETA: 60s     
-[=&gt;                                                ] 3% ETA: 59s     
-[=&gt;                                                ] 3% ETA: 59s     
-[=&gt;                                                ] 3% ETA: 58s     
-[=&gt;                                                ] 3% ETA: 58s     
-[=&gt;                                                ] 3% ETA: 57s     
-[=&gt;                                                ] 3% ETA: 57s     
-[=&gt;                                                ] 3% ETA: 57s     
-[==&gt;                                               ] 4% ETA: 56s     
-[==&gt;                                               ] 4% ETA: 56s     
-[==&gt;                                               ] 4% ETA: 55s     
-[==&gt;                                               ] 4% ETA: 55s     
-[==&gt;                                               ] 4% ETA: 55s     
-[==&gt;                                               ] 4% ETA: 55s     
-[==&gt;                                               ] 4% ETA: 54s     
-[==&gt;                                               ] 4% ETA: 54s     
-[==&gt;                                               ] 4% ETA: 54s     
-[==&gt;                                               ] 4% ETA: 53s     
-[==&gt;                                               ] 4% ETA: 53s     
-[==&gt;                                               ] 4% ETA: 53s     
-[==&gt;                                               ] 4% ETA: 52s     
-[==&gt;                                               ] 4% ETA: 52s     
-[==&gt;                                               ] 4% ETA: 52s     
-[==&gt;                                               ] 5% ETA: 52s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 51s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 50s     
-[==&gt;                                               ] 5% ETA: 49s     
-[==&gt;                                               ] 5% ETA: 49s     
-[==&gt;                                               ] 5% ETA: 52s     
-[==&gt;                                               ] 5% ETA: 52s     
-                                                                                
-Chunk 7 of 9 (77.8%): state ✓
-#&gt; 
-[======&gt;                                           ] 12% ETA: 14s     
-[======&gt;                                           ] 12% ETA: 14s     
-[======&gt;                                           ] 12% ETA: 15s     
-                                                                                
-Chunk 8 of 9 (88.9%): state ✓
-#&gt; 
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 8% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 21s     
-[====&gt;                                             ] 9% ETA: 23s     
-[====&gt;                                             ] 9% ETA: 23s     
-                                                                                
-Chunk 9 of 9 (100%): state ✓
-#&gt; 
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[=====&gt;                                            ] 11% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-[======&gt;                                           ] 12% ETA: 15s     
-                                                                                </code></pre>
+<div class="cell-output-display">
+<div id="fig-catalog-density-par-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-catalog-density-par-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="05_engine_files/figure-html/fig-catalog-density-par-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Figure&nbsp;15: Point density raster generated in parallel using multiple cores."><img src="05_engine_files/figure-html/fig-catalog-density-par-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catalog-density-par-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Point density raster generated in parallel using multiple cores.
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="revert-to-single-core" class="level2">
 <h2 class="anchored" data-anchor-id="revert-to-single-core">Revert to single core</h2>
-<p>We revert to single core processing using <code>future::plan(sequential)</code>.</p>
+<p>It is good practice to always return the <code>plan(sequential)</code> after a parallel task is complete to avoid unintended parallel execution in later code.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to single core</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(sequential)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Back to single core</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(sequential)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p><em>This concludes the tutorial on basic usage, catalog validation, indexing, CHM generation, ABA estimation, data clipping, ITD using catalog, and parallel computing using the <code>lidR</code> package in R.</em> LIAM FIX</p>
+<p><em>This concludes the tutorial on basic usage, catalog validation, indexing, CHM generation, metric generation, and parallel computing to generate point density rasters using the <code>lidR</code> and <code>future</code> packages in R.</em></p>
 </section>
-<section id="exercises-and-questions" class="level2">
-<h2 class="anchored" data-anchor-id="exercises-and-questions">Exercises and Questions</h2>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>Using:</p>
+<p><code>ctg &lt;- readLAScatalog(folder = "data/ctg_norm")</code></p>
+<section id="e1." class="level4">
+<h4 class="anchored" data-anchor-id="e1.">E1.</h4>
+<p>Calculate a set of metrics from the <code>lidRmetrics</code> package on the catalogue (voxel metrics will take too long)</p>
+<p>Using:</p>
+<p><code>ctg &lt;- readLAScatalog(folder = "data/ctg_class")</code></p>
+</section>
+<section id="e2." class="level4">
+<h4 class="anchored" data-anchor-id="e2.">E2.</h4>
+<p>Read in the non-normalized las catalog filtering the point cloud to only include first returns.</p>
+</section>
+<section id="e3." class="level4">
+<h4 class="anchored" data-anchor-id="e3.">E3.</h4>
+<p>Generate a DTM at 1m spatial resolution for the provided catalog with only first returns.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1633,20 +794,10 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This exercise is complex because it involves options not yet described. Be sure to use the <a href="https://r-lidar.github.io/lidRbook/">lidRbook</a> and <a href="https://cran.r-project.org/web/packages/lidR/lidR.pdf">package documentation</a>.</p>
+<p>The Multiple Returns and Canopy Penetration This exercise highlights a critical and unique capability of Airborne Laser Scanning (ALS).</p>
+<p>Unlike methods based on imagery like Digital Aerial Photogrammetry (DAP), map the visible surface, LiDAR pulses can penetrate through gaps in the vegetation generating multiple returns each. This allows us to map the ground surface even under dense forest cover, which is essential for creating accurate Digital Terrain Models (DTMs).</p>
 </div>
 </div>
-<p>Using:</p>
-<p><code>ctg &lt;- readLAScatalog(folder = "data/Farm_A/")</code></p>
-<section id="e1." class="level4">
-<h4 class="anchored" data-anchor-id="e1.">E1.</h4>
-<p>Generate a raster of point density for the provided catalog. Hint: Look through the documentation for a function that will do this!</p>
-</section>
-<section id="e2." class="level4">
-<h4 class="anchored" data-anchor-id="e2.">E2.</h4>
-</section>
-<section id="e3." class="level4">
-<h4 class="anchored" data-anchor-id="e3.">E3.</h4>
 
 
 </section>
@@ -2053,6 +1204,38 @@ Tip
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

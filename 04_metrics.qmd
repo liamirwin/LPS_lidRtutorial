@@ -2,28 +2,13 @@
 title: "Lidar Summary metrics"
 ---
 
-```{r, echo = FALSE, warnings = FALSE}
-library(rgl)
-
-r3dDefaults <- rgl::r3dDefaults
-m <- structure(c(0.921, -0.146, 0.362, 0, 0.386, 0.482, -0.787, 0, 
-                -0.06, 0.864, 0.5, 0, 0, 0, 0, 1), .Dim = c(4L, 4L))
-r3dDefaults$FOV <- 50
-r3dDefaults$userMatrix <- m
-r3dDefaults$zoom <- 0.75
-
-knitr::opts_chunk$set(
-  comment =  "#>", 
-  collapse = TRUE,
-  fig.align = "center")
-
-rgl::setupKnitr(autoprint = TRUE) 
-options(lidR.progress = FALSE)
+```{r setup, include=FALSE}
+source("R/setup_rgl.R")
 ```
 
 ## Relevant Resources
 
--   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/03_aba.R)
+-   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/04_metrics.R)
 -   [lidRbook metrics section](https://r-lidar.github.io/lidRbook/grid_metrics.html)
 -   [lidRbook modelling section](https://r-lidar.github.io/lidRbook/modelling.html)
 -   [lidRmetrics package for additional metrics](https://ptompalski.github.io/lidRmetrics/ "Tutorial website for lidRmetrics package")
@@ -58,7 +43,7 @@ rm(list = ls(globalenv()))
 
 # Load packages
 library(lidR)
-library(sf)
+library(terra)
 library(lidRmetrics)
 ```
 
@@ -74,6 +59,8 @@ las <- readLAS(files = "data/zrh_norm.laz")
 The `pixel_metrics()` function calculates structural metrics within a defined spatial resolution (`res`).
 
 ```{r mean_height_pixel_metrics}
+#| label: fig-metrics-mean-height
+#| fig-cap: "Raster of mean LiDAR return height (Z) calculated at a 10m resolution."
 # Compute the mean height of points within 10x10 m pixels
 hmean <- pixel_metrics(las = las, func = ~mean(Z), res = 10)
 hmean
@@ -81,6 +68,8 @@ plot(hmean)
 ```
 
 ```{r max_height_pixel_metrics}
+#| label: fig-metrics-max-height
+#| fig-cap: "Raster of maximum LiDAR return height (Z) calculated at a 10m resolution."
 # Compute the max height of points within 10x10 m pixels
 hmax <- pixel_metrics(las = las, func = ~max(Z), res = 10)
 hmax
@@ -90,6 +79,8 @@ plot(hmax)
 You can specify that multiple metrics should be calculated by housing them in a `list()`.
 
 ```{r multiple_metrics_pixel_metrics}
+#| label: fig-metrics-multi
+#| fig-cap: "Raster plot showing multiple metrics (maximum and mean height) calculated simultaneously at 10m resolution."
 # Compute several metrics at once using a list
 metrics <- pixel_metrics(las = las, func = ~list(hmax = max(Z), hmean = mean(Z)), res = 10)
 metrics
@@ -99,11 +90,18 @@ plot(metrics)
 Pre-defined metric sets are available, such as `.stdmetrics_z`. See more [here](https://github.com/r-lidar/lidR/wiki/stdmetrics).
 
 ```{r predefined_metrics_pixel_metrics}
+#| label: fig-metrics-std
+#| fig-cap: "Range of Metrics Raster calculated from predefined `.stdmetrics_z` set."
 # Simplify computing metrics with predefined sets of metrics
 metrics <- pixel_metrics(las = las, func = .stdmetrics_z, res = 10)
 metrics
 plot(metrics)
+```
 
+
+```{r predefined_metrics_pixel_metrics_zsd}
+#| label: fig-metrics-zsd
+#| fig-cap: "Raster of the standard deviation of LiDAR return heights (`zsd`), a metric from the `.stdmetrics_z` set."
 # Plot a specific metric from the predefined set
 plot(metrics, "zsd")
 ```
@@ -119,6 +117,8 @@ plot(metrics, "zsd")
 [Canopy Cover](https://ptompalski.github.io/lidRmetrics/reference/metrics_percabove.html "Proportion of returns above a threshold (2m) is commonly used to approximate canopy cover in forests and beyond")
 
 ```{r canopy_cover}
+#| label: fig-metrics-canopy-cover
+#| fig-cap: "Canopy cover metric, calculated as the proportion of LiDAR returns above a 2m threshold."
 cc_metrics <- pixel_metrics(las, func = ~metrics_percabove(z = Z, threshold = 2, zmin = 0), res = 10)
 plot(cc_metrics)
 ```
@@ -126,18 +126,50 @@ plot(cc_metrics)
 [Leaf Area Density Profiles](https://ptompalski.github.io/lidRmetrics/reference/metrics_lad.html "LAD profiles are commonly used in predictive modelling to approximate the leaf area index (LAI) of vegetation with LiDAR") ([Bouvier et al. 2015](http://dx.doi.org/10.1016/j.rse.2014.10.004 "Journal article credited with LAD metrics formulae"))
 
 ```{r lad_metrics}
+#| label: fig-metrics-lad
+#| fig-cap: "Raster plots of Leaf Area Density (LAD) profile metrics, calculated at 10m resolution."
 lad_metrics <- pixel_metrics(las, ~metrics_lad(z = Z), res = 10)
 plot(lad_metrics)
 ```
 
-ADD VERTICAL COMPLEXITY INDEX
+[Dispersion and Vertical Complexity]
 
+While standard deviation (zsd) gives a general sense of height variability, dispersion metrics provide a more nuanced characterization of how LiDAR points are distributed vertically within the canopy. They help quantify the structural complexity of vegetation, which is crucial for applications like habitat modeling and biomass estimation.
 
+```{r dispersion_metrics}
+#| label: fig-metrics-dispersion
+#| fig-cap: "A collection of dispersion metrics calculated at 10m resolution."
+# Calculate several dispersion metrics. zmax is required to compute VCI.
+disp_metrics <- pixel_metrics(las, ~metrics_dispersion(z = Z, zmax = 40), res = 10)
+plot(disp_metrics)
 
+```
+`Canopy Relief Ratio (CRR)`
+The Canopy Relief Ratio measures the position of the mean point height relative to the overall height range of the canopy. It is calculated as (mean(Z) - min(Z)) / (max(Z) - min(Z)). A value closer to 1 suggests that most of the vegetation volume is concentrated in the upper parts of the canopy.
+
+```{r plot_crr}
+#| label: fig-metrics-crr
+#| fig-cap: "Canopy Relief Ratio (CRR) at 10m resolution, indicating the vertical position of the mean energy return within the canopy."
+plot(disp_metrics, "CRR")
+```
+`Vertical Complexity Index (VCI)`
+The Vertical Complexity Index (VCI) uses entropy to quantify how evenly the LiDAR returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).
+
+```{r plot_vci}
+#| label: fig-metrics-vci
+#| fig-cap: "Vertical Complexity Index (VCI) at 10m resolution. Higher values indicate a more complex vertical distribution of vegetation."
+plot(disp_metrics, "VCI")
+```
+`User Defined Metrics`
 
 We can also create our own user-defined metric functions. This demonstrates the flexibility of the `lidR` package!
 
+Here we generate an arbitrary function to compute a weighted mean between two attributes.
+We then calculate the mean height of 10 m pixels weighted by return Intensity (albeit a potentially meaningless metric)
+
 ```{r user_defined_metric_pixel_metrics}
+#| label: fig-metrics-user-defined
+#| fig-cap: "Raster plot of a user-defined metric: the mean height (Z) weighted by return Intensity."
 # Generate a user-defined function to compute weighted mean between two attributes
 f <- function(x, weight) { sum(x*weight)/sum(weight) }
 
@@ -158,11 +190,11 @@ las <- readLAS("data/zrh_norm.laz")
 
 #### E1.
 
-Generate another metric set provided by the lidRmetrics package (voxel metrics will take too long)
+Generate another metric set provided by the `lidRmetrics` package (voxel metrics will take too long)
 
 #### E2.
 
-Map the density of ground returns at a 5 m resolution with `hint filter = -keep_class 2`
+Map the density of ground returns at a 5 m resolution (in points/m2). Hints: `filter = -keep_class 2` - what's the area of a 5 m pixel?
 
 #### E3.
 

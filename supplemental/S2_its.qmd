@@ -36,11 +36,13 @@ This code demonstrates individual tree segmentation (ITS) using LiDAR data. It c
 # Clear environment
 rm(list = ls(globalenv()))
 
-# REQUIRE AND INSTALL
-"concaveman"
+# Ensure 'concaveman' is installed for tree segmentation
+if (!requireNamespace("concaveman", quietly = TRUE)) {
+  install.packages("concaveman")
+}
 
-
-# Load packages
+# Load all required packages
+library(concaveman)
 library(lidR)
 library(sf)
 library(terra)

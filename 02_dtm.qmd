@@ -2,28 +2,13 @@
 title: "Digital Terrain Models"
 ---
 
-```{r, echo = FALSE, warnings = FALSE}
-library(rgl)
-
-r3dDefaults <- rgl::r3dDefaults
-m <- structure(c(0.921, -0.146, 0.362, 0, 0.386, 0.482, -0.787, 0, 
-                -0.06, 0.864, 0.5, 0, 0, 0, 0, 1), .Dim = c(4L, 4L))
-r3dDefaults$FOV <- 50
-r3dDefaults$userMatrix <- m
-r3dDefaults$zoom <- 0.75
-
-knitr::opts_chunk$set(
-  comment =  "#>", 
-  collapse = TRUE,
-  fig.align = "center")
-
-rgl::setupKnitr(autoprint = TRUE) 
-options(lidR.progress = FALSE)
+```{r setup, include=FALSE}
+source("R/setup_rgl.R")
 ```
 
 ## Relevant resources
 
--   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/05_dtm.R)
+-   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/02_dtm.R)
 -   [lidRbook section](https://r-lidar.github.io/lidRbook/dtm.html)
 
 ## Overview
@@ -60,6 +45,8 @@ plot(las)
 ```
 
 ```{r dtm_visualize_data, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-dtm-initial-plot
+#| fig-cap: "Visualization of the LiDAR point cloud, coloured by elevation."
 # Visualize using the classification attribute as colors
 plot(las, bg = "white")
 ```
@@ -71,7 +58,8 @@ plot(las, color = "Classification")
 ```
 
 ```{r dtm_visualize_data_bg, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-
+#| label: fig-dtm-classification-plot
+#| fig-cap: "LiDAR point cloud coloured by the Classification attribute to distinguish ground points."
 # Visualize using the classification attribute as colors
 plot(las, color = "Classification", bg = "white")
 ```
@@ -104,6 +92,8 @@ plot_dtm3d(dtm_tin)
 ```
 
 ```{r dtm_visualize_3d, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-dtm-tin-3d
+#| fig-cap: "A 3D visualization of the Digital Terrain Model (DTM) generated using the `tin()` algorithm."
 # Visualize the DTM in 3D
 plot_dtm3d(dtm_tin, bg = "white")
 ```
@@ -122,6 +112,8 @@ add_dtm3d(x, dtm_tin, bg = "white")
 ```
 
 ```{r dtm_visualize_with_lidar, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-dtm-overlay
+#| fig-cap: "The `tin()` generated DTM overlaid with the non-ground LiDAR points."
 # Filter for non-ground points to show dtm better
 las_ng <- filter_poi(las = las, Classification != 2L)
 
@@ -149,6 +141,8 @@ plot_dtm3d(dtm_idw)
 ```
 
 ```{r dtm_visualize_idw_3d, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-dtm-idw-3d
+#| fig-cap: "A 3D visualization of the DTM generated using the `knnidw()` algorithm."
 # Visualize the IDW-based DTM in 3D
 plot_dtm3d(dtm_idw, bg = "white")
 ```
@@ -176,6 +170,8 @@ plot(nlas_dtm)
 ```
 
 ```{r normalization_visualize, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-normalized-dtm
+#| fig-cap: "Visualization of the LiDAR data after height normalization using the pre-computed DTM."
 # Visualize the normalized LiDAR data
 plot(nlas_dtm, bg = "white")
 ```
@@ -194,6 +190,8 @@ nlas_tin <- normalize_height(las = las, algorithm = tin())
 We visualize the normalized LiDAR data using the TIN algorithm, showing heights relative to the DTM.
 
 ```{r normalization_visualize_tin}
+#| label: fig-normalized-tin
+#| fig-cap: "Visualization of the LiDAR data after height normalization using the `tin()` algorithm directly."
 # Visualize the normalized LiDAR data using the TIN algorithm
 plot(nlas_tin, bg = "white")
 ```
@@ -202,14 +200,11 @@ plot(nlas_tin, bg = "white")
 
 #### E1.
 
+Compute two DTMs for this point cloud with differing spatial resolutions, plot both 
 
 #### E2.
 
-
-#### E3.
-
-Compute two DTMs for this point cloud with differing spatial resolutions, plot both e.g. `plot(dtm1)`
-
+Now use the `plot_dtm3d()` function to visualize and move around your newly created DTMs
 
 ## Conclusion
 

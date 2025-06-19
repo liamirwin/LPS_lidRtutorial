@@ -2,11 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Liam A.K. Irwin, Brent A. Murray, Tristan R.H. Goodbody, Jean-Romain Roussel">
+<meta name="author" content="Liam A.K. Irwin">
+<meta name="author" content="Brent A. Murray">
+<meta name="author" content="Tristan R.H. Goodbody">
+<meta name="author" content="Jean-Romain Roussel">
 <meta name="dcterms.date" content="2025-06-22">
 
 <title>lidR: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications – lidRtutorial</title>
@@ -74,10 +77,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -208,15 +214,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
   
     <div class="quarto-title-meta-contents">
-    <p class="author">Liam A.K. Irwin, Brent A. Murray, Tristan R.H. Goodbody, Jean-Romain Roussel </p>
+    <p class="author">Liam A.K. Irwin </p>
   </div>
   <div class="quarto-title-meta-contents">
         <p class="affiliation">
-            University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, University of British Columbia - Integrated Remote Sensing Studio, r-lidar owner
+            Integrated Remote Sensing Studio, University of British Columbia
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Brent A. Murray </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Integrated Remote Sensing Studio, University of British Columbia
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Tristan R.H. Goodbody </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Integrated Remote Sensing Studio, University of British Columbia
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Jean-Romain Roussel </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            r-lidar consulting &amp; development
           </p>
       </div>
   </div>
@@ -282,11 +312,16 @@ Tip
 <p>You need to install the <code>lidR</code> package in its latest version (v &gt;= 4.0.0).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lidR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To run all code in the tutorial yourself, you will need to install the following packages. You can use <code>lidR</code> without them, however.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"geometry"</span>,<span class="st">"viridis"</span>,<span class="st">"future"</span>,<span class="st">"sf"</span>,<span class="st">"gstat"</span>,<span class="st">"terra"</span>,<span class="st">"mapview"</span>,<span class="st">"mapedit"</span>)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"terra"</span>,<span class="st">"viridis"</span>,<span class="st">"future"</span>,<span class="st">"sf"</span>,<span class="st">"mapview"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(libs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the metrics section we will work with a user-made package that supports <code>lidR</code> with additional functions To follow along with these steps optionally install <code>lidRmetrics</code> from GitHub (not on CRAN)</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ptompalski/lidRmetrics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the metrics section we introduce and work with a user-made package that supports <code>lidR</code> with additional functions to generate layers useful in vegetation and biodiversity mapping.</p>
+<p>To follow along with these steps; install <code>lidRmetrics</code> from GitHub (not available on CRAN), this requires the <code>devtools</code> package</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"devtools"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ptompalski/lidRmetrics"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="datasets" class="level3">
 <h3 class="anchored" data-anchor-id="datasets">Datasets</h3>
@@ -337,7 +372,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><img src="img/rlidar_banner.png" class="img-fluid"></p>
+<p><a href="img/rlidar_banner.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/rlidar_banner.png" class="img-fluid"></a></p>
 <section id="note" class="level2">
 <h2 class="anchored" data-anchor-id="note">Note</h2>
 <p>Since 2024, the <code>lidR</code> package is no longer supported by Laval University, but the software will remain free and open-source. <code>r-lidar</code> has transitioned into a company to ensure sustainability and now offers independent services for training courses, consulting, and development. Please feel free to visit their <a href="https://www.r-lidar.com/">website</a> for more information.</p>
@@ -749,6 +784,38 @@ Note
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

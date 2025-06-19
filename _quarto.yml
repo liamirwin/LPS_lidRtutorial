@@ -39,6 +39,7 @@ website:
     location: navbar
     type: overlay
 
+lightbox: true
 
 format:
   html:
