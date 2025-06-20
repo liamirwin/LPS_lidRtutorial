@@ -1,7 +1,22 @@
 # Read/Plot/Query/Validate
 # https://liamirwin.github.io/LPS_lidRtutorial/01_read.html
 # =========================
-
+# R Packages
+# ------------
+# Ensure required packages are installed and loaded
+pkgs <- c("lidR", "terra", "viridis", "future", "sf", "mapview")
+for (p in pkgs) {
+  if (!requireNamespace(p, quietly = TRUE)) {
+    install.packages(p)
+  }
+}
+# Install and load lidRmetrics from GitHub if not already
+if (!requireNamespace("lidRmetrics", quietly = TRUE)) {
+  if (!requireNamespace("devtools", quietly = TRUE)) {
+    install.packages("devtools")
+  }
+  devtools::install_github("ptompalski/lidRmetrics")
+}
 # Environment setup
 # -----------------
 # Clear current workspace and load required packages
