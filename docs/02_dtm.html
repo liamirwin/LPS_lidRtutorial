@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -191,19 +191,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#dtm-digital-terrain-model" id="toc-dtm-digital-terrain-model" class="nav-link" data-scroll-target="#dtm-digital-terrain-model">DTM (Digital Terrain Model)</a>
   <ul>
   <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing">Data Preprocessing</a></li>
-  <li><a href="#visualizing-lidar-data" id="toc-visualizing-lidar-data" class="nav-link" data-scroll-target="#visualizing-lidar-data">Visualizing LiDAR Data</a></li>
+  <li><a href="#visualizing-lidar-data" id="toc-visualizing-lidar-data" class="nav-link" data-scroll-target="#visualizing-lidar-data">Visualizing Lidar Data</a></li>
   <li><a href="#triangulation-algorithm---tin" id="toc-triangulation-algorithm---tin" class="nav-link" data-scroll-target="#triangulation-algorithm---tin">Triangulation Algorithm - <code>tin()</code></a></li>
   <li><a href="#visualizing-dtm-in-3d" id="toc-visualizing-dtm-in-3d" class="nav-link" data-scroll-target="#visualizing-dtm-in-3d">Visualizing DTM in 3D</a></li>
-  <li><a href="#visualizing-dtm-with-lidar-data" id="toc-visualizing-dtm-with-lidar-data" class="nav-link" data-scroll-target="#visualizing-dtm-with-lidar-data">Visualizing DTM with LiDAR Data</a></li>
+  <li><a href="#visualizing-dtm-with-lidar-point-cloud" id="toc-visualizing-dtm-with-lidar-point-cloud" class="nav-link" data-scroll-target="#visualizing-dtm-with-lidar-point-cloud">Visualizing DTM with Lidar Point Cloud</a></li>
   <li><a href="#inverse-distance-weighting-idw-algorithm---knnidw" id="toc-inverse-distance-weighting-idw-algorithm---knnidw" class="nav-link" data-scroll-target="#inverse-distance-weighting-idw-algorithm---knnidw">Inverse-Distance Weighting (IDW) Algorithm - <code>knnidw()</code></a></li>
   <li><a href="#visualizing-idw-based-dtm-in-3d" id="toc-visualizing-idw-based-dtm-in-3d" class="nav-link" data-scroll-target="#visualizing-idw-based-dtm-in-3d">Visualizing IDW-based DTM in 3D</a></li>
   </ul></li>
-  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization">Normalization</a>
+  <li><a href="#height-normalization" id="toc-height-normalization" class="nav-link" data-scroll-target="#height-normalization">Height Normalization</a>
   <ul>
   <li><a href="#dtm-based-normalization" id="toc-dtm-based-normalization" class="nav-link" data-scroll-target="#dtm-based-normalization">DTM-based Normalization</a></li>
-  <li><a href="#visualizing-normalized-lidar-data" id="toc-visualizing-normalized-lidar-data" class="nav-link" data-scroll-target="#visualizing-normalized-lidar-data">Visualizing Normalized LiDAR Data</a></li>
+  <li><a href="#visualizing-normalized-lidar-data" id="toc-visualizing-normalized-lidar-data" class="nav-link" data-scroll-target="#visualizing-normalized-lidar-data">Visualizing Normalized Lidar Data</a></li>
   <li><a href="#dtm-based-normalization-with-tin-algorithm" id="toc-dtm-based-normalization-with-tin-algorithm" class="nav-link" data-scroll-target="#dtm-based-normalization-with-tin-algorithm">DTM-based Normalization with TIN Algorithm</a></li>
-  <li><a href="#visualizing-normalized-lidar-data-with-tin" id="toc-visualizing-normalized-lidar-data-with-tin" class="nav-link" data-scroll-target="#visualizing-normalized-lidar-data-with-tin">Visualizing Normalized LiDAR Data with TIN</a></li>
+  <li><a href="#visualizing-normalized-lidar-data-with-tin" id="toc-visualizing-normalized-lidar-data-with-tin" class="nav-link" data-scroll-target="#visualizing-normalized-lidar-data-with-tin">Visualizing Normalized Lidar Data with TIN</a></li>
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
   <ul>
@@ -239,13 +239,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="relevant-resources" class="level2">
 <h2 class="anchored" data-anchor-id="relevant-resources">Relevant resources</h2>
 <ul>
-<li><a href="https://github.com/tgoodbody/lidRtutorial/blob/master/R/02_dtm.R">Code</a></li>
+<li><a href="https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/02_dtm.R">Code</a></li>
 <li><a href="https://r-lidar.github.io/lidRbook/dtm.html">lidRbook section</a></li>
 </ul>
 </section>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This tutorial explores the creation of a Digital Terrain Model (DTM) from LiDAR data. It demonstrates two algorithms for DTM generation: ground point triangulation, and inverse-distance weighting. Additionally, the tutorial showcases DTM-based normalization and point-based normalization, accompanied by exercises for hands-on practice.</p>
+<p>Airborne Laser Scanning has for decades been used to generate detailed models of terrain based on lidar measurements. Lidar’s ability to produce consistent wall-to-wall ground measurements, even when obscured by vegetation is a critical advantage of the technology in environmental mapping.</p>
+<p>Digital Terrain Models (DTMs) are gridded (raster) surfaces generated at a given <code>spatial resolution</code> with an interpolation method that populates each cell with an elevation value.</p>
+<p>This tutorial explores the creation of DTMs from lidar data. It demonstrates two algorithms for DTM generation: ground point triangulation, and inverse-distance weighting. Additionally, the tutorial showcases DTM-based normalization and point-based normalization, accompanied by exercises for hands-on practice.</p>
 </section>
 <section id="environment" class="level2">
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
@@ -259,43 +261,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="dtm-digital-terrain-model" class="level2">
 <h2 class="anchored" data-anchor-id="dtm-digital-terrain-model">DTM (Digital Terrain Model)</h2>
-<p>In this section, we’ll generate a Digital Terrain Model (DTM) from LiDAR data using two different algorithms: <code>tin()</code> and <code>knnidw()</code>.</p>
+<p>In this section, we’ll generate a Digital Terrain Model (DTM) from lidar data using two different algorithms: <code>tin()</code> and <code>knnidw()</code>.</p>
 <section id="data-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load LiDAR data where points are already pre-classified</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load lidar data where points are already pre-classified</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_class.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualizing-lidar-data" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-lidar-data">Visualizing LiDAR Data</h3>
-<p>We start by visualizing the entire LiDAR point cloud to get an initial overview.</p>
+<h3 class="anchored" data-anchor-id="visualizing-lidar-data">Visualizing Lidar Data</h3>
+<p>We start by visualizing the entire lidar point cloud to get an initial overview.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center" data-rgl="true">
 <div class="cell-output-display">
 <div id="fig-dtm-initial-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dtm-initial-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_dtm_files/figure-html/fig-dtm-initial-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Visualization of the LiDAR point cloud, coloured by elevation."><img src="02_dtm_files/figure-html/fig-dtm-initial-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
+<a href="02_dtm_files/figure-html/fig-dtm-initial-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Visualization of the lidar point cloud, coloured by elevation."><img src="02_dtm_files/figure-html/fig-dtm-initial-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtm-initial-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Visualization of the LiDAR point cloud, coloured by elevation.
+Figure&nbsp;1: Visualization of the lidar point cloud, coloured by elevation.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Visualizing the LiDAR data again, this time to distinguish ground points (blue) more effectively.</p>
+<p>Visualizing the Lidar data again, this time to distinguish ground points (blue) more effectively.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las, <span class="at">color =</span> <span class="st">"Classification"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center" data-rgl="true">
 <div class="cell-output-display">
 <div id="fig-dtm-classification-plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dtm-classification-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_dtm_files/figure-html/fig-dtm-classification-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: LiDAR point cloud coloured by the Classification attribute to distinguish ground points."><img src="02_dtm_files/figure-html/fig-dtm-classification-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
+<a href="02_dtm_files/figure-html/fig-dtm-classification-plot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: lidar point cloud coloured by the Classification attribute to distinguish ground points."><img src="02_dtm_files/figure-html/fig-dtm-classification-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtm-classification-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: LiDAR point cloud coloured by the Classification attribute to distinguish ground points.
+Figure&nbsp;2: lidar point cloud coloured by the Classification attribute to distinguish ground points.
 </figcaption>
 </figure>
 </div>
@@ -319,7 +321,7 @@ Degenerated points
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may receive a warning about degenerated points when creating a DTM. A degenerated point in LiDAR data refers to a point with identical XY(Z) coordinates as another point. This means two or more points occupy exactly the same location in XY/3D space. Degenerated points can cause issues in tasks like creating a digital terrain model, as they don’t add new information and can lead to inconsistencies. Identifying and handling degenerated points appropriately is crucial for accurate and meaningful results.</p>
+<p>You may receive a warning about degenerated points when creating a DTM. A degenerated point in lidar data refers to a point with identical XY(Z) coordinates as another point. This means two or more points occupy exactly the same location in XY/3D space. Degenerated points can cause issues in tasks like creating a digital terrain model, as they don’t add new information and can lead to inconsistencies. Identifying and handling degenerated points appropriately is crucial for accurate and meaningful results.</p>
 </div>
 </div>
 </section>
@@ -343,13 +345,13 @@ Figure&nbsp;3: A 3D visualization of the Digital Terrain Model (DTM) generated u
 </div>
 </div>
 </section>
-<section id="visualizing-dtm-with-lidar-data" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-dtm-with-lidar-data">Visualizing DTM with LiDAR Data</h3>
-<p>We overlay the DTM on the LiDAR data (non-ground points only) for a more comprehensive view of the terrain.</p>
+<section id="visualizing-dtm-with-lidar-point-cloud" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-dtm-with-lidar-point-cloud">Visualizing DTM with Lidar Point Cloud</h3>
+<p>We overlay the DTM on the lidar data (non-ground points only) for a more comprehensive view of the terrain.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for non-ground points to show dtm better</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>las_ng <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(<span class="at">las =</span> las, Classification <span class="sc">!=</span> <span class="dv">2</span>L)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the LiDAR data with the overlaid DTM in 3D</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the lidar data with the overlaid DTM in 3D</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">plot</span>(las_ng, <span class="at">bg =</span> <span class="st">"white"</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">add_dtm3d</span>(x, dtm_tin, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center" data-rgl="true">
@@ -357,10 +359,10 @@ Figure&nbsp;3: A 3D visualization of the Digital Terrain Model (DTM) generated u
 <div id="fig-dtm-overlay" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dtm-overlay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_dtm_files/figure-html/fig-dtm-overlay-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: The tin() generated DTM overlaid with the non-ground LiDAR points."><img src="02_dtm_files/figure-html/fig-dtm-overlay-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
+<a href="02_dtm_files/figure-html/fig-dtm-overlay-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: The tin() generated DTM overlaid with the non-ground lidar points."><img src="02_dtm_files/figure-html/fig-dtm-overlay-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtm-overlay-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: The <code>tin()</code> generated DTM overlaid with the non-ground LiDAR points.
+Figure&nbsp;4: The <code>tin()</code> generated DTM overlaid with the non-ground lidar points.
 </figcaption>
 </figure>
 </div>
@@ -385,10 +387,10 @@ Figure&nbsp;4: The <code>tin()</code> generated DTM overlaid with the non-ground
 <div id="fig-dtm-idw-3d" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dtm-idw-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_dtm_files/figure-html/fig-dtm-idw-3d-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: A 3D visualization of the DTM generated using the knnidw() algorithm."><img src="02_dtm_files/figure-html/fig-dtm-idw-3d-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
+<a href="02_dtm_files/figure-html/fig-dtm-idw-3d-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: A three-dimensional visualization of the DTM generated using the knnidw() algorithm."><img src="02_dtm_files/figure-html/fig-dtm-idw-3d-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtm-idw-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: A 3D visualization of the DTM generated using the <code>knnidw()</code> algorithm.
+Figure&nbsp;5: A three-dimensional visualization of the DTM generated using the <code>knnidw()</code> algorithm.
 </figcaption>
 </figure>
 </div>
@@ -396,31 +398,33 @@ Figure&nbsp;5: A 3D visualization of the DTM generated using the <code>knnidw()<
 </div>
 </section>
 </section>
-<section id="normalization" class="level2">
-<h2 class="anchored" data-anchor-id="normalization">Normalization</h2>
-<p>We’ll focus on height normalization of LiDAR data using both DTM-based and point-based normalization methods.</p>
+<section id="height-normalization" class="level2">
+<h2 class="anchored" data-anchor-id="height-normalization">Height Normalization</h2>
+<p>Height normalization is applied by subtracting terrain height from return heights above the ground level. This serves to remove distortion from topography and isolate vegetation structure. In doing so elevation (Z coordinates) of each return is converted from height above some reference surface; such as sea level (mASL) to above ground (mAGL)</p>
+<p>Normalization is a critical pre-processing step that enables the signal of vegetation structure to be isolated and mapped.</p>
+<p>We’ll perform height normalization of lidar data using both DTM-based and point-based normalization methods.</p>
 <section id="dtm-based-normalization" class="level3">
 <h3 class="anchored" data-anchor-id="dtm-based-normalization">DTM-based Normalization</h3>
-<p>We perform DTM-based normalization on the LiDAR data using the previously generated DTM.</p>
+<p>First, we perform DTM-based normalization on the lidar data using the previously generated DTM.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the LiDAR data using DTM-based normalization</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the lidar data using DTM-based normalization</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nlas_dtm <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(<span class="at">las =</span> las, <span class="at">algorithm =</span> dtm_tin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualizing-normalized-lidar-data" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-normalized-lidar-data">Visualizing Normalized LiDAR Data</h3>
-<p>We visualize the normalized LiDAR data, illustrating heights relative to the DTM.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the normalized LiDAR data</span></span>
+<h3 class="anchored" data-anchor-id="visualizing-normalized-lidar-data">Visualizing Normalized Lidar Data</h3>
+<p>We visualize the normalized lidar data, illustrating heights relative to the DTM (mAGL).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the normalized lidar data</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas_dtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center" data-rgl="true">
 <div class="cell-output-display">
 <div id="fig-normalized-dtm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normalized-dtm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="02_dtm_files/figure-html/fig-normalized-dtm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: Visualization of the LiDAR data after height normalization using the pre-computed DTM."><img src="02_dtm_files/figure-html/fig-normalized-dtm-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
+<a href="02_dtm_files/figure-html/fig-normalized-dtm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: Visualization of the lidar data after height normalization using the pre-computed DTM."><img src="02_dtm_files/figure-html/fig-normalized-dtm-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalized-dtm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Visualization of the LiDAR data after height normalization using the pre-computed DTM.
+Figure&nbsp;6: Visualization of the lidar data after height normalization using the pre-computed DTM.
 </figcaption>
 </figure>
 </div>
@@ -429,17 +433,17 @@ Figure&nbsp;6: Visualization of the LiDAR data after height normalization using 
 </section>
 <section id="dtm-based-normalization-with-tin-algorithm" class="level3">
 <h3 class="anchored" data-anchor-id="dtm-based-normalization-with-tin-algorithm">DTM-based Normalization with TIN Algorithm</h3>
-<p>We perform DTM-based normalization on the LiDAR data using the TIN algorithm.</p>
+<p>We perform DTM-based normalization on the lidar data using the TIN algorithm. Rather than specifying a resolution for an interpolated DTM a triangular irregular network (TIN) will be directly fit to ground returns (on-the-fly) and used to normalize points elevations.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the LiDAR data using DTM-based normalization with TIN algorithm</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize the lidar data using DTM-based normalization with TIN algorithm</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>nlas_tin <span class="ot">&lt;-</span> <span class="fu">normalize_height</span>(<span class="at">las =</span> las, <span class="at">algorithm =</span> <span class="fu">tin</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualizing-normalized-lidar-data-with-tin" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-normalized-lidar-data-with-tin">Visualizing Normalized LiDAR Data with TIN</h3>
-<p>We visualize the normalized LiDAR data using the TIN algorithm, showing heights relative to the DTM.</p>
+<h3 class="anchored" data-anchor-id="visualizing-normalized-lidar-data-with-tin">Visualizing Normalized Lidar Data with TIN</h3>
+<p>We visualize the normalized lidar data using the TIN algorithm, showing heights relative to the DTM.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the normalized LiDAR data using the TIN algorithm</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the normalized lidar data using the TIN algorithm</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlas_tin, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -457,7 +461,7 @@ Figure&nbsp;6: Visualization of the LiDAR data after height normalization using 
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>This tutorial covered the creation of Digital Terrain Models (DTMs) from LiDAR data using different algorithms and explored height normalization techniques. The exercises provided hands-on opportunities to apply these concepts, enhancing understanding and practical skills.</p>
+<p>This tutorial covered the creation of Digital Terrain Models (DTMs) from lidar data using different algorithms and explored height normalization techniques. The exercises provided hands-on opportunities to apply these concepts, enhancing understanding and practical skills.</p>
 
 
 </section>

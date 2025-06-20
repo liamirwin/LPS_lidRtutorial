@@ -34,10 +34,21 @@ source("R/setup_rgl.R")
 -   Exercises will be done depending on available time - users are encouraged to work on these after the workshop!
 
 ::: callout-tip
-**Introduction slides:** [Intro to Airborne LiDAR & lidR](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/docs/LPS_lidR_LiDAR_Intro.html)
+**Introduction slides:** [Intro to Airborne LiDAR & lidR](LPS_lidR_LiDAR_Intro.html)
 :::
 
-**Download the workshop release for code and lidar files ADD LINK**
+## Download Workshop Materials
+
+You can download the complete workshop package containing all code, data, and exercises here:
+
+[Download the LPS lidR Tutorial Package (.zip, 26 MB)](./LPS_lidRtutorial_package.zip)
+
+[Download additional classified lidar files for 05_engine (.zip, 80 MB)](./ctg_class.zip)
+
+[Download additional normalized lidar files for 05_engine (.zip, 78 MB)](./ctg_norm.zip)
+
+Unzip the first to a folder, and run the `.Rproj` file with RStudio installed for the easiest experience.
+Unzip `ctg_class.zip` and `ctg_norm.zip` to their respective folders in `data/ctg_*`
 
 ## Requirements
 

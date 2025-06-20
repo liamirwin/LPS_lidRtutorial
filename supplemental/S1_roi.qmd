@@ -2,28 +2,13 @@
 title: "Regions of Interest"
 ---
 
-```{r, echo = FALSE, warnings = FALSE}
-library(rgl)
-
-r3dDefaults <- rgl::r3dDefaults
-m <- structure(c(0.921, -0.146, 0.362, 0, 0.386, 0.482, -0.787, 0, 
-                -0.06, 0.864, 0.5, 0, 0, 0, 0, 1), .Dim = c(4L, 4L))
-r3dDefaults$FOV <- 50
-r3dDefaults$userMatrix <- m
-r3dDefaults$zoom <- 0.75
-
-knitr::opts_chunk$set(
-  comment =  "#>", 
-  collapse = TRUE,
-  fig.align = "center")
-
-rgl::setupKnitr(autoprint = TRUE) 
-options(lidR.progress = FALSE)
+```{r setup, include=FALSE}
+source("R/setup_rgl.R")
 ```
 
 ## Relevant Resources
 
--   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/02_roi.R)
+-   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/07_s1_roi.R)
 
 -   [lidRbook section](https://r-lidar.github.io/lidRbook/engine.html#engine-clip)
 
@@ -49,7 +34,6 @@ library(sf)
 We start by loading some LiDAR data and inspecting its header and number of point records.
 
 ```{r load_and_inspect_lidar_data}
-las <- readLAS(files = "data/MixedEucaNat_normalized.laz", filter = "-set_withheld_flag 0")
 las <- readLAS(files = 'data/zrh_norm.laz')
 # Inspect the header and the number of point records
 las@header

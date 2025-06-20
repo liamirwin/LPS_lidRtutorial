@@ -8,7 +8,7 @@ source("R/setup_rgl.R")
 
 ## Relevant resources:
 
--   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/07_engine.R)
+-   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/05_engine.R)
 -   [lidRbook section](https://r-lidar.github.io/lidRbook/engine.html)
 
 ## Overview
@@ -29,6 +29,13 @@ library(sf)
 ## Basic Usage
 
 In this section, we will cover the basic usage of the `lidR` package, including reading LiDAR data, visualization, and inspecting metadata.
+
+If you haven't downloaded the catalog files yet:
+
+[Download additional classified lidar files for 05_engine (.zip, 80 MB)](./ctg_class.zip)
+[Download additional normalized lidar files for 05_engine (.zip, 78 MB)](./ctg_norm.zip)
+
+Unzip `ctg_class.zip` and `ctg_norm.zip` to their respective folders in `data/ctg_*`
 
 ### Read catalog from directory of files
 
@@ -130,9 +137,9 @@ We calculate summary metric rasters using the `pixel_metrics` function and visua
 
 ```{r generate_metrics, warning = FALSE, message = FALSE}
 #| label: fig-catalog-maxz
-#| fig-cap: "Raster of maximum point height (Z) calculated from the `LAScatalog` at a 20m resolution."
+#| fig-cap: "Raster of mean point height (Z) calculated from the `LAScatalog` at a 20m resolution."
 # Generate pixel-based metrics
-max_z <- pixel_metrics(las = ctg, func = ~max(Z), res = 20)
+max_z <- pixel_metrics(las = ctg, func = ~mean(Z), res = 20)
 plot(max_z)
 ```
 
@@ -142,9 +149,9 @@ We can adjust the catalog options to calculate metrics based on first returns on
 
 ```{r generate_metrics_first_returns, warning = FALSE, message = FALSE}
 #| label: fig-catalog-maxz-first
-#| fig-cap: "Raster of maximum point height (Z) using only first returns, calculated from the `LAScatalog` at 20m resolution."
+#| fig-cap: "Raster of mean point height (Z) using only first returns, calculated from the `LAScatalog` at 20m resolution."
 opt_filter(ctg) <- "-drop_z_below 0 -drop_z_above 50 -keep_first"
-max_z <- pixel_metrics(las = ctg, func = ~max(Z), res = 20)
+max_z <- pixel_metrics(las = ctg, func = ~mean(Z), res = 20)
 plot(max_z)
 ```
 

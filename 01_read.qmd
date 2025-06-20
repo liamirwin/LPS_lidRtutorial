@@ -117,13 +117,17 @@ LAS Standard Point classification is now standardized by the American Society fo
 Our example ALS dataset, collected in 2014 over Zürich uses an older **LAS 1.1 standard**. Its classification codes are interpreted as follows:
 
 | Class Code | Meaning | Interpretation |
-|:-------------------|:--------------------------------|:-------------------|
+|:---|:---|:---|
 | 2 | **Ground** | The bare earth surface. |
 | 3/4/5 | **Low/Medium/High Vegetation** | Vegetation under 1 meter. |
 | 7 | **Noise** | Erroneous points, likely below ground or outliers above ground. |
 | 12 | **Overlap Points** | Points assigned to overlapping flight lines. |
 
-### Selecting Attributes of Interest
+## Filtering Dataset
+
+Often we do not need the entire set of attributes loaded into memory, or may want a particular subset of points. We can use `Classification` as well as other attributes to filter points.
+
+### Filtering points on-the-fly (efficient)
 
 The `readLAS()` function allows us to select specific attributes to be loaded into memory. This is useful to reduce memory requirements when working with large lidar datasets.
 
@@ -137,9 +141,9 @@ las@data
 format(object.size(las), "Mb")
 ```
 
-### Filtering points on-the-fly (efficient)
+Here we load a subset of the lidar points based on certain criteria using the `filter` argument in directly in `readLAS()`.
 
-We can load a subset of the lidar points based on certain criteria using the `filter` argument in directly in `readLAS()`.
+In this case we use a pre-existing filter during to subset only first returns-to see all run `readLAS(filter = "-help")` for a full list of these filters.
 
 ```{r filter_points}
 # Load only the first return points
@@ -152,6 +156,8 @@ las
 format(object.size(las), "Mb")
 ```
 
+Visualize this filtered dataset using the `plot()` function.
+
 ``` r
 plot(las)
 ```
@@ -163,10 +169,10 @@ plot(las)
 plot(las, bg = "white")
 ```
 
-The `filter` argument in `readLAS()` can be used to apply transformations on-the-fly during loading (memory efficient). This can be useful for tasks such as filtering specific classifications.
+The `filter` argument in `readLAS()` can be useful for tasks such as filtering specific classifications, to isolate ground, remove noise, etc...
 
 ```{r on_the_fly_transform}
-# Load another version of the point cloud and visualize with an applied filter
+# Load another version of the point cloud and visualize with an applied filter to isolate ground points
 las <- readLAS(files = "data/zrh_class.laz", filter = "-keep_class 2")
 ```
 
@@ -182,7 +188,7 @@ plot(las, bg = "white")
 
 ### Filtering Points using `filter_poi()`
 
-An alternative method for filtering points is using the `filter_poi()` function, which allows filtering based on attributes of points after the pointcloud is loaded.
+Alternatively LASobjects loaded into memory with `readLAS()` can be filtered immediately using the `filter_poi()` function. These filters can be custom made by combining [boolean operators](https://www.r-bloggers.com/2021/09/r-booleans-comparison-and-logical-operators/ "Boolean operators in R") (==, !=, \>, \<, &, \|, etc...) with point cloud attributes to formulate logical statements. Statements are applied to points to assign `TRUE` (kept) or `FALSE` (filtered out) values.
 
 ```{r filter_poi_example}
 # Filter points with Classification == 2

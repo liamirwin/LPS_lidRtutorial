@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This code demonstrates an example of generating <strong>pixel-based summary metrics</strong> of LiDAR data. This is a common task to capture critical information describing the vertical distribution of lidar returns across a regular grid (raster). Pixel metrics are used in various predictive modelling tasks and often to capture critical vegetation characteristics ranging from height to variability and cover.</p>
+<p>This code demonstrates an example of generating <strong>pixel-based summary metrics</strong> of lidar data. This is a common task to capture critical information describing the vertical distribution of lidar returns across a regular grid (raster). Pixel metrics are used in various predictive modelling tasks and often to capture critical vegetation characteristics ranging from height to variability and cover.</p>
 <p>Beyond statistical summary metrics such as (<em>mean</em>, <em>max</em>, <em>sd</em>, etc), many researchers have developed custom metrics linked to critical vegetation attributes such as <strong>leaf-area index</strong>, <strong>vertical complexity indices</strong>, etc.</p>
 <p>Additional metrics can also be generated with <code>lidR</code> using <strong>voxel approaches</strong>, where three-dimensional sub-compartments are fit to better capture complexity — <em>at the cost of vastly increasing computational</em> requirements and introducing additional parameters.</p>
 <p>Classically, lidar metrics used in vegetation characterization typically fall under three categories:</p>
@@ -245,7 +245,6 @@ Metrics describing the shape of the distribution of returns often capture additi
 <li><p><strong>Cover metrics</strong><br>
 Often referred directly to as <em>canopy cover</em>, these metrics generally describe the proportion of returns (as a %) above a certain threshold. Typically used to generally describe how much vegetation (e.g.&nbsp;above 2m) there is compared to ground and other lower surfaces (designed for forest).</p></li>
 </ol>
-<p><a href="img/als_metrics_cs.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/als_metrics_cs.png" class="img-fluid"></a></p>
 </section>
 <section id="environment" class="level2">
 <h2 class="anchored" data-anchor-id="environment">Environment</h2>
@@ -263,7 +262,7 @@ Often referred directly to as <em>canopy cover</em>, these metrics generally des
 <h2 class="anchored" data-anchor-id="basic-usage">Basic Usage</h2>
 <p>To begin we compute simple metrics including mean and max height of points within 10x10 m pixels and visualizing the results. The code shows how to compute multiple metrics simultaneously and use predefined metric sets. Advanced usage introduces user-defined metrics for more specialized calculations.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the normalized LiDAR data</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the normalized lidar data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>pixel_metrics()</code> function calculates structural metrics within a defined spatial resolution (<code>res</code>).</p>
@@ -272,7 +271,7 @@ Often referred directly to as <em>canopy cover</em>, these metrics generally des
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>hmean <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">mean</span>(Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>hmean</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -285,10 +284,10 @@ Often referred directly to as <em>canopy cover</em>, these metrics generally des
 <div id="fig-metrics-mean-height" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-metrics-mean-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_metrics_files/figure-html/fig-metrics-mean-height-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: Raster of mean LiDAR return height (Z) calculated at a 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-mean-height-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+<a href="04_metrics_files/figure-html/fig-metrics-mean-height-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Raster of mean lidar return height (Z) calculated at a 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-mean-height-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metrics-mean-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Raster of mean LiDAR return height (Z) calculated at a 10m resolution.
+Figure&nbsp;1: Raster of mean lidar return height (Z) calculated at a 10m resolution.
 </figcaption>
 </figure>
 </div>
@@ -299,7 +298,7 @@ Figure&nbsp;1: Raster of mean LiDAR return height (Z) calculated at a 10m resolu
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hmax <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">max</span>(Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>hmax</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 1  (nrow, ncol, nlyr)</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -312,10 +311,10 @@ Figure&nbsp;1: Raster of mean LiDAR return height (Z) calculated at a 10m resolu
 <div id="fig-metrics-max-height" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-metrics-max-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_metrics_files/figure-html/fig-metrics-max-height-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: Raster of maximum LiDAR return height (Z) calculated at a 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-max-height-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+<a href="04_metrics_files/figure-html/fig-metrics-max-height-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Raster of maximum lidar return height (Z) calculated at a 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-max-height-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metrics-max-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Raster of maximum LiDAR return height (Z) calculated at a 10m resolution.
+Figure&nbsp;2: Raster of maximum lidar return height (Z) calculated at a 10m resolution.
 </figcaption>
 </figure>
 </div>
@@ -327,7 +326,7 @@ Figure&nbsp;2: Raster of maximum LiDAR return height (Z) calculated at a 10m res
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">list</span>(<span class="at">hmax =</span> <span class="fu">max</span>(Z), <span class="at">hmean =</span> <span class="fu">mean</span>(Z)), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>metrics</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 2  (nrow, ncol, nlyr)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 2  (nrow, ncol, nlyr)</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -340,7 +339,7 @@ Figure&nbsp;2: Raster of maximum LiDAR return height (Z) calculated at a 10m res
 <div id="fig-metrics-multi" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-metrics-multi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_metrics_files/figure-html/fig-metrics-multi-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;3: Raster plot showing multiple metrics (maximum and mean height) calculated simultaneously at 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-multi-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+<a href="04_metrics_files/figure-html/fig-metrics-multi-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3: Raster plot showing multiple metrics (maximum and mean height) calculated simultaneously at 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-multi-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metrics-multi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Raster plot showing multiple metrics (maximum and mean height) calculated simultaneously at 10m resolution.
@@ -355,7 +354,7 @@ Figure&nbsp;3: Raster plot showing multiple metrics (maximum and mean height) ca
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> .stdmetrics_z, <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>metrics</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; class       : SpatRaster </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; size        : 26, 26, 36  (nrow, ncol, nlyr)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; dimensions  : 26, 26, 36  (nrow, ncol, nlyr)</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; resolution  : 10, 10  (x, y)</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; extent      : 2670500, 2670760, 1258730, 1258990  (xmin, xmax, ymin, ymax)</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; coord. ref. : CH1903+ / LV95 (EPSG:2056) </span></span>
@@ -368,7 +367,7 @@ Figure&nbsp;3: Raster plot showing multiple metrics (maximum and mean height) ca
 <div id="fig-metrics-std" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-metrics-std-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_metrics_files/figure-html/fig-metrics-std-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;4: Range of Metrics Raster calculated from predefined .stdmetrics_z set."><img src="04_metrics_files/figure-html/fig-metrics-std-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+<a href="04_metrics_files/figure-html/fig-metrics-std-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4: Range of Metrics Raster calculated from predefined .stdmetrics_z set."><img src="04_metrics_files/figure-html/fig-metrics-std-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metrics-std-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Range of Metrics Raster calculated from predefined <code>.stdmetrics_z</code> set.
@@ -377,6 +376,7 @@ Figure&nbsp;4: Range of Metrics Raster calculated from predefined <code>.stdmetr
 </div>
 </div>
 </div>
+<p>We can examine the distribution of the standard deviation of return heights across the 10m grid cells by sub-setting this metric and plotting the raster. Even this simple metric demonstrates the variability in vertical vegetation structure across this dataset.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a specific metric from the predefined set</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(metrics, <span class="st">"zsd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -384,10 +384,10 @@ Figure&nbsp;4: Range of Metrics Raster calculated from predefined <code>.stdmetr
 <div id="fig-metrics-zsd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-metrics-zsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_metrics_files/figure-html/fig-metrics-zsd-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;5: Raster of the standard deviation of LiDAR return heights (zsd), a metric from the .stdmetrics_z set."><img src="04_metrics_files/figure-html/fig-metrics-zsd-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+<a href="04_metrics_files/figure-html/fig-metrics-zsd-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;5: Raster of the standard deviation of lidar return heights (zsd), a metric from the .stdmetrics_z set."><img src="04_metrics_files/figure-html/fig-metrics-zsd-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metrics-zsd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Raster of the standard deviation of LiDAR return heights (<code>zsd</code>), a metric from the <code>.stdmetrics_z</code> set.
+Figure&nbsp;5: Raster of the standard deviation of lidar return heights (<code>zsd</code>), a metric from the <code>.stdmetrics_z</code> set.
 </figcaption>
 </figure>
 </div>
@@ -402,14 +402,16 @@ Figure&nbsp;5: Raster of the standard deviation of LiDAR return heights (<code>z
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<a href="https://r-lidar.github.io/lidRbook/metrics.html#metrics-3rd-party">3rd party LiDAR metrics packages</a>
+<a href="https://r-lidar.github.io/lidRbook/metrics.html#metrics-3rd-party">3rd party lidar metrics packages</a>
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><code>lidR</code> provides flexibility for users to define custom metrics. Check out 3rd party packages like <a href="https://github.com/ptompalski/lidRmetrics"><code>lidRmetrics</code></a> for suites of advanced metrics typically demonstrated in peer-reviewed articles and implemented in <code>lidR</code> through <a href="https://github.com/ptompalski/lidRmetrics"><code>lidRmetrics</code></a>.</p>
 </div>
 </div>
+<p>We will present several metrics often tied to vegetation and biodiversity, for an overview of connecting metrics with habitat see <a href="http://doi.org/10.1016/j.ecolind.2016.02.057" title="Coops, N. C., Tompaski, P., Nijland, W., Rickbeil, G. J. M., Nielsen, S. E., Bater, C. W., &amp; Stadt, J. J. (2016). A forest structure habitat index based on airborne laser scanning data. Ecological Indicators, 67, 346-357.">this article</a>.</p>
 <p><a href="https://ptompalski.github.io/lidRmetrics/reference/metrics_percabove.html" title="Proportion of returns above a threshold (2m) is commonly used to approximate canopy cover in forests and beyond">Canopy Cover</a></p>
+<p>Canopy cover is often estimated using the proportion of lidar returns generated over some threshold. Two metres is commonly used, ultimately canopy cover seeks to quantify relatively how much vegetation (points) is present.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cc_metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">metrics_percabove</span>(<span class="at">z =</span> Z, <span class="at">threshold =</span> <span class="dv">2</span>, <span class="at">zmin =</span> <span class="dv">0</span>), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cc_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -417,16 +419,17 @@ Figure&nbsp;5: Raster of the standard deviation of LiDAR return heights (<code>z
 <div id="fig-metrics-canopy-cover" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-metrics-canopy-cover-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_metrics_files/figure-html/fig-metrics-canopy-cover-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;6: Canopy cover metric, calculated as the proportion of LiDAR returns above a 2m threshold."><img src="04_metrics_files/figure-html/fig-metrics-canopy-cover-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+<a href="04_metrics_files/figure-html/fig-metrics-canopy-cover-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;6: Canopy cover metric, calculated as the proportion of lidar returns above a 2m threshold."><img src="04_metrics_files/figure-html/fig-metrics-canopy-cover-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metrics-canopy-cover-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Canopy cover metric, calculated as the proportion of LiDAR returns above a 2m threshold.
+Figure&nbsp;6: Canopy cover metric, calculated as the proportion of lidar returns above a 2m threshold.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="https://ptompalski.github.io/lidRmetrics/reference/metrics_lad.html" title="LAD profiles are commonly used in predictive modelling to approximate the leaf area index (LAI) of vegetation with LiDAR">Leaf Area Density Profiles</a> (<a href="http://dx.doi.org/10.1016/j.rse.2014.10.004" title="Journal article credited with LAD metrics formulae">Bouvier et al.&nbsp;2015</a>)</p>
+<p><a href="https://ptompalski.github.io/lidRmetrics/reference/metrics_lad.html" title="LAD profiles are commonly used in predictive modelling to approximate the leaf area index (LAI) of vegetation with lidar">Leaf Area Density Profiles</a> (<a href="http://dx.doi.org/10.1016/j.rse.2014.10.004" title="Journal article credited with LAD metrics formulae">Bouvier et al.&nbsp;2015</a>)</p>
+<p>Leaf Area Density (LAD) profiles describe the vertical distribution of foliage within the canopy. The method estimates the amount of leaf material in successive horizontal layers by modeling how lidar pulses are intercepted as they travel down through the vegetation.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lad_metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">metrics_lad</span>(<span class="at">z =</span> Z), <span class="at">res =</span> <span class="dv">10</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lad_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -434,7 +437,7 @@ Figure&nbsp;6: Canopy cover metric, calculated as the proportion of LiDAR return
 <div id="fig-metrics-lad" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-metrics-lad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_metrics_files/figure-html/fig-metrics-lad-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Figure&nbsp;7: Raster plots of Leaf Area Density (LAD) profile metrics, calculated at 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-lad-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
+<a href="04_metrics_files/figure-html/fig-metrics-lad-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Figure&nbsp;7: Raster plots of Leaf Area Density (LAD) profile metrics, calculated at 10m resolution."><img src="04_metrics_files/figure-html/fig-metrics-lad-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-metrics-lad-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: Raster plots of Leaf Area Density (LAD) profile metrics, calculated at 10m resolution.
@@ -443,12 +446,28 @@ Figure&nbsp;7: Raster plots of Leaf Area Density (LAD) profile metrics, calculat
 </div>
 </div>
 </div>
-<p>[Dispersion and Vertical Complexity]</p>
-<p>While standard deviation (zsd) gives a general sense of height variability, dispersion metrics provide a more nuanced characterization of how LiDAR points are distributed vertically within the canopy. They help quantify the structural complexity of vegetation, which is crucial for applications like habitat modeling and biomass estimation.</p>
+<p><code>The Coefficient of Variation of LAD (lad_cv)</code> quantifies the uniformity of the vertical foliage distribution. A high <code>lad_cv</code> value indicates that foliage is concentrated in a specific layer (e.g., a simple, even-aged canopy), while a low value suggests foliage is more evenly spread across multiple layers, indicating greater vertical complexity.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate several dispersion metrics. zmax is required to compute VCI.</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>disp_metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">metrics_dispersion</span>(<span class="at">z =</span> Z, <span class="at">zmax =</span> <span class="dv">40</span>), <span class="at">res =</span> <span class="dv">10</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lad_metrics, <span class="st">"lad_cv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="04_metrics_files/figure-html/cvlad-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Raster plot of the Coefficient of Variation of Leaf Area Density (lad_cv) calculated at 10m resolution."><img src="04_metrics_files/figure-html/cvlad-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672" alt="Raster plot of the Coefficient of Variation of Leaf Area Density (lad_cv) calculated at 10m resolution."></a></p>
+</figure>
+</div>
+<figcaption>Raster plot of the Coefficient of Variation of Leaf Area Density (lad_cv) calculated at 10m resolution.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://ptompalski.github.io/lidRmetrics/reference/metrics_dispersion.html">Dispersion and Vertical Complexity</a></p>
+<p>While standard deviation (<code>zsd</code>) gives a general sense of height variability, dispersion metrics provide a more nuanced characterization of how lidar points are distributed vertically within the canopy. They help quantify the structural complexity of vegetation, which is crucial for applications like habitat modeling and biomass estimation.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate several dispersion metrics. zmax is required to compute VCI.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>disp_metrics <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(las, <span class="sc">~</span><span class="fu">metrics_dispersion</span>(<span class="at">z =</span> Z, <span class="at">zmax =</span> <span class="dv">40</span>), <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-metrics-dispersion" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -464,7 +483,7 @@ Figure&nbsp;8: A collection of dispersion metrics calculated at 10m resolution.
 </div>
 <p><code>Canopy Relief Ratio (CRR)</code> measures the position of the mean point height relative to the overall height range of the canopy. It is calculated as (mean(Z) - min(Z)) / (max(Z) - min(Z)). A value closer to 1 suggests that most of the vegetation volume is concentrated in the upper parts of the canopy.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics, <span class="st">"CRR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics, <span class="st">"CRR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-metrics-crr" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -478,9 +497,9 @@ Figure&nbsp;9: Canopy Relief Ratio (CRR) at 10m resolution, indicating the verti
 </div>
 </div>
 </div>
-<p><code>Vertical Complexity Index (VCI)</code> uses entropy to quantify how evenly the LiDAR returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).</p>
+<p><code>Vertical Complexity Index (VCI)</code> uses entropy to quantify how evenly the lidar returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics, <span class="st">"VCI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp_metrics, <span class="st">"VCI"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-metrics-vci" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -498,14 +517,14 @@ Figure&nbsp;10: Vertical Complexity Index (VCI) at 10m resolution. Higher values
 <p>We can also create our own user-defined metric functions. This demonstrates the flexibility of the <code>lidR</code> package!</p>
 <p>Here we generate an arbitrary function to compute a weighted mean between two attributes. We then calculate the mean height of 10 m pixels weighted by return Intensity (albeit a potentially meaningless metric)</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a user-defined function to compute weighted mean between two attributes</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, weight) { <span class="fu">sum</span>(x<span class="sc">*</span>weight)<span class="sc">/</span><span class="fu">sum</span>(weight) }</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute weighted mean of height (Z) as a function of return intensity</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>user_metric <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">f</span>(Z, Intensity), <span class="at">res =</span> <span class="dv">10</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the output</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(user_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a user-defined function to compute weighted mean between two attributes</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, weight) { <span class="fu">sum</span>(x<span class="sc">*</span>weight)<span class="sc">/</span><span class="fu">sum</span>(weight) }</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute weighted mean of height (Z) as a function of return intensity</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>user_metric <span class="ot">&lt;-</span> <span class="fu">pixel_metrics</span>(<span class="at">las =</span> las, <span class="at">func =</span> <span class="sc">~</span><span class="fu">f</span>(Z, Intensity), <span class="at">res =</span> <span class="dv">10</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the output</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(user_metric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-metrics-user-defined" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -523,7 +542,7 @@ Figure&nbsp;11: Raster plot of a user-defined metric: the mean height (Z) weight
 <section id="exercises-and-questions" class="level2">
 <h2 class="anchored" data-anchor-id="exercises-and-questions">Exercises and Questions</h2>
 <p>Using:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="st">"data/zrh_norm.laz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="e1." class="level4">
 <h4 class="anchored" data-anchor-id="e1.">E1.</h4>
 <p>Generate another metric set provided by the <code>lidRmetrics</code> package (voxel metrics will take too long)</p>

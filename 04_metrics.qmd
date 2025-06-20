@@ -15,9 +15,9 @@ source("R/setup_rgl.R")
 
 ## Overview
 
-This code demonstrates an example of generating **pixel-based summary metrics** of LiDAR data. This is a common task to capture critical information describing the vertical distribution of lidar returns across a regular grid (raster). Pixel metrics are used in various predictive modelling tasks and often to capture critical vegetation characteristics ranging from height to variability and cover. 
+This code demonstrates an example of generating **pixel-based summary metrics** of lidar data. This is a common task to capture critical information describing the vertical distribution of lidar returns across a regular grid (raster). Pixel metrics are used in various predictive modelling tasks and often to capture critical vegetation characteristics ranging from height to variability and cover.
 
-Beyond statistical summary metrics such as (*mean*, *max*, *sd*, etc), many researchers have developed custom metrics linked to critical vegetation attributes such as **leaf-area index**, **vertical complexity indices**, etc. 
+Beyond statistical summary metrics such as (*mean*, *max*, *sd*, etc), many researchers have developed custom metrics linked to critical vegetation attributes such as **leaf-area index**, **vertical complexity indices**, etc.
 
 Additional metrics can also be generated with `lidR` using **voxel approaches**, where three-dimensional sub-compartments are fit to better capture complexity — *at the cost of vastly increasing computational* requirements and introducing additional parameters.
 
@@ -32,8 +32,10 @@ Classically, lidar metrics used in vegetation characterization typically fall un
 3.  **Cover metrics**\
     Often referred directly to as *canopy cover*, these metrics generally describe the proportion of returns (as a %) above a certain threshold. Typically used to generally describe how much vegetation (e.g. above 2m) there is compared to ground and other lower surfaces (designed for forest).
 
-
-![](img/als_metrics_cs.png)
+```{r als_metrics_cs, include = FALSE}
+#| fig-cap: "Two-dimensional cross section of 20x20m area from `zrh_norm.laz` some metrics are generated and presented alongside the coordinates of the points within this example cell"
+source('R/metrics_transect.R')
+```
 
 ## Environment
 
@@ -52,7 +54,7 @@ library(lidRmetrics)
 To begin we compute simple metrics including mean and max height of points within 10x10 m pixels and visualizing the results. The code shows how to compute multiple metrics simultaneously and use predefined metric sets. Advanced usage introduces user-defined metrics for more specialized calculations.
 
 ```{r load_lidar_data}
-# Load the normalized LiDAR data
+# Load the normalized lidar data
 las <- readLAS(files = "data/zrh_norm.laz")
 ```
 
@@ -60,7 +62,7 @@ The `pixel_metrics()` function calculates structural metrics within a defined sp
 
 ```{r mean_height_pixel_metrics}
 #| label: fig-metrics-mean-height
-#| fig-cap: "Raster of mean LiDAR return height (Z) calculated at a 10m resolution."
+#| fig-cap: "Raster of mean lidar return height (Z) calculated at a 10m resolution."
 # Compute the mean height of points within 10x10 m pixels
 hmean <- pixel_metrics(las = las, func = ~mean(Z), res = 10)
 hmean
@@ -69,7 +71,7 @@ plot(hmean)
 
 ```{r max_height_pixel_metrics}
 #| label: fig-metrics-max-height
-#| fig-cap: "Raster of maximum LiDAR return height (Z) calculated at a 10m resolution."
+#| fig-cap: "Raster of maximum lidar return height (Z) calculated at a 10m resolution."
 # Compute the max height of points within 10x10 m pixels
 hmax <- pixel_metrics(las = las, func = ~max(Z), res = 10)
 hmax
@@ -98,10 +100,11 @@ metrics
 plot(metrics)
 ```
 
+We can examine the distribution of the standard deviation of return heights across the 10m grid cells by sub-setting this metric and plotting the raster. Even this simple metric demonstrates the variability in vertical vegetation structure across this dataset.
 
 ```{r predefined_metrics_pixel_metrics_zsd}
 #| label: fig-metrics-zsd
-#| fig-cap: "Raster of the standard deviation of LiDAR return heights (`zsd`), a metric from the `.stdmetrics_z` set."
+#| fig-cap: "Raster of the standard deviation of lidar return heights (`zsd`), a metric from the `.stdmetrics_z` set."
 # Plot a specific metric from the predefined set
 plot(metrics, "zsd")
 ```
@@ -109,21 +112,27 @@ plot(metrics, "zsd")
 ## Advanced Usage with User-Defined Metrics
 
 ::: callout-tip
-## [3rd party LiDAR metrics packages](https://r-lidar.github.io/lidRbook/metrics.html#metrics-3rd-party)
+## [3rd party lidar metrics packages](https://r-lidar.github.io/lidRbook/metrics.html#metrics-3rd-party)
 
 `lidR` provides flexibility for users to define custom metrics. Check out 3rd party packages like [`lidRmetrics`](https://github.com/ptompalski/lidRmetrics) for suites of advanced metrics typically demonstrated in peer-reviewed articles and implemented in `lidR` through [`lidRmetrics`](https://github.com/ptompalski/lidRmetrics).
 :::
 
+We will present several metrics often tied to vegetation and biodiversity, for an overview of connecting metrics with habitat see [this article](http://doi.org/10.1016/j.ecolind.2016.02.057 "Coops, N. C., Tompaski, P., Nijland, W., Rickbeil, G. J. M., Nielsen, S. E., Bater, C. W., & Stadt, J. J. (2016). A forest structure habitat index based on airborne laser scanning data. Ecological Indicators, 67, 346-357.").
+
 [Canopy Cover](https://ptompalski.github.io/lidRmetrics/reference/metrics_percabove.html "Proportion of returns above a threshold (2m) is commonly used to approximate canopy cover in forests and beyond")
+
+Canopy cover is often estimated using the proportion of lidar returns generated over some threshold. Two metres is commonly used, ultimately canopy cover seeks to quantify relatively how much vegetation (points) is present.
 
 ```{r canopy_cover}
 #| label: fig-metrics-canopy-cover
-#| fig-cap: "Canopy cover metric, calculated as the proportion of LiDAR returns above a 2m threshold."
+#| fig-cap: "Canopy cover metric, calculated as the proportion of lidar returns above a 2m threshold."
 cc_metrics <- pixel_metrics(las, func = ~metrics_percabove(z = Z, threshold = 2, zmin = 0), res = 10)
 plot(cc_metrics)
 ```
 
-[Leaf Area Density Profiles](https://ptompalski.github.io/lidRmetrics/reference/metrics_lad.html "LAD profiles are commonly used in predictive modelling to approximate the leaf area index (LAI) of vegetation with LiDAR") ([Bouvier et al. 2015](http://dx.doi.org/10.1016/j.rse.2014.10.004 "Journal article credited with LAD metrics formulae"))
+[Leaf Area Density Profiles](https://ptompalski.github.io/lidRmetrics/reference/metrics_lad.html "LAD profiles are commonly used in predictive modelling to approximate the leaf area index (LAI) of vegetation with lidar") ([Bouvier et al. 2015](http://dx.doi.org/10.1016/j.rse.2014.10.004 "Journal article credited with LAD metrics formulae"))
+
+Leaf Area Density (LAD) profiles describe the vertical distribution of foliage within the canopy. The method estimates the amount of leaf material in successive horizontal layers by modeling how lidar pulses are intercepted as they travel down through the vegetation.
 
 ```{r lad_metrics}
 #| label: fig-metrics-lad
@@ -132,9 +141,17 @@ lad_metrics <- pixel_metrics(las, ~metrics_lad(z = Z), res = 10)
 plot(lad_metrics)
 ```
 
-[Dispersion and Vertical Complexity]
+`The Coefficient of Variation of LAD (lad_cv)` quantifies the uniformity of the vertical foliage distribution. A high `lad_cv` value indicates that foliage is concentrated in a specific layer (e.g., a simple, even-aged canopy), while a low value suggests foliage is more evenly spread across multiple layers, indicating greater vertical complexity.
 
-While standard deviation (zsd) gives a general sense of height variability, dispersion metrics provide a more nuanced characterization of how LiDAR points are distributed vertically within the canopy. They help quantify the structural complexity of vegetation, which is crucial for applications like habitat modeling and biomass estimation.
+```{r cvlad}
+#| fig-cap: "Raster plot of the Coefficient of Variation of Leaf Area Density (lad_cv) calculated at 10m resolution."
+
+plot(lad_metrics, "lad_cv")
+```
+
+[Dispersion and Vertical Complexity](https://ptompalski.github.io/lidRmetrics/reference/metrics_dispersion.html)
+
+While standard deviation (`zsd`) gives a general sense of height variability, dispersion metrics provide a more nuanced characterization of how lidar points are distributed vertically within the canopy. They help quantify the structural complexity of vegetation, which is crucial for applications like habitat modeling and biomass estimation.
 
 ```{r dispersion_metrics}
 #| label: fig-metrics-dispersion
@@ -144,6 +161,7 @@ disp_metrics <- pixel_metrics(las, ~metrics_dispersion(z = Z, zmax = 40), res = 
 plot(disp_metrics)
 
 ```
+
 `Canopy Relief Ratio (CRR)` measures the position of the mean point height relative to the overall height range of the canopy. It is calculated as (mean(Z) - min(Z)) / (max(Z) - min(Z)). A value closer to 1 suggests that most of the vegetation volume is concentrated in the upper parts of the canopy.
 
 ```{r plot_crr}
@@ -151,19 +169,20 @@ plot(disp_metrics)
 #| fig-cap: "Canopy Relief Ratio (CRR) at 10m resolution, indicating the vertical position of the mean energy return within the canopy."
 plot(disp_metrics, "CRR")
 ```
-`Vertical Complexity Index (VCI)` uses entropy to quantify how evenly the LiDAR returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).
+
+`Vertical Complexity Index (VCI)` uses entropy to quantify how evenly the lidar returns are distributed throughout the vertical profile. Higher VCI values indicate a more complex, multi-layered canopy structure (e.g., a forest with understory, mid-story, and overstory). Lower values suggest a simpler structure where points are clumped at specific heights (e.g., a field of grass or a dense, flat-topped plantation).
 
 ```{r plot_vci}
 #| label: fig-metrics-vci
 #| fig-cap: "Vertical Complexity Index (VCI) at 10m resolution. Higher values indicate a more complex vertical distribution of vegetation."
 plot(disp_metrics, "VCI")
 ```
+
 `User Defined Metrics`
 
 We can also create our own user-defined metric functions. This demonstrates the flexibility of the `lidR` package!
 
-Here we generate an arbitrary function to compute a weighted mean between two attributes.
-We then calculate the mean height of 10 m pixels weighted by return Intensity (albeit a potentially meaningless metric)
+Here we generate an arbitrary function to compute a weighted mean between two attributes. We then calculate the mean height of 10 m pixels weighted by return Intensity (albeit a potentially meaningless metric)
 
 ```{r user_defined_metric_pixel_metrics}
 #| label: fig-metrics-user-defined
@@ -197,7 +216,6 @@ Map the density of ground returns at a 5 m resolution (in points/m2). Hints: `fi
 #### E3.
 
 Assuming that biomass is estimated using the equation `B = 0.5 * mean Z + 0.9 * 90th percentile of Z` applied on first returns only, map the biomass.
-
 
 ## Conclusion
 

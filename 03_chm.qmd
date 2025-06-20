@@ -8,12 +8,14 @@ source("R/setup_rgl.R")
 
 ## Relevant Resources
 
--   [Code](https://github.com/tgoodbody/lidRtutorial/blob/master/R/03_chm.R)
+-   [Code](https://github.com/liamirwin/LPS_lidRtutorial/blob/master/R/03_chm.R)
 -   [lidRbook section](https://r-lidar.github.io/lidRbook/dsm.html)
 
 ## Overview
 
-This code demonstrates the creation of a Canopy Height Model (CHM). It shows different algorithms for generating CHMs and provides options for adjusting resolution and filling empty pixels.
+This code demonstrates the creation of a Canopy Height Model (CHM). Similar to the DTM, a CHM is a rasterized summary of the upper-most surface of the height normalized lidar point cloud. Often this is simply generated as maximum height for each cell. CHMs often serve as fundamental layers for vegetation and biodiversity related applications.
+
+We present different algorithms for generating CHMs and provide options for adjusting resolution and filling empty pixels.
 
 ## Environment
 
@@ -28,12 +30,12 @@ library(terra)
 
 ## Data Preprocessing
 
-We once again load the LiDAR, this time we sample points randomly to `decimate` the point cloud and simulate lower density lidar data.
+Once again we load the lidar in to memory with `readLAS`. this time however, we sample points randomly to `decimate` the point cloud and simulate lower density lidar data using `decimate_points()`.
 
-The sampling/return density of your point cloud (particularly from the canopy surface for a CHM) typically dictates the spatial resolution
+The sampling/return density of your point cloud (particularly those originating from the canopy surface for a CHM) dictates the lowest acceptable spatial resolution.
 
 ```{r load_lidar_data}
-# Load LiDAR data and reduce point density
+# Load lidar data and reduce point density
 las <- readLAS(files = "data/zrh_norm.laz")
 
 # Density of the data is reduced from 20 points/m² to 10 points/m² for example purposes
@@ -41,20 +43,22 @@ las <- decimate_points(las, random(density = 10))
 ```
 
 ``` r
-# Visualize the LiDAR point cloud
+# Visualize the lidar point cloud
 plot(las)
 ```
 
 ```{r, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
 #| label: fig-chm-initial-las
-#| fig-cap: "Normalized LiDAR point cloud used for generating the Canopy Height Model (CHM)."
-# Visualize the LiDAR point cloud
+#| fig-cap: "Normalized lidar point cloud used for generating the Canopy Height Model (CHM)."
+# Visualize the lidar point cloud
 plot(las, bg = "white")
 ```
 
 ## Point-to-Raster Based Algorithm
 
-We demonstrate a simple method for generating Canopy Height Models (CHMs). Below, the `rasterize_canopy()` function with the `p2r()` algorithm assigns the elevation of the highest point within each grid cell to a corresponding pixel. The resulting CHM is then visualized using the `plot()` function.
+First we apply a simple method for generating Canopy Height Models (CHMs). 
+
+Below, the `rasterize_canopy()` function with the `p2r()` algorithm assigns the elevation of the highest point within each 2m grid cell to a corresponding pixel. The resulting CHM is then visualized using the `plot()` function.
 
 ```{r}
 #| label: fig-chm-p2r-2m
@@ -66,7 +70,7 @@ chm <- rasterize_canopy(las = las, res = 2, algorithm = p2r())
 plot(chm)
 ```
 
-First we generate a CHM at 2m spatial resolution
+Next, by increasing the resolution of the CHM to 1m (reducing the grid cell size), we get a more detailed representation of the canopy, but also have more empty pixels.
 
 ```{r}
 #| label: fig-chm-p2r-1m
@@ -76,7 +80,7 @@ chm <- rasterize_canopy(las = las, res = 1, algorithm = p2r())
 plot(chm)
 ```
 
-By increasing the resolution of the CHM to 1m (reducing the grid cell size), we get a more detailed representation of the canopy, but also have more empty pixels.
+Further increasing to 0.5m causes more empty pixels where no valid points are present. (see tiny white dots on CHM)
 
 ```{r}
 #| label: fig-chm-p2r-subcircle
@@ -86,10 +90,9 @@ chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.15))
 plot(chm)
 ```
 
-Further increasing to 50 cm causes more empty pixels where no valid points are present. (see tiny white dots on CHM)
+The `rasterize_canopy()` function with the `p2r()` algorithm allows the use of the `subcircle` option, which turns each lidar point into a disc of 8 points with a specified radius. This can help to capture more fine-grained canopy details, especially from lower density point clouds, resulting in a complete CHM.
 
-
-The `rasterize_canopy()` function with the `p2r()` algorithm allows the use of the `subcircle` option, which turns each LiDAR point into a disc of 8 points with a specified radius. This can help to capture more fine-grained canopy details, especially from lower density point clouds, resulting in a complete CHM.
+Increasing the `subcircle` radius may not necessarily result in meaningful CHMs, as it could lead to over-smoothing or loss of important canopy information.
 
 ```{r}
 #| label: fig-chm-p2r-large-subcircle
@@ -99,7 +102,8 @@ chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.8))
 plot(chm)
 ```
 
-Increasing the `subcircle` radius may not necessarily result in meaningful CHMs, as it could lead to over-smoothing or loss of important canopy information.
+
+The `p2r()` algorithm also allows filling empty pixels using TIN (Triangulated Irregular Network) interpolation, which can help in areas with sparse lidar points to obtain a smoother CHM.
 
 ```{r}
 #| label: fig-chm-p2r-na-fill
@@ -109,11 +113,9 @@ chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.0, n
 plot(chm)
 ```
 
-The `p2r()` algorithm also allows filling empty pixels using TIN (Triangulated Irregular Network) interpolation, which can help in areas with sparse LiDAR points to obtain a smoother CHM.
-
 ## Triangulation Based Pitfree Algorithm
 
-The `rasterize_canopy` function can also use the Khosravipour et al. 2014 pit-free algorithm with specified height thresholds and a maximum edge length to generate a CHM. This algorithm aims to correct depressions in the CHM surface.
+The `rasterize_canopy` function can also use the Khosravipour et al. 2014 `pitfree()` algorithm with specified height thresholds and a maximum edge length to generate a CHM. This algorithm aims to correct depressions in the CHM surface, especially designed to prevent gaps in CHMs from low density lidar.
 
 ::: callout-tip
 ## Pit-free algorithm
@@ -131,13 +133,13 @@ chm <- rasterize_canopy(las = las, res = 0.5, algorithm = pitfree(thresholds, ma
 plot(chm)
 ```
 
-The `subcircle` option can be used with the pit-free algorithm to create finer spatial resolution CHMs with subcircles for each LiDAR point, similar to the point-to-raster based algorithm.
+The `subcircle` option can also be used with the `pitfree()` algorithm to create finer spatial resolution CHMs with subcircles for each lidar point, similar to the point-to-raster based algorithm.
 
 ```{r}
 #| label: fig-chm-pitfree-subcircle
 #| fig-cap: "CHM generated using the `pitfree` algorithm combined with the `subcircle` option for finer detail."
 # Using the 'subcircle' option with the pit-free algorithm
-chm <- rasterize_canopy(las = las, res = 0.5, algorithm = pitfree(thresholds, max_edge, 0.1))
+chm <- rasterize_canopy(las = las, res = 0.25, algorithm = pitfree(thresholds, max_edge, 0.1))
 plot(chm)
 ```
 
@@ -172,4 +174,4 @@ Create a 10 m CHM using a algorithm of your choice. Would this information still
 
 ## Conclusion
 
-This tutorial covered different algorithms for generating Canopy Height Models (CHMs) from LiDAR data using the `lidR` package in R. It includes point-to-raster-based algorithms and triangulation-based algorithms, as well as post-processing using the `terra` package.
+This tutorial covered different algorithms for generating Canopy Height Models (CHMs) from lidar data using the `lidR` package in R. It includes point-to-raster-based algorithms and triangulation-based algorithms, as well as post-processing using the `terra` package.

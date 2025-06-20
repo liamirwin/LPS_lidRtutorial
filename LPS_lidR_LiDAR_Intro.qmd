@@ -1,5 +1,5 @@
 ---
-title: "`lidR`: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications"
+title: "`lidR`: (A workshop for) Airborne lidar Data Manipulation and Visualization for Environmental Applications"
 author: "Liam A.K. Irwin, Brent Murray"
 favicon: img/logo.png
 format:
@@ -28,7 +28,7 @@ fig-dpi: 300
 -   The lidR package - a brief introduction
 -   Workshop overview
 
-## What is LiDAR?
+## What is lidar?
 
 -   **Li**ght **D**etection **a**nd **R**anging
 -   Active form of remote sensing
@@ -38,13 +38,26 @@ fig-dpi: 300
 ::: notes
 :::
 
-## LiDAR Data - Point Clouds
+## Lidar Data – Point Clouds
 
--   Discrete returns are aggregated as points in point clouds (LAS/LAZ)
--   These datasets contain geo-referenced points with three-dimensional (XYZ) coordinates, and other attributes; intensity, return number etc...
--   Point clouds can be processed into summaries of vegetation structure with lidR
+::: columns
 
-\[![](img/plot_z_360.gif){fig-align="right"}\]
+::: column
+
+- Discrete returns are aggregated into point clouds (`.LAS/.LAZ`)  
+- Lidar points have three-dimensional (`XYZ`) coordinates, and other attributes (`Intensity`, `ReturnNumber`, etc...)  
+- Point clouds can be processed into summaries of vegetation structure with **lidR**
+
+:::
+
+::: column
+
+![](img/plot_z_360.gif){width="120%"}
+
+:::
+
+:::
+
 
 ::: notes
 As with many remote sensing data analyses tasks we are seeking to produce `information` from `simplification` to pull a signal of interest (in this case variability in vegetation structure) out of our dataset (a dense point cloud of three-dimensional coordinates that characterize the vegetation)
@@ -54,23 +67,35 @@ To do so we often generate summary metrics that act similarly to spectral indice
 
 ## lidR
 
--   Written by Jean-Romain Roussel
--   Package for `manipulating` and `visualizing` ALS data
--   Focused on forestry and ecological applications but broadly applicable beyond
--   Written entirely open source within R-geospatial ecosystem (terra/sf)
--   Runs efficiently with backend C++ code to perform processing
+::: columns
+
+::: column
+- Written by `Jean-Romain Roussel`  
+- Package for `manipulating` and `visualizing` ALS data  
+- Written entirely open source within R-geospatial ecosystem (`terra`/`sf`)  
+- Most processes run efficiently with back-end `C++` code
+:::
+
+::: column
+```{r lidR-downloads, echo=FALSE, out.width="100%"}
+source('R/lidR_downloads_plot.R')
+```
+:::
+
+:::  
 
 ::: notes
+
 :::
 
 ## Workshop Outline
 
--   Introduction to Lidar and lidR (09:00)
+-   Introduction to lidar and lidR (09:00)
 -   Reading LAS and LAZ files (09:10)
 -   Point Classification and filtering (9:15)
 -   Digital Terrain Models and Height Normalization (9:25)
 -   Canopy Height Models (9:35)
--   Lidar Summary Metrics (9:50)
+-   lidar Summary Metrics (9:50)
 -   File Collection Processing Engine (10:10)
 
 ## Get Set Up!

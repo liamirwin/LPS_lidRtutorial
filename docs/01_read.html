@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -193,9 +193,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-and-inspect-lidar-data" id="toc-load-and-inspect-lidar-data" class="nav-link" data-scroll-target="#load-and-inspect-lidar-data">Load and Inspect lidar Data</a></li>
   <li><a href="#visualizing-lidar-data" id="toc-visualizing-lidar-data" class="nav-link" data-scroll-target="#visualizing-lidar-data">Visualizing lidar Data</a></li>
   </ul></li>
-  <li><a href="#point-classification" id="toc-point-classification" class="nav-link" data-scroll-target="#point-classification">Point Classification</a>
+  <li><a href="#point-classification" id="toc-point-classification" class="nav-link" data-scroll-target="#point-classification">Point Classification</a></li>
+  <li><a href="#filtering-dataset" id="toc-filtering-dataset" class="nav-link" data-scroll-target="#filtering-dataset">Filtering Dataset</a>
   <ul>
-  <li><a href="#selecting-attributes-of-interest" id="toc-selecting-attributes-of-interest" class="nav-link" data-scroll-target="#selecting-attributes-of-interest">Selecting Attributes of Interest</a></li>
   <li><a href="#filtering-points-on-the-fly-efficient" id="toc-filtering-points-on-the-fly-efficient" class="nav-link" data-scroll-target="#filtering-points-on-the-fly-efficient">Filtering points on-the-fly (efficient)</a></li>
   <li><a href="#filtering-points-using-filter_poi" id="toc-filtering-points-using-filter_poi" class="nav-link" data-scroll-target="#filtering-points-using-filter_poi">Filtering Points using <code>filter_poi()</code></a></li>
   </ul></li>
@@ -441,9 +441,9 @@ Note
 <p>Our example ALS dataset, collected in 2014 over Zürich uses an older <strong>LAS 1.1 standard</strong>. Its classification codes are interpreted as follows:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 45%">
-<col style="width: 27%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -475,8 +475,12 @@ Note
 </tr>
 </tbody>
 </table>
-<section id="selecting-attributes-of-interest" class="level3">
-<h3 class="anchored" data-anchor-id="selecting-attributes-of-interest">Selecting Attributes of Interest</h3>
+</section>
+<section id="filtering-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-dataset">Filtering Dataset</h2>
+<p>Often we do not need the entire set of attributes loaded into memory, or may want a particular subset of points. We can use <code>Classification</code> as well as other attributes to filter points.</p>
+<section id="filtering-points-on-the-fly-efficient" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-points-on-the-fly-efficient">Filtering points on-the-fly (efficient)</h3>
 <p>The <code>readLAS()</code> function allows us to select specific attributes to be loaded into memory. This is useful to reduce memory requirements when working with large lidar datasets.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load only the xyz coordinates (X, Y, Z) and ignore other attributes</span></span>
@@ -501,10 +505,8 @@ Note
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">object.size</span>(las), <span class="st">"Mb"</span>)</span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "29.1 Mb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="filtering-points-on-the-fly-efficient" class="level3">
-<h3 class="anchored" data-anchor-id="filtering-points-on-the-fly-efficient">Filtering points on-the-fly (efficient)</h3>
-<p>We can load a subset of the lidar points based on certain criteria using the <code>filter</code> argument in directly in <code>readLAS()</code>.</p>
+<p>Here we load a subset of the lidar points based on certain criteria using the <code>filter</code> argument in directly in <code>readLAS()</code>.</p>
+<p>In this case we use a pre-existing filter during to subset only first returns-to see all run <code>readLAS(filter = "-help")</code> for a full list of these filters.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load only the first return points</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_norm.laz"</span>, <span class="at">filter =</span> <span class="st">"-keep_first"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -525,6 +527,7 @@ Note
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">object.size</span>(las), <span class="st">"Mb"</span>)</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "36 Mb"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Visualize this filtered dataset using the <code>plot()</code> function.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell" data-layout-align="center" data-rgl="true">
 <div class="cell-output-display">
@@ -540,9 +543,9 @@ Figure&nbsp;5: Point cloud showing only first returns, filtered on load with <co
 </div>
 </div>
 </div>
-<p>The <code>filter</code> argument in <code>readLAS()</code> can be used to apply transformations on-the-fly during loading (memory efficient). This can be useful for tasks such as filtering specific classifications.</p>
+<p>The <code>filter</code> argument in <code>readLAS()</code> can be useful for tasks such as filtering specific classifications, to isolate ground, remove noise, etc…</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load another version of the point cloud and visualize with an applied filter</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load another version of the point cloud and visualize with an applied filter to isolate ground points</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>las <span class="ot">&lt;-</span> <span class="fu">readLAS</span>(<span class="at">files =</span> <span class="st">"data/zrh_class.laz"</span>, <span class="at">filter =</span> <span class="st">"-keep_class 2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(las)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -563,7 +566,7 @@ Figure&nbsp;6: Point cloud showing only ground points, filtered on readLAS with 
 </section>
 <section id="filtering-points-using-filter_poi" class="level3">
 <h3 class="anchored" data-anchor-id="filtering-points-using-filter_poi">Filtering Points using <code>filter_poi()</code></h3>
-<p>An alternative method for filtering points is using the <code>filter_poi()</code> function, which allows filtering based on attributes of points after the pointcloud is loaded.</p>
+<p>Alternatively LASobjects loaded into memory with <code>readLAS()</code> can be filtered immediately using the <code>filter_poi()</code> function. These filters can be custom made by combining <a href="https://www.r-bloggers.com/2021/09/r-booleans-comparison-and-logical-operators/" title="Boolean operators in R">boolean operators</a> (==, !=, &gt;, &lt;, &amp;, |, etc…) with point cloud attributes to formulate logical statements. Statements are applied to points to assign <code>TRUE</code> (kept) or <code>FALSE</code> (filtered out) values.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter points with Classification == 2</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>class_2 <span class="ot">&lt;-</span> <span class="fu">filter_poi</span>(<span class="at">las =</span> las, Classification <span class="sc">==</span> <span class="dv">2</span>L)</span>

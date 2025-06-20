@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Liam A.K. Irwin, Brent Murray">
 
-<title>lidR: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications – lidRtutorial</title>
+<title>lidR: (A workshop for) Airborne lidar Data Manipulation and Visualization for Environmental Applications – lidRtutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -38,10 +38,13 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c3e9721a79885947f4bfdcdb0d329912.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -149,8 +152,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#what-is-lidar" id="toc-what-is-lidar" class="nav-link" data-scroll-target="#what-is-lidar">What is LiDAR?</a></li>
-  <li><a href="#lidar-data---point-clouds" id="toc-lidar-data---point-clouds" class="nav-link" data-scroll-target="#lidar-data---point-clouds">LiDAR Data - Point Clouds</a></li>
+  <li><a href="#what-is-lidar" id="toc-what-is-lidar" class="nav-link" data-scroll-target="#what-is-lidar">What is lidar?</a></li>
+  <li><a href="#lidar-data-point-clouds" id="toc-lidar-data-point-clouds" class="nav-link" data-scroll-target="#lidar-data-point-clouds">Lidar Data – Point Clouds</a></li>
   <li><a href="#lidr" id="toc-lidr" class="nav-link" data-scroll-target="#lidr">lidR</a></li>
   <li><a href="#workshop-outline" id="toc-workshop-outline" class="nav-link" data-scroll-target="#workshop-outline">Workshop Outline</a></li>
   <li><a href="#get-set-up" id="toc-get-set-up" class="nav-link" data-scroll-target="#get-set-up">Get Set Up!</a></li>
@@ -162,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><code>lidR</code>: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications</h1>
+<h1 class="title"><code>lidR</code>: (A workshop for) Airborne lidar Data Manipulation and Visualization for Environmental Applications</h1>
 </div>
 
 
@@ -194,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 <section id="what-is-lidar" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-lidar">What is LiDAR?</h2>
+<h2 class="anchored" data-anchor-id="what-is-lidar">What is lidar?</h2>
 <ul>
 <li><strong>Li</strong>ght <strong>D</strong>etection <strong>a</strong>nd <strong>R</strong>anging</li>
 <li>Active form of remote sensing</li>
@@ -205,14 +208,21 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </section>
-<section id="lidar-data---point-clouds" class="level2">
-<h2 class="anchored" data-anchor-id="lidar-data---point-clouds">LiDAR Data - Point Clouds</h2>
+<section id="lidar-data-point-clouds" class="level2">
+<h2 class="anchored" data-anchor-id="lidar-data-point-clouds">Lidar Data – Point Clouds</h2>
+<div class="columns">
+<div class="column">
 <ul>
-<li>Discrete returns are aggregated as points in point clouds (LAS/LAZ)</li>
-<li>These datasets contain geo-referenced points with three-dimensional (XYZ) coordinates, and other attributes; intensity, return number etc…</li>
-<li>Point clouds can be processed into summaries of vegetation structure with lidR</li>
+<li>Discrete returns are aggregated into point clouds (<code>.LAS/.LAZ</code>)<br>
+</li>
+<li>Lidar points have three-dimensional (<code>XYZ</code>) coordinates, and other attributes (<code>Intensity</code>, <code>ReturnNumber</code>, etc…)<br>
+</li>
+<li>Point clouds can be processed into summaries of vegetation structure with <strong>lidR</strong></li>
 </ul>
-<p>[<img src="img/plot_z_360.gif" class="img-fluid quarto-figure quarto-figure-right">]</p>
+</div><div class="column">
+<p><a href="img/plot_z_360.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/plot_z_360.gif" class="img-fluid" style="width:120.0%"></a></p>
+</div>
+</div>
 <div class="notes">
 <p>As with many remote sensing data analyses tasks we are seeking to produce <code>information</code> from <code>simplification</code> to pull a signal of interest (in this case variability in vegetation structure) out of our dataset (a dense point cloud of three-dimensional coordinates that characterize the vegetation)</p>
 <p>To do so we often generate summary metrics that act similarly to spectral indices in passive optical remote sensing, they ratio or generate statistics on the distribution of points (max, mean height, canopy cover, percentiles, leaf-area density profiles)</p>
@@ -220,13 +230,52 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="lidr" class="level2">
 <h2 class="anchored" data-anchor-id="lidr">lidR</h2>
+<div class="columns">
+<div class="column">
 <ul>
-<li>Written by Jean-Romain Roussel</li>
-<li>Package for <code>manipulating</code> and <code>visualizing</code> ALS data</li>
-<li>Focused on forestry and ecological applications but broadly applicable beyond</li>
-<li>Written entirely open source within R-geospatial ecosystem (terra/sf)</li>
-<li>Runs efficiently with backend C++ code to perform processing</li>
+<li>Written by <code>Jean-Romain Roussel</code><br>
+</li>
+<li>Package for <code>manipulating</code> and <code>visualizing</code> ALS data<br>
+</li>
+<li>Written entirely open source within R-geospatial ecosystem (<code>terra</code>/<code>sf</code>)<br>
+</li>
+<li>Most processes run efficiently with back-end <code>C++</code> code</li>
 </ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'lubridate'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="LPS_lidR_LiDAR_Intro_files/figure-html/lidR-downloads-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="LPS_lidR_LiDAR_Intro_files/figure-html/lidR-downloads-1.png" class="img-fluid figure-img" style="width:100.0%"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="notes">
 
 </div>
@@ -234,12 +283,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="workshop-outline" class="level2">
 <h2 class="anchored" data-anchor-id="workshop-outline">Workshop Outline</h2>
 <ul>
-<li>Introduction to Lidar and lidR (09:00)</li>
+<li>Introduction to lidar and lidR (09:00)</li>
 <li>Reading LAS and LAZ files (09:10)</li>
 <li>Point Classification and filtering (9:15)</li>
 <li>Digital Terrain Models and Height Normalization (9:25)</li>
 <li>Canopy Height Models (9:35)</li>
-<li>Lidar Summary Metrics (9:50)</li>
+<li>lidar Summary Metrics (9:50)</li>
 <li>File Collection Processing Engine (10:10)</li>
 </ul>
 </section>
@@ -655,6 +704,38 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
