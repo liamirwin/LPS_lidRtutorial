@@ -24,9 +24,9 @@ fig-dpi: 300
 
 ## Presenters
 
-Liam Irwin - PhD Student 
-Brent Murray - PhD Student
-Nicholas Coops - Professor
+-   Liam A.K. Irwin - PhD Student 
+-   Brent A. Murray - PhD Student
+-   Nicholas C. Coops - Professor
 
 Integrated Remote Sensing Studio
 University of British Columbia
@@ -107,7 +107,7 @@ source('R/lidR_downloads_plot.R')
 
 ::: column
 - lidR author `Jean-Romain Roussel` is commited to maintaining the `lidR` package as fully open source
-- He now does so through a `r-lidar` as consulting and development company targeted at lidar related applications
+- He now runs `r-lidar`; a consulting and development company targeted at lidar related applications
 - Visit `r-lidar.com` or contact `info@r-lidar.com` for more information
 :::
 
