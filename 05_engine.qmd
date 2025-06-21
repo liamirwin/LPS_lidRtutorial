@@ -155,6 +155,25 @@ max_z <- pixel_metrics(las = ctg, func = ~mean(Z), res = 20)
 plot(max_z)
 ```
 
+## Specifying catalog options
+
+We can define how the LAScatalog should be broken down into chunks for processing. A 10m buffer is added to each chunk to avoid edge artifacts when a function's calculations depend on neighboring points (also automatically applied by default).
+
+```{r specify_catalog_options_parallel}
+#| label: fig-catalog-chunks
+#| fig-cap: "Visualization of the `LAScatalog` processing chunks, with a size of 500m (red solid lines) and a 10m buffer (green dashed lines)."
+# Specify options
+opt_select(ctg) <- "xyz"
+opt_chunk_size(ctg) <- 500
+opt_chunk_buffer(ctg) <- 10
+opt_progress(ctg) <- TRUE
+
+# Visualize and summarize the catalog chunks
+plot(ctg, chunk = TRUE)
+summary(ctg)
+```
+
+
 ### Parallel computing
 
 In this section, we explore parallel computing using the `lidR` package.
@@ -178,23 +197,6 @@ Firstly, we load the `future` library to enable parallel processing.
 library(future)
 ```
 
-## Specify catalog options
-
-We define how the LAScatalog should be broken down into chunks for processing. A 10m buffer is added to each chunk to avoid edge artifacts when a function's calculations depend on neighboring points (also automatically applied by default).
-
-```{r specify_catalog_options_parallel}
-#| label: fig-catalog-chunks
-#| fig-cap: "Visualization of the `LAScatalog` processing chunks, with a size of 500m (red solid lines) and a 10m buffer (green dashed lines)."
-# Specify options
-opt_select(ctg) <- "xyz"
-opt_chunk_size(ctg) <- 500
-opt_chunk_buffer(ctg) <- 10
-opt_progress(ctg) <- TRUE
-
-# Visualize and summarize the catalog chunks
-plot(ctg, chunk = TRUE)
-summary(ctg)
-```
 
 ## Single core processing
 

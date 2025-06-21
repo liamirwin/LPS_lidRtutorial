@@ -32,7 +32,7 @@ Classically, lidar metrics used in vegetation characterization typically fall un
 3.  **Cover metrics**\
     Often referred directly to as *canopy cover*, these metrics generally describe the proportion of returns (as a %) above a certain threshold. Typically used to generally describe how much vegetation (e.g. above 2m) there is compared to ground and other lower surfaces (designed for forest).
 
-```{r als_metrics_cs, include = FALSE}
+```{r als_metrics_cs, echo = FALSE, message = FALSE, warning = FALSE}
 #| fig-cap: "Two-dimensional cross section of 20x20m area from `zrh_norm.laz` some metrics are generated and presented alongside the coordinates of the points within this example cell"
 source('R/metrics_transect.R')
 ```

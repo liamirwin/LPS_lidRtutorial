@@ -1,10 +1,10 @@
 # --- Prerequisites ---
-library(lidR)
-library(ggplot2)
-library(dplyr)
-library(tibble)
-library(purrr)
-library(lidRmetrics)
+library(lidR, quietly = TRUE)
+library(ggplot2, quietly = TRUE)
+library(dplyr, quietly = TRUE)
+library(tibble, quietly = TRUE)
+library(purrr, quietly = TRUE)
+library(lidRmetrics, quietly = TRUE)
 
 # --- Configuration Registries ---
 metric_calculation_registry <- tribble(
