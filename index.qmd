@@ -1,5 +1,5 @@
 ---
-title: "`lidR`: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications"
+title: "`lidR`: (A workshop for) Airborne Lidar Data Manipulation and Visualization for Environmental Applications"
 author:
   - name: "Liam A.K. Irwin"
     affiliation: "Integrated Remote Sensing Studio, University of British Columbia"
@@ -50,22 +50,30 @@ You can download the complete workshop package containing all code, data, and ex
 Unzip the first to a folder, and run the `.Rproj` file with RStudio installed for the easiest experience.
 Unzip `ctg_class.zip` and `ctg_norm.zip` to their respective folders in `data/ctg_*`
 
+![Target Folder and Data Structure for Workshop Contents](img/folder_structure.png)
+
 ## Requirements
 
 ### R version and Rstudio
 
--   You need to install a recent version of `R` i.e. `R 4.0.x` or newer.
+-   You need to install a recent version of `R` i.e. `R 4.x` or newer.
 -   We will work with [Rstudio](https://www.rstudio.com/). This IDE is not mandatory to follow the workshop but is highly recommended.
 
 ### R Packages
 
-You need to install the `lidR` package in its latest version (v \>= 4.0.0).
+::: callout-tip
+**Easy setup for new users**
+Please open the `LPS_lidRtutorial_package.Rproj` in RStudio.
+Next, open `01_read.R` to run code to automatically install packages.
+:::
+
+Please install the `lidR` package in its latest version (4.2.1).
 
 ``` r
 install.packages("lidR")
 ```
 
-To run all code in the tutorial yourself, you will need to install the following packages. You can use `lidR` without them, however.
+To run all code in the tutorial locally, you will need to install the following packages. You can use `lidR` without them or follow along with provided code and outputs.
 
 ``` r
 libs <- c("terra","viridis","future","sf","mapview")
@@ -89,7 +97,7 @@ devtools::install_github("ptompalski/lidRmetrics")
 
 We will be working with a sample ALS dataset [openly available](https://geolion.zh.ch/geodatensatz/show?nbid=2618 "Data Description and Access") for Canton Zürich flown in spring 2014.
 
-The raw data has been thinned to a uniform density to speed up processing.
+The raw data has been thinned to a uniform density (20 points/m2) to speed up processing.
 
 ## Estimated schedule {.smaller}
 

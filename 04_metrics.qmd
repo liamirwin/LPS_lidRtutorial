@@ -1,5 +1,5 @@
 ---
-title: "Lidar Summary metrics"
+title: "Lidar Summary Metrics"
 ---
 
 ```{r setup, include=FALSE}

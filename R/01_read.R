@@ -27,67 +27,61 @@ library(lidR)
 # Basic Usage
 # -------------------------------------------------------------------
 
-# Load and inspect LiDAR data
+# Load and inspect lidar data
 # ----------------------------
 # Load the sample point cloud
 las <- readLAS(files = "data/zrh_norm.laz")
 
-# Inspect header information
-las@header
+# Inspect header and attribute information
+las
 
-# Inspect attributes of the point cloud
-las@data
-
-# Check the memory size of the loaded LiDAR object
+# Check the memory size of the loaded lidar object
 format(object.size(las), "Mb")
 
-# Visualizing LiDAR data
+# Visualize the lidar data
 # ----------------------
 # Default 3D plot
 plot(las)
 
 # Colour by elevation (Z)
-plot(las, bg = "white")
-
-# Colour by intensity
-plot(las, color = "Intensity", bg = "white")
+plot(las)
 
 # Colour by classification
-plot(las, color = "Classification", bg = "white")
+plot(las, color = "Classification")
+
+# Colour by intensity
+plot(las, color = "Intensity")
 
 # Colour by scan angle rank
-plot(las, color = "ScanAngleRank", bg = "white")
+plot(las, color = "ScanAngleRank")
 
 # -------------------------------------------------------------------
-# Point Classification
+# Point Classification and Filtering
 # -------------------------------------------------------------------
 
 # Load a version with only ground points (classification == 2)
 las_ground <- readLAS(files = "data/zrh_class.laz", filter = "-keep_class 2")
-plot(las_ground, bg = "white")
+plot(las_ground)
 
-# -------------------------------------------------------------------
-# Filtering Dataset
-# -------------------------------------------------------------------
+# Keep only first-return points
+las_first <- readLAS(files = "data/zrh_norm.laz", filter = "-keep_first")
+las_first
+plot(las_first)
 
-# 1) Select only XYZ coordinates to reduce memory usage
+#    Select only XYZ coordinates to reduce memory usage
 las_xyz <- readLAS(files = "data/zrh_norm.laz", select = "xyz")
 las_xyz@data
 format(object.size(las_xyz), "Mb")
 
-# 2) Keep only first-return points
-las_first <- readLAS(files = "data/zrh_norm.laz", filter = "-keep_first")
-las_first
-plot(las_first, bg = "white")
-
-# 3) Filter an in-memory LAS object by attribute
-#    Filter points with Classification == 2 (ground)
+# Filter an in-memory LAS object by attribute
+# Flter points with Classification == 2 (ground)
+las <- readLAS('data/zrh_class.laz')
 class_2 <- filter_poi(las = las, Classification == 2L)
-plot(class_2, bg = "white")
+plot(class_2)
 
-#    Combine filters: ground AND first returns
+# Combine filters: ground AND first returns
 first_ground <- filter_poi(las = las, Classification == 2L & ReturnNumber == 1L)
-plot(first_ground, bg = "white")
+plot(first_ground)
 
 # -------------------------------------------------------------------
 # Exercises

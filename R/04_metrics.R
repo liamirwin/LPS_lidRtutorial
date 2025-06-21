@@ -7,35 +7,36 @@
 rm(list = ls(globalenv()))
 library(lidR)
 library(terra)
-library(lidRmetrics)
+library(lidRmetrics) # Make sure you have this installed via Github (see tutorial)
 
 # -------------------------------------------------------------------
 # Basic Pixel Metrics
 # -------------------------------------------------------------------
 
-# Load normalized LiDAR data
+# Load normalized lidar data
 las <- readLAS(files = "data/zrh_norm.laz")
 
-# Compute mean and max height at 10m resolution
+# Compute mean return height at 10m resolution
 hmean <- pixel_metrics(las = las, func = ~mean(Z), res = 10)
 plot(hmean)
 
+# Compute mean return height at 10m resolution
 hmax <- pixel_metrics(las = las, func = ~max(Z), res = 10)
 plot(hmax)
 
-# Compute multiple metrics simultaneously
+# Compute both metrics simultaneously using a list
 metrics_multi <- pixel_metrics(las = las,
                                func = ~list(hmax = max(Z), hmean = mean(Z)),
                                res = 10)
 plot(metrics_multi)
 
-# Predefined metrics (.stdmetrics_z)
+# Use predefined metrics from lidR (.stdmetrics_z)
 metrics_std <- pixel_metrics(las = las, func = .stdmetrics_z, res = 10)
 plot(metrics_std)
 plot(metrics_std, "zsd")
 
 # -------------------------------------------------------------------
-# Advanced Metrics (lidRmetrics)
+# Advanced Metrics (lidRmetrics package)
 # -------------------------------------------------------------------
 
 # Canopy cover: proportion of returns above 2m
@@ -55,8 +56,10 @@ plot(disp)
 plot(disp, "CRR")
 plot(disp, "VCI")
 
-# User-defined weighted mean metric
+# Create a custom user-defined metric;weighted mean metric between two attributes
 f_weighted <- function(x, weight) sum(x * weight) / sum(weight)
+
+# Apply to calculate the mean height weighted by intensity (arbitrary)
 user_weighted <- pixel_metrics(las,
                                func = ~f_weighted(Z, Intensity),
                                res = 10)

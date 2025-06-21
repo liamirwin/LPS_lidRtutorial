@@ -1,5 +1,5 @@
 ---
-title: "Read/Plot/Query/Validate"
+title: "Read/Plot/Query"
 ---
 
 ```{r setup, include=FALSE}
@@ -14,13 +14,13 @@ source("R/setup_rgl.R")
 
 ## Overview
 
-Welcome to this lidar processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, *query*, and *validate* lidar data. We'll explore basic information about a lidar file including the *header* and *tabular data,* as well as *visualize* point clouds using different colour schemes based on attributes. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly.
+Welcome to this lidar processing tutorial using R and the `lidR` package! In this tutorial, you will learn how to *read*, *visualize*, and *query* lidar data. We'll explore basic information about a lidar file including the *header* and *data frame* as well as *visualize* point clouds using different colour schemes based on attributes with `plot()`. We'll use the `select` argument in `readLAS()` to load specific attributes and the `filter` argument to only load points of interest or apply transformations on-the-fly.
 
 Let's get started with processing lidar data efficiently using `lidR` and R! Happy learning!
 
 ## Environment
 
-We start by loading the necessary packages, clearing our current environment, and specifying that some warnings be turned off to make our outputs clearer. We will do this for each section in the tutorial.
+We start each page by loading the necessary packages, clearing our current environment, and specifying that some warnings be turned off to make our outputs clearer. We will do this for each section in the tutorial.
 
 ```{r clear_warnings, warnings = FALSE, message = FALSE}
 # Clear environment
@@ -34,17 +34,14 @@ library(lidR)
 
 ### Load and Inspect lidar Data
 
-Load the lidar point cloud data from a LAS file using the `readLAS()` function. The data is stored in the `las` object. We can inspect the header information and attributes of the `las` object.
+Load the lidar point cloud data from a LAS file using the `readLAS()` function. The data is stored in the `las` object. We can inspect the header information and attributes of the `las` object by calling the object.
 
 ```{r load_and_inspect_lidar_data}
 # Load the sample point cloud
 las <- readLAS(files = "data/zrh_norm.laz")
 
-# Inspect header information
-las@header
-
-# Inspect attributes of the point cloud
-las@data
+# Inspect header information and print a summary
+las
 
 # Check the file size of the loaded lidar data
 format(object.size(las), "Mb")
@@ -71,39 +68,6 @@ plot(las)
 plot(las, bg = "white")
 ```
 
-``` r
-plot(las, color = "Intensity")
-```
-
-```{r visualize_lidar_data_int, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-#| label: fig-zrh-intensity
-#| fig-cap: "Point cloud coloured by the Intensity attribute."
-# Visualize using intensity values as colours
-plot(las, color = "Intensity", bg = "white")
-```
-
-``` r
-plot(las, color = "Classification")
-```
-
-```{r visualize_lidar_data_class, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-#| label: fig-zrh-classification
-#| fig-cap: "Point cloud coloured by Classification. Ground is blue, vegetation is green."
-# Visualize using the classification attribute as colours
-plot(las, color = "Classification", bg = "white")
-```
-
-``` r
-plot(las, color = "ScanAngleRank")
-```
-
-```{r visualize_lidar_data_scan, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-#| label: fig-zrh-scan-angle
-#| fig-cap: "Point cloud coloured by ScanAngleRank"
-# Visualize using the scan angle rank as colours
-plot(las, color = "ScanAngleRank", bg = "white")
-```
-
 ## Point Classification
 
 Lidar systems and pre-processing attribute point clouds with additional attributes beyond just X, Y and Z coordinates.
@@ -116,47 +80,104 @@ LAS Standard Point classification is now standardized by the American Society fo
 
 Our example ALS dataset, collected in 2014 over Zürich uses an older **LAS 1.1 standard**. Its classification codes are interpreted as follows:
 
-| Class Code | Meaning | Interpretation |
-|:---|:---|:---|
-| 2 | **Ground** | The bare earth surface. |
-| 3/4/5 | **Low/Medium/High Vegetation** | Vegetation under 1 meter. |
-| 7 | **Noise** | Erroneous points, likely below ground or outliers above ground. |
-| 12 | **Overlap Points** | Points assigned to overlapping flight lines. |
++----------------------+--------------------------------+-----------------------------------------------------------------+------------------+
+| Class Code           | Meaning                        | Interpretation                                                  | Number of points |
++:=====================+:===============================+:================================================================+==================+
+| 2                    | **Ground**                     | The bare earth surface.                                         | ```              |
+|                      |                                |                                                                 | 195582           |
+|                      |                                |                                                                 | ```              |
++----------------------+--------------------------------+-----------------------------------------------------------------+------------------+
+| 3/4/5                | **Low/Medium/High Vegetation** | Vegetation under 1 meter.                                       | ```              |
+|                      |                                |                                                                 | 650123           |
+|                      |                                |                                                                 | ```              |
++----------------------+--------------------------------+-----------------------------------------------------------------+------------------+
+| 7                    | **Noise**                      | Erroneous points, likely below ground or outliers above ground. | 87               |
++----------------------+--------------------------------+-----------------------------------------------------------------+------------------+
+| 12                   | **Overlap Points**             | Points assigned to overlapping flight lines.                    | ```              |
+|                      |                                |                                                                 | 424135           |
+|                      |                                |                                                                 | ```              |
++----------------------+--------------------------------+-----------------------------------------------------------------+------------------+
+
+``` r
+plot(las, color = "Classification")
+```
+
+```{r visualize_lidar_data_class, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-classification
+#| fig-cap: "Point cloud coloured by Classification. Ground is blue, vegetation is green."
+# Visualize using the classification attribute as colours
+plot(las, color = "Classification", bg = "white")
+```
+
+Lidar point clouds record Return `Intensity` information; representing the *strength of the returning signal*. This attribute varies widely depending on sensor/acquisition characteristics can be useful in biodiversity mapping.
+
+``` r
+plot(las, color = "Intensity")
+```
+
+```{r visualize_lidar_data_int, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-intensity
+#| fig-cap: "Point cloud coloured by the Intensity attribute."
+# Visualize using intensity values as colours
+plot(las, color = "Intensity", bg = "white")
+```
+
+Laser scanning systems record the scan angle of each pulse and attribute this information to the point cloud as `ScanAngleRank`.
+
+``` r
+plot(las, color = "ScanAngleRank")
+```
+
+```{r visualize_lidar_data_scan, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-scan-angle
+#| fig-cap: "Point cloud coloured by ScanAngleRank"
+# Visualize using the scan angle rank as colours
+plot(las, color = "ScanAngleRank", bg = "white")
+```
 
 ## Filtering Dataset
 
-Often we do not need the entire set of attributes loaded into memory, or may want a particular subset of points. We can use `Classification` as well as other attributes to filter points.
+Often we do not need the entire set of points or attributes (columns) loaded in memory for our analysis. We can use `Classification` as well as other attributes to pre-filter point clouds before further processing.
+
+There are two key was in `lidR` to achieve this.
 
 ### Filtering points on-the-fly (efficient)
 
-The `readLAS()` function allows us to select specific attributes to be loaded into memory. This is useful to reduce memory requirements when working with large lidar datasets.
+First, we load subsets of the lidar points based on certain criteria using the `filter` argument in directly in `readLAS()`.
 
-```{r select_attributes}
-# Load only the xyz coordinates (X, Y, Z) and ignore other attributes
-las <- readLAS(files = "data/zrh_norm.laz", select = "xyz")
-# Inspect the loaded attributes
-las@data
+The `filter` argument in `readLAS()` can be useful for tasks such as filtering specific classifications, to isolate ground, remove noise, etc...
 
-# Check the memory size after loading only the selected attributes
-format(object.size(las), "Mb")
+```{r on_the_fly_transform}
+# Load point cloud keeping only Classification 2 (ground returns)
+las <- readLAS(files = "data/zrh_class.laz", filter = "-keep_class 2")
 ```
 
-Here we load a subset of the lidar points based on certain criteria using the `filter` argument in directly in `readLAS()`.
+Visualize the *first return filtered* point cloud using the `plot()` function.
 
-In this case we use a pre-existing filter during to subset only first returns-to see all run `readLAS(filter = "-help")` for a full list of these filters.
+``` r
+plot(las)
+```
+
+```{r visualize_lidar_data_filter_class, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
+#| label: fig-zrh-ground-filter
+#| fig-cap: "Point cloud showing only ground points, filtered on readLAS with `-keep_class 2`."
+plot(las, bg = "white")
+```
+
+Each lidar `pulse` can record multiple discrete `returns` (points).
+
+Here we use a filter during `readLAS` to *subset only first returns*.
 
 ```{r filter_points}
 # Load only the first return points
 las <- readLAS(files = "data/zrh_norm.laz", filter = "-keep_first")
-
 # Inspect the loaded points
 las
-
 # Check the memory size after loading only the filtered points
 format(object.size(las), "Mb")
 ```
 
-Visualize this filtered dataset using the `plot()` function.
+Visualize the *first return filtered* point cloud using the `plot()` function.
 
 ``` r
 plot(las)
@@ -169,22 +190,22 @@ plot(las)
 plot(las, bg = "white")
 ```
 
-The `filter` argument in `readLAS()` can be useful for tasks such as filtering specific classifications, to isolate ground, remove noise, etc...
+The `readLAS()` function also allows us to *select specific attributes* (columns) to be loaded into memory. This is useful to reduce memory requirements when working with large lidar datasets.
 
-```{r on_the_fly_transform}
-# Load another version of the point cloud and visualize with an applied filter to isolate ground points
-las <- readLAS(files = "data/zrh_class.laz", filter = "-keep_class 2")
+```{r select_attributes}
+# Load only the xyz coordinates (X, Y, Z) and ignore other attributes
+las <- readLAS(files = "data/zrh_norm.laz", select = "xyz")
+# Inspect the loaded attributes
+las@data
+# Check the memory size (much smaller)
+format(object.size(las), "Mb")
 ```
 
-``` r
-plot(las)
-```
+::: callout-tip
+## See all `readLAS` pre-built filters
 
-```{r visualize_lidar_data_filter_class, echo = FALSE, rgl = TRUE, fig.width = 8, fig.height = 6}
-#| label: fig-zrh-ground-filter
-#| fig-cap: "Point cloud showing only ground points, filtered on readLAS with `-keep_class 2`."
-plot(las, bg = "white")
-```
+run `readLAS(filter = "-help")` for a full list of these filters.
+:::
 
 ### Filtering Points using `filter_poi()`
 

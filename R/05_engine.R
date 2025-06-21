@@ -19,7 +19,7 @@ ctg <- readLAScatalog(folder = "data/ctg_norm")
 ctg
 
 # Visualize catalog extents
-plot(ctg)
+plot(ctg, chunk = TRUE)
 
 # Optional interactive plot with mapview (if installed)
 plot(ctg, map = TRUE)

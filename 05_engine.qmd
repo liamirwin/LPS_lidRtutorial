@@ -13,7 +13,7 @@ source("R/setup_rgl.R")
 
 ## Overview
 
-This code performs various operations on LiDAR data using LAScatalog functionality. We visualize and inspect the data, validate the files, clip the data based on specific coordinates, generate a Canopy Height Model (CHM), specify processing options, and use parallel computing.
+This code performs various operations on lidar data using LAScatalog functionality. We visualize and inspect the data, validate the files, clip the data based on specific coordinates, generate a Canopy Height Model (CHM), specify processing options, and use parallel computing.
 
 ## Environment
 
@@ -28,7 +28,7 @@ library(sf)
 
 ## Basic Usage
 
-In this section, we will cover the basic usage of the `lidR` package, including reading LiDAR data, visualization, and inspecting metadata.
+In this section, we will cover the basic usage of the `lidR` package, including reading lidar data, visualization, and inspecting metadata.
 
 If you haven't downloaded the catalog files yet:
 
@@ -56,12 +56,12 @@ ctg
 
 ### Visualize catalog
 
-We can visualize the catalog, showing the spatial coverage of the LiDAR data *header* extents. 
+We can visualize the catalog, showing the spatial coverage of the lidar data *header* extents. Note with `chunk = TRUE` we see the automatic buffers (dashed line) applied to each tile to avoid edge effects.
 
 ```{r visualize_catalog}
 #| label: fig-catalog-plot
-#| fig-cap: "Visualization of the `LAScatalog` showing the spatial layout of the individual LiDAR tiles."
-plot(ctg)
+#| fig-cap: "Visualization of the `LAScatalog` showing the spatial layout of the individual lidar tiles."
+plot(ctg, chunk = TRUE)
 ```
 
 With the `mapview` package installed, this map can be interactive if we use `map = TRUE`. Try clicking on a tile to see its header information.
@@ -73,21 +73,41 @@ With the `mapview` package installed, this map can be interactive if we use `map
 plot(ctg, map = TRUE)
 ```
 
+::: {.panel-tabset}
+### Success
+
+When all processing is completed without issues, all tiles are colored green.
+
+![Catalog plot showing all tiles in green, indicating success.](img/ctg/success.png)
+
+### Warning
+
+If a process runs but generates a warning for a tile they are coloured yellow. The processing for that tile may have completed, but it requires inspection.
+
+![Catalog plot tiles in orange, indicating warnings.](img/ctg/warning.png)
+
+### Error
+
+A tile colored in red indicates that the processing failed for that file. 
+
+Tip: set `opt_stop_early(ctg)` <- FALSE to continue processing
+
+![Catalog plot showing some tiles in red, indicating errors.](img/ctg/error.png)
+:::
+
 ## File indexing
 
-We can explore indexing of `LAScatalog` objects for efficient processing.
+We can explore indexing of `LAScatalog` input files for efficient processing.
 
 Indexing generates .lax files associated with each .laz/.las point cloud to speed up processing.
 
 ::: callout-note
 ## Indexing
-
-**The `lidR` policy has always been: use `LAStools` and `lasindex` for spatial indexing**. If you really don't want, or can't use `LAStools`, then there is a hidden function in `lidR` that users can use (`lidR:::catalog_laxindex()`).
+**The `lidR` policy has always been: use `LAStools` and `lasindex` for spatial indexing**. Alternatively there is a hidden function in `lidR` that users can call (`lidR:::catalog_laxindex()`).
 :::
 
 ```{r, echo = FALSE, results = FALSE}
 # Instructions for cleaning up any existing .lax files
-# (Note: Please replace 'path' with the appropriate path)
 path <- "data/ctg_norm"
 file_list <- list.files(path)
 delete_lax <- file_list[grep("\\.lax$", file_list)]
@@ -97,23 +117,25 @@ file.remove(file.path(path, delete_lax))
 ```{r indexing_files}
 # check if files have .lax
 is.indexed(ctg)
-
 # generate index files
 lidR:::catalog_laxindex(ctg)
-
 # check if files have .lax
 is.indexed(ctg)
 ```
 
 ## Generate CHM
 
-We create a CHM by rasterizing the point cloud data from the catalog similarly to how we processed a single file.
+Now that we understand how a catalog works, lets apply it to generate some layers.
+
+First create another CHM by rasterizing the point cloud data from the catalog similarly to how we processed a single file.
 
 ```{r generate_chm, warning = FALSE, message = FALSE}
 #| label: fig-catalog-chm
 #| fig-cap: "Canopy Height Model (CHM) generated from the entire `LAScatalog` at 1.0m resolution."
 # Generate CHM
-chm <- rasterize_canopy(las = ctg, res = 1, algorithm = p2r(subcircle = 0.15))
+chm <- rasterize_canopy(las = ctg,
+                        res = 1,
+                        algorithm = p2r(subcircle = 0.15))
 plot(chm)
 ```
 
@@ -172,7 +194,6 @@ opt_progress(ctg) <- TRUE
 plot(ctg, chunk = TRUE)
 summary(ctg)
 ```
-
 
 ### Parallel computing
 
@@ -276,5 +297,5 @@ Generate a DTM at 1m spatial resolution for the provided catalog with only first
 The Multiple Returns and Canopy Penetration
 This exercise highlights a critical and unique capability of Airborne Laser Scanning (ALS). 
 
-Unlike methods based on imagery like Digital Aerial Photogrammetry (DAP), map the visible surface, LiDAR pulses can penetrate through gaps in the vegetation generating multiple returns each. This allows us to map the ground surface even under dense forest cover, which is essential for creating accurate Digital Terrain Models (DTMs).
+Unlike methods based on imagery like Digital Aerial Photogrammetry (DAP), map the visible surface, lidar pulses can penetrate through gaps in the vegetation generating multiple returns each. This allows us to map the ground surface even under dense forest cover, which is essential for creating accurate Digital Terrain Models (DTMs).
 :::

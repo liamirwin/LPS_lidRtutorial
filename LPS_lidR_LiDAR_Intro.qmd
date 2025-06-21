@@ -17,7 +17,7 @@ format:
 editor: source
 title-slide-attributes: 
   data-background-image: img/logo.png
-  data-background-size: 15%
+  data-background-size: 10%
   data-background-position: 50% 85%
 fig-dpi: 300
 ---
@@ -77,9 +77,29 @@ To do so we often generate summary metrics that act similarly to spectral indice
 :::
 
 ::: column
-```{r lidR-downloads, echo=FALSE, out.width="100%"}
+```{r lidR-downloads, echo=FALSE, out.width="75%"}
 source('R/lidR_downloads_plot.R')
 ```
+:::
+
+:::  
+
+::: notes
+
+:::
+
+## r-lidar
+
+::: columns
+
+::: column
+- lidR author `Jean-Romain Roussel` is commited to maintaining the `lidR` package as fully open source
+- He now does so through a `r-lidar` as consulting and development company targeted at lidar related applications
+- Visit `r-lidar.com` or contact `info@r-lidar.com` for more information
+:::
+
+::: column
+![](img/rlidar_banner.png)
 :::
 
 :::  
@@ -99,5 +119,7 @@ source('R/lidR_downloads_plot.R')
 -   File Collection Processing Engine (10:10)
 
 ## Get Set Up!
+
+https://liamirwin.github.io/LPS_lidRtutorial/
 
 [![](img/qrcode.png){fig-align="center"}](https://liamirwin.github.io/LPS_lidRtutorial/)

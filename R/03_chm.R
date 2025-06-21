@@ -12,7 +12,7 @@ library(terra)
 # Data Preprocessing
 # -------------------------------------------------------------------
 
-# Load lidar data and decimate to simulate lower density (10 pts/m²)
+# Load lidar data and decimate to simulate lower density (20 -> 10 pts/m²)
 las <- readLAS(files = "data/zrh_norm.laz")
 las <- decimate_points(las, random(density = 10))
 
@@ -40,7 +40,8 @@ chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.8))
 plot(chm)
 
 # Fill empty pixels using TIN interpolation
-chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.0, na.fill = tin()))
+chm <- rasterize_canopy(las = las, res = 0.5, algorithm = p2r(subcircle = 0.0,
+                                                              na.fill = tin()))
 plot(chm)
 
 # -------------------------------------------------------------------
@@ -52,18 +53,20 @@ thresholds <- c(0, 5, 10, 20, 25, 30)
 max_edge <- c(0, 1.35)
 
 # Generate pitfree CHM at 0.5m resolution
-chm <- rasterize_canopy(las = las, res = 0.5, algorithm = pitfree(thresholds, max_edge))
+chm <- rasterize_canopy(las = las, res = 0.5, algorithm = pitfree(thresholds,
+                                                                  max_edge))
 plot(chm)
 
 # Generate pitfree CHM with subcircle for finer detail
-chm <- rasterize_canopy(las = las, res = 0.25, algorithm = pitfree(thresholds, max_edge, 0.1))
+chm <- rasterize_canopy(las = las, res = 0.25, algorithm = pitfree(thresholds,
+                                                                   max_edge, 0.1))
 plot(chm)
 
 # -------------------------------------------------------------------
 # Post-Processing (Smoothing)
 # -------------------------------------------------------------------
 
-# Smooth CHM using a 3x3 mean filter
+# Smooth CHM using a 3x3 mean filter with the terra package
 ker <- matrix(1, 3, 3)
 schm <- terra::focal(chm, w = ker, fun = mean, na.rm = TRUE)
 plot(schm)
