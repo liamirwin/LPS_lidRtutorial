@@ -172,6 +172,8 @@ las_norm <- readLAS('data/zrh_norm.laz')
 las_cs_norm <- clip_transect(las_norm, p1 = p1,
                         p2 = p2, width = 0.25) 
 
+library(ggplot2)
+
 p_las <- ggplot(data = las_cs@data) +
   geom_point(aes(x = X, y = Z), alpha = 0.5) + 
   labs(title = 'Raw Cross Section', y = 'Height above ground (mAGL)') +

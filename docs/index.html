@@ -12,7 +12,7 @@
 <meta name="author" content="Jean-Romain Roussel">
 <meta name="dcterms.date" content="2025-06-22">
 
-<title>lidR: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications – lidRtutorial</title>
+<title>lidR: (A workshop for) Airborne Lidar Data Manipulation and Visualization for Environmental Applications – lidRtutorial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><code>lidR</code>: (A workshop for) Airborne LiDAR Data Manipulation and Visualization for Environmental Applications</h1>
+<h1 class="title"><code>lidR</code>: (A workshop for) Airborne Lidar Data Manipulation and Visualization for Environmental Applications</h1>
 </div>
 
 
@@ -305,21 +305,40 @@ Tip
 <p><a href="./ctg_class.zip">Download additional classified lidar files for 05_engine (.zip, 80 MB)</a></p>
 <p><a href="./ctg_norm.zip">Download additional normalized lidar files for 05_engine (.zip, 78 MB)</a></p>
 <p>Unzip the first to a folder, and run the <code>.Rproj</code> file with RStudio installed for the easiest experience. Unzip <code>ctg_class.zip</code> and <code>ctg_norm.zip</code> to their respective folders in <code>data/ctg_*</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="img/folder_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Target Folder and Data Structure for Workshop Contents"><img src="img/folder_structure.png" class="img-fluid figure-img" alt="Target Folder and Data Structure for Workshop Contents"></a></p>
+<figcaption>Target Folder and Data Structure for Workshop Contents</figcaption>
+</figure>
+</div>
 </section>
 <section id="requirements" class="level2">
 <h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
 <section id="r-version-and-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="r-version-and-rstudio">R version and Rstudio</h3>
 <ul>
-<li>You need to install a recent version of <code>R</code> i.e.&nbsp;<code>R 4.0.x</code> or newer.</li>
+<li>You need to install a recent version of <code>R</code> i.e.&nbsp;<code>R 4.x</code> or newer.</li>
 <li>We will work with <a href="https://www.rstudio.com/">Rstudio</a>. This IDE is not mandatory to follow the workshop but is highly recommended.</li>
 </ul>
 </section>
 <section id="r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="r-packages">R Packages</h3>
-<p>You need to install the <code>lidR</code> package in its latest version (v &gt;= 4.0.0).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Easy setup for new users</strong> Please open the <code>LPS_lidRtutorial_package.Rproj</code> in RStudio. Next, open <code>01_read.R</code> to run code to automatically install packages.</p>
+</div>
+</div>
+<p>Please install the <code>lidR</code> package in its latest version (4.2.1).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lidR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To run all code in the tutorial yourself, you will need to install the following packages. You can use <code>lidR</code> without them, however.</p>
+<p>To run all code in the tutorial locally, you will need to install the following packages. You can use <code>lidR</code> without them or follow along with provided code and outputs.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>libs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"terra"</span>,<span class="st">"viridis"</span>,<span class="st">"future"</span>,<span class="st">"sf"</span>,<span class="st">"mapview"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(libs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -334,7 +353,7 @@ Tip
 <section id="datasets" class="level3">
 <h3 class="anchored" data-anchor-id="datasets">Datasets</h3>
 <p>We will be working with a sample ALS dataset <a href="https://geolion.zh.ch/geodatensatz/show?nbid=2618" title="Data Description and Access">openly available</a> for Canton Zürich flown in spring 2014.</p>
-<p>The raw data has been thinned to a uniform density to speed up processing.</p>
+<p>The raw data has been thinned to a uniform density (20 points/m2) to speed up processing.</p>
 </section>
 </section>
 <section id="estimated-schedule" class="level2 smaller">
@@ -380,7 +399,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="img/rlidar_banner.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/rlidar_banner.png" class="img-fluid"></a></p>
+<p><a href="img/rlidar_banner.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="img/rlidar_banner.png" class="img-fluid"></a></p>
 <section id="note" class="level2">
 <h2 class="anchored" data-anchor-id="note">Note</h2>
 <p>Since 2024, the <code>lidR</code> package is no longer supported by Laval University, but the software will remain free and open-source. <code>r-lidar</code> has transitioned into a company to ensure sustainability and now offers independent services for training courses, consulting, and development. Please feel free to visit their <a href="https://www.r-lidar.com/">website</a> for more information.</p>

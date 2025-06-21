@@ -212,6 +212,8 @@ run `readLAS(filter = "-help")` for a full list of these filters.
 Alternatively LASobjects loaded into memory with `readLAS()` can be filtered immediately using the `filter_poi()` function. These filters can be custom made by combining [boolean operators](https://www.r-bloggers.com/2021/09/r-booleans-comparison-and-logical-operators/ "Boolean operators in R") (==, !=, \>, \<, &, \|, etc...) with point cloud attributes to formulate logical statements. Statements are applied to points to assign `TRUE` (kept) or `FALSE` (filtered out) values.
 
 ```{r filter_poi_example}
+# Load the lidar file with all the all attributes 
+las <- readLAS(files = "data/zrh_class.laz")
 # Filter points with Classification == 2
 class_2 <- filter_poi(las = las, Classification == 2L)
 

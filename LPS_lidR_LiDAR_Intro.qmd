@@ -1,6 +1,6 @@
 ---
 title: "`lidR`: (A workshop for) Airborne lidar Data Manipulation and Visualization for Environmental Applications"
-author: "Liam A.K. Irwin, Brent Murray"
+author: "Liam A.K. Irwin, Brent Murray, Nicholas C. Coops"
 favicon: img/logo.png
 format:
   revealjs:
@@ -21,6 +21,16 @@ title-slide-attributes:
   data-background-position: 50% 85%
 fig-dpi: 300
 ---
+
+## Presenters
+
+Liam Irwin - PhD Student 
+Brent Murray - PhD Student
+Nicholas Coops - Professor
+
+Integrated Remote Sensing Studio
+University of British Columbia
+Vancouver, Canada
 
 ## Overview
 
@@ -46,7 +56,7 @@ fig-dpi: 300
 
 - Discrete returns are aggregated into point clouds (`.LAS/.LAZ`)  
 - Lidar points have three-dimensional (`XYZ`) coordinates, and other attributes (`Intensity`, `ReturnNumber`, etc...)  
-- Point clouds can be processed into summaries of vegetation structure with **lidR**
+- Point clouds can be processed into vegetation structure summaries with **lidR**
 
 :::
 
@@ -77,9 +87,12 @@ To do so we often generate summary metrics that act similarly to spectral indice
 :::
 
 ::: column
-```{r lidR-downloads, echo=FALSE, out.width="75%"}
+```{r lidR-downloads, echo=FALSE}
 source('R/lidR_downloads_plot.R')
 ```
+
+![](img/lidR_paper.png)
+
 :::
 
 :::  

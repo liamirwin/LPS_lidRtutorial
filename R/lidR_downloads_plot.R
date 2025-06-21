@@ -89,6 +89,6 @@ p <- ggplot(df, aes(x = month_year)) +
 
   labs(
     title    = "CRAN lidR Downloads"
-  ) + coord_fixed(ratio=10)
+  )
 
 print(p)
