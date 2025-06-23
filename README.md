@@ -2,7 +2,9 @@
 
 [This repository](https://github.com/liamirwin/LPS_lidRtutorial) contains the material for an 80 minute `lidR` tutorial workshop.
 
-This workshop was created for the `2025 Living Planet Symposium (LPS)`, held in Wien, Austria June, 2025
+This workshop was created for the `2025 Living Planet Symposium (LPS)`, 2025 held in Wien, Austria June, 2025
+
+This workshop was presented by `Liam A.K. Irwin`, `Brent A. Murray` and `Nicholas C. Coops` members of the [University of British Columbia Integrated Remote Sensing Studio lab](https://irsslab.forestry.ubc.ca/).
 
 The workshop intends to:
 
