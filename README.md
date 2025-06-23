@@ -1,6 +1,10 @@
 ## Materials
 
-[This repository](https://github.com/liamirwin/LPS_lidRtutorial) contains the material for an 80 minute `lidR` tutorial workshop. You should install the material on your own machine from [this repository](https://github.com/liamirwin/LPS_lidRtutorial). It contains the code, the shapefiles and point-clouds we will use. The workshop intends to:
+[This repository](https://github.com/liamirwin/LPS_lidRtutorial) contains the material for an 80 minute `lidR` tutorial workshop.
+
+This workshop was created for the `2025 Living Planet Symposium (LPS)`, held in Wien, Austria June, 2025
+
+The workshop intends to:
 
 -   Present an overview of what can be done with `lidR`
 -   Give users an understanding of how `lidR` may fit their needs
